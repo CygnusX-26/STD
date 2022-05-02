@@ -1,10 +1,9 @@
 package school.tower.defense.EnemyTypes;
 
 import school.tower.defense.Templates.Enemy;
-import school.tower.defense.Templates.PayCheck;
 import school.tower.defense.Templates.Tower;
 
-public class LetterOfRec extends Enemy implements PayCheck {
+public class LetterOfRec extends Enemy {
     
     private int reward;
     

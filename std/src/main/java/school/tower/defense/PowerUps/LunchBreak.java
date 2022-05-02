@@ -1,11 +1,9 @@
 package school.tower.defense.PowerUps;
 
-import school.tower.defense.Templates.PayCheck;
-
-public class LunchBreak implements PayCheck{
+public class LunchBreak {
 
     @Override
-    public void subtract(int amounnt)
+    public void subtract(int amount)
     {
         // TODO Auto-generated method stub
         
