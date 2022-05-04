@@ -2,11 +2,13 @@ package school.tower.defense.TowerTypes;
 
 import school.tower.defense.Templates.Enemy;
 import school.tower.defense.Templates.Tower;
+import school.tower.defense.Templates.Upgrade;
 
 public class Fulk extends Tower {
+    Upgrade currentUpgrade;
         
-    public Fulk(String name, int cost, int damage, int range, int fireRate, int x, int y) {
-        super(name, cost, damage, range, fireRate, x, y);
+    public Fulk() {
+        currentUpgrade = new Upgrade("Base", 0, 1, 1, 1);
     }
 
     public void attack(Enemy enemy) {
