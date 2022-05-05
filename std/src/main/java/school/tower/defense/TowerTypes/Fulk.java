@@ -5,22 +5,40 @@ import school.tower.defense.Templates.Tower;
 import school.tower.defense.Templates.Upgrade;
 
 public class Fulk extends Tower {
-    Upgrade currentUpgrade;
+
+    @Override
+    public void place()
+    {
+        // TODO Auto-generated method stub
         
-    public Fulk() {
-        currentUpgrade = new Upgrade("Base", 0, 1, 1, 1);
     }
 
-    public void attack(Enemy enemy) {
-        //do nothing
+    @Override
+    public void sell()
+    {
+        // TODO Auto-generated method stub
+        
     }
 
-    public Boolean place(int x, int y) {
-        return true;
+    @Override
+    public void upgrade()
+    {
+        // TODO Auto-generated method stub
+        
     }
 
-    public void subtract(int amounnt) {
-        //do nothing
+    @Override
+    public void getCost()
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void getUpgrade()
+    {
+        // TODO Auto-generated method stub
+        
     }
     
 }

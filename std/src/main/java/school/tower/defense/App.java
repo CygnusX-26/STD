@@ -1,14 +1,16 @@
 package school.tower.defense;
 
+import java.io.IOException;
+import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 /**
  * JavaFX App
@@ -19,8 +21,22 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Group root = new Group();
-        scene = new Scene(loadFXML("primary"), 640, 480, Color.BLACK);
+        StackPane root  = new StackPane();
+        StackPane game = new StackPane();
+        game.setId("game");
+        root.setId("pane");
+        Button btn = new Button();
+        btn.setText("Continue");
+        btn.setOnAction(value ->  {
+          scene.setRoot(game);
+           System.out.println("Continue");
+        });
+        root.getChildren().add(btn);
+        scene = new Scene(root, 640, 480, Color.BLACK);
+        URL url = this.getClass().getResource("style.css");
+        System.out.println(url);
+        String css = url.toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setScene(scene);
         stage.setTitle("Student Tower Defense");
         stage.show();

@@ -1,0 +1,15 @@
+#pane{
+    -fx-background-image: url("Map/lynbrook.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 640 480;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}
+
+#game{
+    -fx-background-image: url("Map/test.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 640 480;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}
