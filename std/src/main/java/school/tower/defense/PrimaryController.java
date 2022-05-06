@@ -7,6 +7,6 @@ public class PrimaryController {
 
     @FXML
     private void Continue() throws IOException {
-        App.loadGame();
+        // App.loadGame();
     }
 }

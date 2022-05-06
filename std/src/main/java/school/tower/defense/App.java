@@ -41,10 +41,6 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
-    static void loadGame() throws IOException {
-        System.out.println("test");
-    }
-
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
@@ -55,16 +51,10 @@ public class App extends Application {
     }
     public void loadMenu() throws IOException {
         StackPane root  = new StackPane();
-        StackPane game = new StackPane();
-        StackPane inst = new StackPane();
-
-        game.setId("game");
-        root.setId("pane");
-        inst.setId("inst");
 
         Button startButton = new Button();
         Button instructions = new Button();
-        BackgroundImage startImage = new BackgroundImage( new Image( getClass().getResource("Map/start.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, true, true, true, false));
+        BackgroundImage startImage = new BackgroundImage( new Image( getClass().getResource("Map/start.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
         BackgroundImage instructionsImage = new BackgroundImage( new Image( getClass().getResource("Map/Instructions.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, true, true, true, false));
         Text text = new Text("Student Tower Defense");
         Image fulk = new Image(getClass().getResource("Map/fulk.PNG").toExternalForm());
@@ -72,24 +62,31 @@ public class App extends Application {
         Image kwong = new Image(getClass().getResource("Map/Kwong.PNG").toExternalForm());
         ImageView KWONG = new ImageView(kwong);
 
+        root.setId("pane");
+        text.setId("menutext");
 
         text.setTranslateY(-150);
-        text.setId("menutext");
         startButton.setBackground( new Background( startImage ));
-        startButton.setMaxSize(100, 100);
+        startButton.setScaleX(7);
+        startButton.setScaleY(7);
         instructions.setBackground(new Background( instructionsImage ));
-        instructions.setMaxSize(200, 200);
+        instructions.setScaleX(7);
+        instructions.setScaleY(7);
         instructions.setTranslateY(50);
         FULK.setTranslateX(200);
         KWONG.setTranslateX(-200);
 
 
         startButton.setOnAction(value ->  {
-            scene.setRoot(game);
+            try {
+                loadGame();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             startButton.setDisable(true);
         });
+
         instructions.setOnAction(value -> {
-            scene.setRoot(inst);
             try{
                 loadInstructions();
             }
@@ -109,7 +106,16 @@ public class App extends Application {
     }
 
     public void loadInstructions() throws IOException {
+        StackPane inst = new StackPane();
+        inst.setId("inst");
+        scene.setRoot(inst);
         System.out.println("test");
+    }
+
+    public void loadGame() throws IOException {
+        StackPane game = new StackPane();
+        game.setId("game");
+        scene.setRoot(game);
     }
 
 }
