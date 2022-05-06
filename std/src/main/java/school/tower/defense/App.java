@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -52,44 +53,63 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void loadMenu() throws IOException {
         StackPane root  = new StackPane();
         StackPane game = new StackPane();
+        StackPane inst = new StackPane();
+
         game.setId("game");
         root.setId("pane");
-        Button btn = new Button();
+        inst.setId("inst");
+
+        Button startButton = new Button();
+        Button instructions = new Button();
+        BackgroundImage startImage = new BackgroundImage( new Image( getClass().getResource("Map/start.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, true, true, true, false));
+        BackgroundImage instructionsImage = new BackgroundImage( new Image( getClass().getResource("Map/Instructions.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, true, true, true, false));
         Text text = new Text("Student Tower Defense");
+        Image fulk = new Image(getClass().getResource("Map/fulk.PNG").toExternalForm());
+        ImageView FULK = new ImageView(fulk);
+        Image kwong = new Image(getClass().getResource("Map/Kwong.PNG").toExternalForm());
+        ImageView KWONG = new ImageView(kwong);
+
+
         text.setTranslateY(-150);
-        btn.setTranslateX(-150);
         text.setId("menutext");
-        BackgroundImage backgroundImage = new BackgroundImage( new Image( getClass().getResource("Map/start.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, true, true, true, false));
-        btn.setBackground( new Background( backgroundImage ));
-        btn.setMaxSize(100, 100);
-        btn.setOnAction(value ->  {
+        startButton.setBackground( new Background( startImage ));
+        startButton.setMaxSize(100, 100);
+        instructions.setBackground(new Background( instructionsImage ));
+        instructions.setMaxSize(200, 200);
+        instructions.setTranslateY(50);
+        FULK.setTranslateX(200);
+        KWONG.setTranslateX(-200);
+
+
+        startButton.setOnAction(value ->  {
             scene.setRoot(game);
-            btn.setDisable(true);
+            startButton.setDisable(true);
         });
-        root.getChildren().add(btn);
+        instructions.setOnAction(value -> {
+            scene.setRoot(inst);
+            try{
+                loadInstructions();
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+            
+        });
+
+
+        root.getChildren().add(startButton);
         root.getChildren().add(text);
+        root.getChildren().add(FULK);
+        root.getChildren().add(KWONG);
+        root.getChildren().add(instructions);
         scene = new Scene(root, 640, 480, Color.BLACK);
+    }
+
+    public void loadInstructions() throws IOException {
+        System.out.println("test");
     }
 
 }
