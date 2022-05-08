@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -71,16 +72,20 @@ public class App extends Application {
         Image kwong = new Image(getClass().getResource("Map/Kwong.PNG").toExternalForm());
         ImageView KWONG = new ImageView(kwong);
         Media menuMusic = new Media(getClass().getResource("Music/awesomeness.wav").toExternalForm());
+        Tooltip startTooltip = new Tooltip("Start Game HE H EHE HA HE HE HE HA");
         menuPlayer = new MediaPlayer(menuMusic);
 
         root.setId("pane");
         text.setId("menutext");
 
+        startTooltip.setMaxWidth(100);
+        startTooltip.setWrapText(true);
         text.setTranslateY(-150);
         startButton.setBackground( new Background( startImage ));
         startButton.setTranslateY(-25);
         startButton.setMaxWidth(150);
         startButton.setMaxHeight(75);
+        startButton.setTooltip(startTooltip);
         instructions.setBackground(new Background( instructionsImage ));
         instructions.setMaxWidth(150);
         instructions.setMaxHeight(75);
