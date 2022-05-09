@@ -13,16 +13,32 @@ public class Fulk extends Tower {
         cost = 100;
     }
 
-    public void attack(Enemy enemy) {
-        //do nothing
+    @Override
+    public void sell()
+    {
+        // TODO Auto-generated method stub
+        
     }
 
-    public Boolean place(int x, int y) {
-        return true;
+    @Override
+    public void upgrade()
+    {
+        // TODO Auto-generated method stub
+        
     }
 
-    public void subtract(int amounnt) {
-        //do nothing
+    @Override
+    public void getCost()
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void getUpgrade()
+    {
+        // TODO Auto-generated method stub
+        
     }
     
     public void sell() {
