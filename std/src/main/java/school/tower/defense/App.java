@@ -21,6 +21,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -71,7 +72,7 @@ public class App extends Application {
         Image kwong = new Image(getClass().getResource("Map/Kwong.PNG").toExternalForm());
         ImageView KWONG = new ImageView(kwong);
         Media menuMusic = new Media(getClass().getResource("Music/awesomeness.wav").toExternalForm());
-        Tooltip startTooltip = new Tooltip("Start Game HE H EHE HA HE HE HE HA");
+        Tooltip startTooltip = new Tooltip("Start Game");
         menuPlayer = new MediaPlayer(menuMusic);
 
         root.setId("pane");
@@ -143,14 +144,154 @@ public class App extends Application {
     }
 
     public void loadGame() throws IOException {
+
         menuPlayer.stop();
         Media gameMusic = new Media(getClass().getResource("Music/game.mp4").toExternalForm());
         menuPlayer = new MediaPlayer(gameMusic);
         menuPlayer.setVolume(0.5);
         menuPlayer.play();
         stage.setMaximized(true);
+
+        Button fulkButton = new Button();
+        Button kwongButton = new Button();
+        Button dunlapButton = new Button();
+        Button taylorButton = new Button();
+        Button albakerButton = new Button();
+        Button palloneButton = new Button();
+        
+        BackgroundImage fulkImage = new BackgroundImage( new Image( getClass().getResource("Map/fulk.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+        BackgroundImage kwongImage = new BackgroundImage( new Image( getClass().getResource("Map/Kwong.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+        BackgroundImage dunlapImage = new BackgroundImage( new Image( getClass().getResource("Map/Dunlap.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+        BackgroundImage taylorImage = new BackgroundImage( new Image( getClass().getResource("Map/Taylor.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+        BackgroundImage albakerImage = new BackgroundImage( new Image( getClass().getResource("Map/Albaker.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+        BackgroundImage palloneImage = new BackgroundImage( new Image( getClass().getResource("Map/Pallone.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+
+        Tooltip fulkTip = new Tooltip("Fulk");
+        Tooltip kwongTip = new Tooltip("Kwong");
+        Tooltip dunlapTip = new Tooltip("Dunlap");
+        Tooltip taylorTip = new Tooltip("Taylor");
+        Tooltip albakerTip = new Tooltip("Albaker");
+        Tooltip palloneTip = new Tooltip("Pallone");
+
+        fulkTip.setMaxWidth(100);
+        fulkTip.setWrapText(true);
+        fulkTip.setShowDelay(Duration.ZERO);
+        kwongTip.setMaxWidth(100);
+        kwongTip.setWrapText(true);
+        kwongTip.setShowDelay(Duration.ZERO);
+        dunlapTip.setMaxWidth(100);
+        dunlapTip.setWrapText(true);
+        dunlapTip.setShowDelay(Duration.ZERO);
+        taylorTip.setMaxWidth(100);
+        taylorTip.setWrapText(true);
+        taylorTip.setShowDelay(Duration.ZERO);
+        albakerTip.setMaxWidth(100);
+        albakerTip.setWrapText(true);
+        albakerTip.setShowDelay(Duration.ZERO);
+        palloneTip.setMaxWidth(100);
+        palloneTip.setWrapText(true);
+        palloneTip.setShowDelay(Duration.ZERO);
+
+        fulkButton.setTooltip(fulkTip);
+        kwongButton.setTooltip(kwongTip);
+        dunlapButton.setTooltip(dunlapTip);
+        taylorButton.setTooltip(taylorTip);
+        albakerButton.setTooltip(albakerTip);
+        palloneButton.setTooltip(palloneTip);
+
+
+
+
+        Text towers = new Text("Towers:");
+        Text health = new Text("Health:");
+        Text hpnum = new Text("69");
+        
         StackPane game = new StackPane();
-        game.setId("game");
+
+        fulkButton.setBackground(new Background(fulkImage));
+        kwongButton.setBackground(new Background(kwongImage));
+        dunlapButton.setBackground(new Background(dunlapImage));
+        taylorButton.setBackground(new Background(taylorImage));
+        albakerButton.setBackground(new Background(albakerImage));
+        palloneButton.setBackground(new Background(palloneImage));
+
+
+        fulkButton.setMaxHeight(50);
+        fulkButton.setMaxWidth(50);
+        fulkButton.setTranslateX(-725);
+        fulkButton.setTranslateY(-325);
+        
+        kwongButton.setMaxHeight(50);
+        kwongButton.setMaxWidth(50);
+        kwongButton.setTranslateX(-725);
+        kwongButton.setTranslateY(-265);
+
+        dunlapButton.setMaxHeight(50);
+        dunlapButton.setMaxWidth(50);
+        dunlapButton.setTranslateX(-725);
+        dunlapButton.setTranslateY(-205);
+
+        taylorButton.setMaxHeight(50);
+        taylorButton.setMaxWidth(50);
+        taylorButton.setTranslateX(-725);
+        taylorButton.setTranslateY(-145);
+
+        albakerButton.setMaxHeight(50);
+        albakerButton.setMaxWidth(50);
+        albakerButton.setTranslateX(-725);
+        albakerButton.setTranslateY(-85);
+
+        palloneButton.setMaxHeight(50);
+        palloneButton.setMaxWidth(50);
+        palloneButton.setTranslateX(-725);
+        palloneButton.setTranslateY(-25);
+        
+        towers.setTranslateX(-675);
+        towers.setTranslateY(-375);
+        health.setTranslateX(675);
+        health.setTranslateY(-375);
+        hpnum.setTranslateX(675);
+        hpnum.setTranslateY(-325);
+
+        fulkButton.setOnAction(value ->  {
+            System.out.println("Fulk");
+        });
+        kwongButton.setOnAction(value ->  {
+            System.out.println("Kwong");
+        });
+        dunlapButton.setOnAction(value ->  {
+            System.out.println("Dunlap");
+        });
+        taylorButton.setOnAction(value ->  {
+            System.out.println("Taylor");
+        });
+        albakerButton.setOnAction(value ->  {
+            System.out.println("Albaker");
+        });
+        palloneButton.setOnAction(value ->  {
+            System.out.println("Pallone");
+        });
+
+
+
+
+
+        game.setId("game"); 
+        towers.setId("towers");
+        health.setId("health");
+        hpnum.setId("hpnum");
+
+        game.getChildren().add(fulkButton);
+        game.getChildren().add(kwongButton);
+        game.getChildren().add(towers);
+        game.getChildren().add(dunlapButton);
+        game.getChildren().add(taylorButton);
+        game.getChildren().add(albakerButton);
+        game.getChildren().add(palloneButton);
+        game.getChildren().add(health);
+        game.getChildren().add(hpnum);
+
+    
         scene.setRoot(game);
     }
 
