@@ -1,48 +1,52 @@
 package school.tower.defense.TowerTypes;
 
-import school.tower.defense.Classes.Upgrade;
+import java.util.concurrent.TimeUnit;
+
+import school.tower.defense.Classes.*;
 import school.tower.defense.Templates.Enemy;
 import school.tower.defense.Templates.Tower;
 
 public class Fulk extends Tower {
+    Game game;
     Upgrade currentUpgrade;
     int cost;
+    Tile tile;
+
+    /**
+     * Constructor for the tower
+     */
         
-    public Fulk() {
+    public Fulk(Game game) {
+        this.tile = null;
+        this.game = game;
         currentUpgrade = new Upgrade("Base", 0, 1, 1, 1);
         cost = 100;
+
+        new Thread(() -> {
+            while (true) {
+                if (tile == null) {
+                    continue;
+                }
+    
+                try {
+                    long length = (long) (1000 / ((double) currentUpgrade.getAttackspeed()));
+                    TimeUnit.MILLISECONDS.sleep(length);
+    
+                    attack();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
-    @Override
-    public void sell()
-    {
-        // TODO Auto-generated method stub
-        
-    }
+    private void attack() {
 
-    @Override
-    public void upgrade()
-    {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void getCost()
-    {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void getUpgrade()
-    {
-        // TODO Auto-generated method stub
-        
     }
     
     public void sell() {
-        //do nothing
+        game.addMoney(cost * 0.7);
+        tile.removeTower();
     }
 
     public void upgrade() {
@@ -57,7 +61,16 @@ public class Fulk extends Tower {
         return currentUpgrade;
     }
 
-    public void place() {
-        //do nothing
+    public void setTile(Tile tile) {
+        this.tile = tile;
+    }
+
+    public void place(Location location) {
+        game.subtractMoney(cost);
+
+        Grid grid = game.getGrid();
+        Tile tile = grid.getTile(location);
+
+        tile.setTower(this);
     }
 }

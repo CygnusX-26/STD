@@ -1,5 +1,7 @@
 package school.tower.defense.Classes;
 
+import school.tower.defense.Classes.*;
+
 public class Grid {
     private int width;
     private int height;
@@ -13,10 +15,12 @@ public class Grid {
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                tiles[x][y] = new Tile(x, y);
+                tiles[x][y] = new Tile(new Location(x, y));
             }
         }
     }
 
-    
+    public Tile getTile(Location location) {
+        return tiles[location.getX()][location.getY()];
+    }
 }

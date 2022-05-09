@@ -1,26 +1,21 @@
 package school.tower.defense.Classes;
 
 import school.tower.defense.Templates.Tower;
+import school.tower.defense.Classes.Location;
 
 public class Tile {
-    private int x;
-    private int y;
+    private Location location;
     private boolean isOccupied;
     private Tower tower;
 
-    public Tile(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Tile(Location location) {
+        this.location = location;
         this.isOccupied = false;
         this.tower = null;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
+    public Location getLocation() {
+        return location;
     }
 
     public boolean isEmpty() {
@@ -29,5 +24,17 @@ public class Tile {
 
     public Tower occupiedBy() {
         return tower;
+    }
+
+    public void setTower(Tower tower) {
+        this.tower = tower;
+        this.tower.setTile(this);
+        isOccupied = true;
+    }
+
+    public void removeTower() {
+        this.tower.setTile(null);
+        this.tower = null;
+        isOccupied = false;
     }
 }
