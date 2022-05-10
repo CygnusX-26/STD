@@ -1,15 +1,20 @@
 package school.tower.defense;
 
+import java.awt.MouseInfo;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import javafx.animation.Animation;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
+import javafx.scene.effect.Light.Point;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -18,12 +23,13 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import school.tower.defense.Classes.Game;
 
 /**
  * JavaFX App
@@ -144,13 +150,19 @@ public class App extends Application {
     }
 
     public void loadGame() throws IOException {
-
+        //music things, dont worry about this
         menuPlayer.stop();
         Media gameMusic = new Media(getClass().getResource("Music/game.mp4").toExternalForm());
         menuPlayer = new MediaPlayer(gameMusic);
         menuPlayer.setVolume(0.5);
         menuPlayer.play();
-        stage.setMaximized(true);
+        stage.setFullScreen(true);
+
+        //initialize objects
+
+        Button mapping = new Button();
+        Button fullscreen = new Button();
+        // Game g = new Game();
 
         Button fulkButton = new Button();
         Button kwongButton = new Button();
@@ -165,6 +177,9 @@ public class App extends Application {
         BackgroundImage taylorImage = new BackgroundImage( new Image( getClass().getResource("Map/Taylor.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
         BackgroundImage albakerImage = new BackgroundImage( new Image( getClass().getResource("Map/Albaker.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
         BackgroundImage palloneImage = new BackgroundImage( new Image( getClass().getResource("Map/Pallone.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+        BackgroundImage mappingBackground = new BackgroundImage(new Image( getClass().getResource("Map/transparent-picture.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+
+        Image fulkPlace = new Image(getClass().getResource("Map/fulk.PNG").toExternalForm());
 
         Tooltip fulkTip = new Tooltip("Fulk");
         Tooltip kwongTip = new Tooltip("Kwong");
@@ -173,40 +188,50 @@ public class App extends Application {
         Tooltip albakerTip = new Tooltip("Albaker");
         Tooltip palloneTip = new Tooltip("Pallone");
 
-        fulkTip.setMaxWidth(100);
-        fulkTip.setWrapText(true);
-        fulkTip.setShowDelay(Duration.ZERO);
-        kwongTip.setMaxWidth(100);
-        kwongTip.setWrapText(true);
-        kwongTip.setShowDelay(Duration.ZERO);
-        dunlapTip.setMaxWidth(100);
-        dunlapTip.setWrapText(true);
-        dunlapTip.setShowDelay(Duration.ZERO);
-        taylorTip.setMaxWidth(100);
-        taylorTip.setWrapText(true);
-        taylorTip.setShowDelay(Duration.ZERO);
-        albakerTip.setMaxWidth(100);
-        albakerTip.setWrapText(true);
-        albakerTip.setShowDelay(Duration.ZERO);
-        palloneTip.setMaxWidth(100);
-        palloneTip.setWrapText(true);
-        palloneTip.setShowDelay(Duration.ZERO);
-
-        fulkButton.setTooltip(fulkTip);
-        kwongButton.setTooltip(kwongTip);
-        dunlapButton.setTooltip(dunlapTip);
-        taylorButton.setTooltip(taylorTip);
-        albakerButton.setTooltip(albakerTip);
-        palloneButton.setTooltip(palloneTip);
-
-
-
-
         Text towers = new Text("Towers:");
         Text health = new Text("Health:");
         Text hpnum = new Text("69");
         
         StackPane game = new StackPane();
+
+
+        ArrayList<Button> buttons = new ArrayList<Button>();
+        ArrayList<Tooltip> tips = new ArrayList<Tooltip>();
+        ArrayList<Image> placeImages = new ArrayList<Image>();
+
+        buttons.add(fulkButton);
+        buttons.add(kwongButton);
+        buttons.add(dunlapButton);
+        buttons.add(taylorButton);
+        buttons.add(albakerButton);
+        buttons.add(palloneButton);
+        tips.add(fulkTip);
+        tips.add(kwongTip);
+        tips.add(dunlapTip);
+        tips.add(taylorTip);
+        tips.add(albakerTip);
+        tips.add(palloneTip);
+        placeImages.add(fulkPlace);
+
+        //set values for objects
+        for (Tooltip t : tips){
+            t.setMaxWidth(100);
+            t.setWrapText(true);
+            t.setShowDelay(Duration.ZERO);
+        }
+
+        for (Button b : buttons){
+            b.setMaxHeight(75);
+            b.setMaxWidth(75);
+        }
+
+        fulkButton.setTooltip(fulkTip);
+        kwongButton.setTooltip(kwongTip);
+        dunlapButton.setTooltip(dunlapTip); 
+        taylorButton.setTooltip(taylorTip);
+        albakerButton.setTooltip(albakerTip);
+        palloneButton.setTooltip(palloneTip);
+        fullscreen.setText("Fullscreen");
 
         fulkButton.setBackground(new Background(fulkImage));
         kwongButton.setBackground(new Background(kwongImage));
@@ -215,36 +240,26 @@ public class App extends Application {
         albakerButton.setBackground(new Background(albakerImage));
         palloneButton.setBackground(new Background(palloneImage));
 
-
-        fulkButton.setMaxHeight(50);
-        fulkButton.setMaxWidth(50);
         fulkButton.setTranslateX(-725);
         fulkButton.setTranslateY(-325);
         
-        kwongButton.setMaxHeight(50);
-        kwongButton.setMaxWidth(50);
         kwongButton.setTranslateX(-725);
-        kwongButton.setTranslateY(-265);
+        kwongButton.setTranslateY(-250);
 
-        dunlapButton.setMaxHeight(50);
-        dunlapButton.setMaxWidth(50);
         dunlapButton.setTranslateX(-725);
-        dunlapButton.setTranslateY(-205);
+        dunlapButton.setTranslateY(-175);
 
-        taylorButton.setMaxHeight(50);
-        taylorButton.setMaxWidth(50);
         taylorButton.setTranslateX(-725);
-        taylorButton.setTranslateY(-145);
+        taylorButton.setTranslateY(-100);
 
-        albakerButton.setMaxHeight(50);
-        albakerButton.setMaxWidth(50);
         albakerButton.setTranslateX(-725);
-        albakerButton.setTranslateY(-85);
+        albakerButton.setTranslateY(-25);
 
-        palloneButton.setMaxHeight(50);
-        palloneButton.setMaxWidth(50);
         palloneButton.setTranslateX(-725);
-        palloneButton.setTranslateY(-25);
+        palloneButton.setTranslateY(50);
+
+        fullscreen.setTranslateX(-725);
+        fullscreen.setTranslateY(450);
         
         towers.setTranslateX(-675);
         towers.setTranslateY(-375);
@@ -253,25 +268,54 @@ public class App extends Application {
         hpnum.setTranslateX(675);
         hpnum.setTranslateY(-325);
 
+
+        mapping.setMaxWidth(1920);
+        mapping.setBackground(new Background(mappingBackground));
+        mapping.setMaxHeight(1080);
+
+        String[] teachers = new String[]{"", "Fulk", "Kwong", "Dunlap", "Taylor", "Albaker", "Pallone"};
+        final int[] teacherIndex = {0};
         fulkButton.setOnAction(value ->  {
-            System.out.println("Fulk");
+            scene.setCursor(new ImageCursor(fulkPlace));
+            teacherIndex[0] = 1;
         });
         kwongButton.setOnAction(value ->  {
             System.out.println("Kwong");
+            teacherIndex[0] = 2;
         });
         dunlapButton.setOnAction(value ->  {
             System.out.println("Dunlap");
+            teacherIndex[0] = 3;
         });
         taylorButton.setOnAction(value ->  {
             System.out.println("Taylor");
+            teacherIndex[0] = 4;
         });
         albakerButton.setOnAction(value ->  {
             System.out.println("Albaker");
+            teacherIndex[0] = 5;
         });
         palloneButton.setOnAction(value ->  {
             System.out.println("Pallone");
+            teacherIndex[0] = 6;
         });
 
+        mapping.setOnMouseClicked(value ->  {
+            java.awt.Point p = MouseInfo.getPointerInfo().getLocation();
+            if (teacherIndex[0] == 1) {
+                Image towerImage = new Image(getClass().getResource("Map/fulk.PNG").toExternalForm());
+                ImageView tower = new ImageView(towerImage);
+                tower.setTranslateX(p.getX() - 960);
+                tower.setTranslateY(p.getY() - 540);
+                game.getChildren().add(tower);
+                teacherIndex[0] = 0;
+            }
+            scene.setCursor(Cursor.DEFAULT);
+        });
+
+        fullscreen.setOnAction(value ->  {
+            stage.setFullScreen(true);
+        });
 
 
 
@@ -281,6 +325,7 @@ public class App extends Application {
         health.setId("health");
         hpnum.setId("hpnum");
 
+        game.getChildren().add(mapping);
         game.getChildren().add(fulkButton);
         game.getChildren().add(kwongButton);
         game.getChildren().add(towers);
@@ -290,8 +335,9 @@ public class App extends Application {
         game.getChildren().add(palloneButton);
         game.getChildren().add(health);
         game.getChildren().add(hpnum);
+        game.getChildren().add(fullscreen);
 
-    
+        
         scene.setRoot(game);
     }
 
