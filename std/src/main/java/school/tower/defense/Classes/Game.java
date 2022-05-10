@@ -69,7 +69,7 @@ public class Game extends App{
         //place a tower onto grid
         return false;
     }
-
+    
     public void run(){
         //run the game
         new Thread(() -> {

@@ -4,27 +4,15 @@ import java.awt.MouseInfo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import javafx.animation.Animation;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tooltip;
-import javafx.scene.effect.Light.Point;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
+import javafx.scene.media.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -264,7 +252,7 @@ public class App extends Application {
         mapping.setBackground(new Background(mappingBackground));
         mapping.setMaxHeight(1080);
 
-        String[] teachers = new String[]{"", "Fulk", "Kwong", "Dunlap", "Taylor", "Albaker", "Pallone"};
+        String[] teachers = new String[]{"", "Fulk", "Kwong", "Dunlap", "Taylor", "Albaker", "Pallone"}; //delete later
         final int[] teacherIndex = {0};
         fulkButton.setOnAction(value ->  {
             scene.setCursor(new ImageCursor(fulkPlace));
