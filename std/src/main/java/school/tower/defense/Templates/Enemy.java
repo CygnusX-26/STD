@@ -1,17 +1,19 @@
 package school.tower.defense.Templates;
 
+import school.tower.defense.Classes.*;
+
 public abstract class Enemy {
     
         private String name;
-        private int health, speed, reward, x, y;
+        private int health, speed, reward;
+        private Location location;
     
-        public Enemy(String name, int health, int speed, int reward, int x, int y) {
+        public Enemy(String name, int health, int speed, int reward, Location location) {
             this.name = name;
             this.health = health;
             this.speed = speed;
             this.reward = reward;
-            this.x = x;
-            this.y = y;
+            this.location = location;
         }
     
         public String getName() {
@@ -30,12 +32,12 @@ public abstract class Enemy {
             return reward;
         }
     
-        public int getX() {
-            return x;
+        public Location getLocation() {
+            return location;
         }
-    
-        public int getY() {
-            return y;
+
+        public void damage(int amount) {
+            health -= amount;
         }
     
         public abstract void move();

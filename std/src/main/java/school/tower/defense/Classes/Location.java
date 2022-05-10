@@ -1,19 +1,19 @@
 package school.tower.defense.Classes;
 
 public class Location {
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
-    public Location(int x, int y) {
+    public Location(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
     
-    public int getY() {
+    public double getY() {
         return y;
     }
 }

@@ -40,8 +40,20 @@ public class Fulk extends Tower {
         }).start();
     }
 
-    private void attack() {
+    private void scanEnemies() {
+        Grid grid = game.getGrid();
 
+        for (Enemy enemy : game.getEnemies()) {
+            double distance = Math.sqrt(Math.pow(enemy.getLocation().getX() - tile.getLocation().getX(), 2) + Math.pow(enemy.getLocation().getY() - tile.getLocation().getY(), 2));
+            
+            if (distance < currentUpgrade.getRange()) {
+                attack(enemy);
+            }
+        }
+    }
+
+    private void attack(Enemy enemy) {
+        enemy.
     }
     
     public void sell() {
