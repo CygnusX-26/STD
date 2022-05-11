@@ -29,7 +29,7 @@
 
 #towers {
     -fx-font: 50px Serif;
-    -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, red 0%, blue 100%);
+    -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, red 0%, green 100%);
     -fx-stroke: black;
     -fx-stroke-width: 1;
 }
@@ -44,6 +44,13 @@
 #hpnum {
     -fx-font: 50px Serif;
     -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, red 0%, orange 100%);
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+}
+
+#money {
+    -fx-font: 50px Serif;
+    -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, green 0%, blue 100%);
     -fx-stroke: black;
     -fx-stroke-width: 1;
 }
