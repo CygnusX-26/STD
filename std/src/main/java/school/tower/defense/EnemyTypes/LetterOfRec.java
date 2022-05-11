@@ -20,6 +20,13 @@ public class LetterOfRec extends Enemy {
         reward -= amounnt;
     }
 
+    public String spriteStatus()
+    {
+        int TrueHealthToSpriteOutputRatioIKnowThisIsAnInsanelyLongVariableeName = 1;
+        String[] spriteNames = {"essay5.png", "essay4.png", "essay3.png", "essay2.png", "essay1.png"};
+        return (spriteNames[getHealth()/TrueHealthToSpriteOutputRatioIKnowThisIsAnInsanelyLongVariableeName]);
+    }
+
     @Override
     public void move()
     {

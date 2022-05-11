@@ -8,12 +8,12 @@ public abstract class Enemy {
         private int health, speed, reward;
         private Location location;
     
-        public Enemy(String name, int health, int speed, int reward, Location location) {
+        public Enemy(String name, int health, int speed, int reward, int x, int y) {
             this.name = name;
             this.health = health;
             this.speed = speed;
             this.reward = reward;
-            this.location = location;
+            this.location = new Location(x, y);
         }
     
         public String getName() {
