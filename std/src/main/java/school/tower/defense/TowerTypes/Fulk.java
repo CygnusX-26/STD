@@ -32,7 +32,7 @@ public class Fulk extends Tower {
                     long length = (long) (1000 / ((double) currentUpgrade.getAttackspeed()));
                     TimeUnit.MILLISECONDS.sleep(length);
     
-                    attack();
+                    scanEnemies();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -40,9 +40,7 @@ public class Fulk extends Tower {
         }).start();
     }
 
-    private void scanEnemies() {
-        Grid grid = game.getGrid();
-
+    public void scanEnemies() {
         for (Enemy enemy : game.getEnemies()) {
             double distance = Math.sqrt(Math.pow(enemy.getLocation().getX() - tile.getLocation().getX(), 2) + Math.pow(enemy.getLocation().getY() - tile.getLocation().getY(), 2));
             
@@ -53,7 +51,7 @@ public class Fulk extends Tower {
     }
 
     private void attack(Enemy enemy) {
-        enemy.
+        enemy.damage(currentUpgrade.getDamage());
     }
     
     public void sell() {
@@ -84,5 +82,12 @@ public class Fulk extends Tower {
         Tile tile = grid.getTile(location);
 
         tile.setTower(this);
+    }
+
+    @Override
+    public void attack()
+    {
+        // TODO Auto-generated method stub
+        
     }
 }

@@ -12,11 +12,11 @@ public class Game extends App{
     private boolean clicked;
     private int health;
 
-    public Game() {
+    public Game(int width, int height) {
         towers = new ArrayList<Tower>();
         enemies = new ArrayList<Enemy>();
         money = 1000;
-        grid = new Grid(1920, 1080);
+        grid = new Grid(width/75, height/75);
         clicked = false;
         health = 69;
     }
