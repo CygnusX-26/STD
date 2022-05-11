@@ -149,6 +149,7 @@ public class App extends Application {
         Button taylorButton = new Button();
         Button albakerButton = new Button();
         Button palloneButton = new Button();
+        Button deleteButton = new Button();
         
         BackgroundImage fulkImage = new BackgroundImage( new Image( getClass().getResource("Map/fulk.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
         BackgroundImage kwongImage = new BackgroundImage( new Image( getClass().getResource("Map/Kwong.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
@@ -159,6 +160,12 @@ public class App extends Application {
         BackgroundImage mappingBackground = new BackgroundImage(new Image( getClass().getResource("Map/transparent-picture.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
 
         Image fulkPlace = new Image(getClass().getResource("Map/fulk.PNG").toExternalForm());
+        Image kwongPlace = new Image(getClass().getResource("Map/Kwong.PNG").toExternalForm());
+        Image dunlapPlace = new Image(getClass().getResource("Map/Dunlap.PNG").toExternalForm());
+        Image taylorPlace = new Image(getClass().getResource("Map/Taylor.PNG").toExternalForm());
+        Image albakerPlace = new Image(getClass().getResource("Map/Albaker.PNG").toExternalForm());
+        Image pallonePlace = new Image(getClass().getResource("Map/Pallone.PNG").toExternalForm()); 
+
 
         Tooltip fulkTip = new Tooltip("Fulk");
         Tooltip kwongTip = new Tooltip("Kwong");
@@ -191,6 +198,12 @@ public class App extends Application {
         tips.add(albakerTip);
         tips.add(palloneTip);
         placeImages.add(fulkPlace);
+        placeImages.add(kwongPlace);
+        placeImages.add(dunlapPlace);   
+        placeImages.add(taylorPlace);   
+        placeImages.add(albakerPlace);
+        placeImages.add(pallonePlace);
+
 
         //set values for objects
         for (Tooltip t : tips){
@@ -211,6 +224,7 @@ public class App extends Application {
         albakerButton.setTooltip(albakerTip);
         palloneButton.setTooltip(palloneTip);
         fullscreen.setText("Fullscreen");
+        deleteButton.setText("Sell a tower");
 
         fulkButton.setBackground(new Background(fulkImage));
         kwongButton.setBackground(new Background(kwongImage));
@@ -219,33 +233,35 @@ public class App extends Application {
         albakerButton.setBackground(new Background(albakerImage));
         palloneButton.setBackground(new Background(palloneImage));
 
-        fulkButton.setTranslateX(-725);
-        fulkButton.setTranslateY(-325);
+        fulkButton.setTranslateX(0 - stage.getWidth()/2 + 50);
+        fulkButton.setTranslateY(0 - stage.getHeight()/2 + 125);
         
-        kwongButton.setTranslateX(-725);
-        kwongButton.setTranslateY(-250);
+        kwongButton.setTranslateX(0 - stage.getWidth()/2 + 50);
+        kwongButton.setTranslateY(0 - stage.getHeight()/2 + 200);
 
-        dunlapButton.setTranslateX(-725);
-        dunlapButton.setTranslateY(-175);
+        dunlapButton.setTranslateX(0 - stage.getWidth()/2 + 50);
+        dunlapButton.setTranslateY(0 - stage.getHeight()/2 + 275);
 
-        taylorButton.setTranslateX(-725);
-        taylorButton.setTranslateY(-100);
+        taylorButton.setTranslateX(0 - stage.getWidth()/2 + 50);
+        taylorButton.setTranslateY(0 - stage.getHeight()/2 + 350);
 
-        albakerButton.setTranslateX(-725);
-        albakerButton.setTranslateY(-25);
+        albakerButton.setTranslateX(0 - stage.getWidth()/2 + 50);
+        albakerButton.setTranslateY(0 - stage.getHeight()/2 + 425);
 
-        palloneButton.setTranslateX(-725);
-        palloneButton.setTranslateY(50);
+        palloneButton.setTranslateX(0 - stage.getWidth()/2 + 50);
+        palloneButton.setTranslateY(0 - stage.getHeight()/2 + 500);
 
-        fullscreen.setTranslateX(-725);
-        fullscreen.setTranslateY(450);
+        fullscreen.setTranslateX(0 - stage.getWidth()/2 + 50);
+        fullscreen.setTranslateY(0 - stage.getHeight()/2 + 650);
+        deleteButton.setTranslateX(0-stage.getWidth()/2 + 50);
+        deleteButton.setTranslateY(0 - stage.getHeight()/2 + 600);
         
-        towers.setTranslateX(-675);
-        towers.setTranslateY(-375);
-        health.setTranslateX(675);
-        health.setTranslateY(-375);
-        hpnum.setTranslateX(675);
-        hpnum.setTranslateY(-325);
+        towers.setTranslateX(0 - stage.getWidth()/2 + 75);
+        towers.setTranslateY(0 - stage.getHeight()/2 + 75);
+        health.setTranslateX(stage.getWidth()/2 - 100);
+        health.setTranslateY(0 - stage.getHeight()/2 + 75);
+        hpnum.setTranslateX(stage.getWidth()/2 - 100);
+        hpnum.setTranslateY(0 - stage.getHeight()/2 + 125);
 
 
         mapping.setMaxWidth(1920);
@@ -259,37 +275,122 @@ public class App extends Application {
             teacherIndex[0] = 1;
         });
         kwongButton.setOnAction(value ->  {
-            System.out.println("Kwong");
+            scene.setCursor(new ImageCursor(kwongPlace));
             teacherIndex[0] = 2;
         });
         dunlapButton.setOnAction(value ->  {
-            System.out.println("Dunlap");
+            scene.setCursor(new ImageCursor(dunlapPlace));
             teacherIndex[0] = 3;
         });
         taylorButton.setOnAction(value ->  {
-            System.out.println("Taylor");
+            scene.setCursor(new ImageCursor(taylorPlace));
             teacherIndex[0] = 4;
         });
         albakerButton.setOnAction(value ->  {
-            System.out.println("Albaker");
+            scene.setCursor(new ImageCursor(albakerPlace));
             teacherIndex[0] = 5;
         });
         palloneButton.setOnAction(value ->  {
-            System.out.println("Pallone");
+            scene.setCursor(new ImageCursor(pallonePlace));
             teacherIndex[0] = 6;
+        });
+        deleteButton.setOnAction(arg0 -> {
+            teacherIndex[0] = 7;
         });
 
         mapping.setOnMouseClicked(value ->  {
             java.awt.Point p = MouseInfo.getPointerInfo().getLocation();
-            if (teacherIndex[0] == 1) {
-                Image towerImage = new Image(getClass().getResource("Map/fulk.PNG").toExternalForm());
-                ImageView tower = new ImageView(towerImage);
-                tower.setTranslateX(p.getX() - 960);
-                tower.setTranslateY(p.getY() - 540);
-                game.getChildren().add(tower);
-                teacherIndex[0] = 0;
+            Image towerImage;
+            ImageView tower;
+            switch (teacherIndex[0]) {
+                case 1:
+                    towerImage = new Image(getClass().getResource("Map/fulk.PNG").toExternalForm());
+                    tower = new ImageView(towerImage);
+                    tower.setOnMouseClicked(arg0 -> {
+                        if (teacherIndex[0] == 7){
+                            game.getChildren().remove(tower);
+                        }
+                    });
+                    tower.setTranslateX(p.getX() - stage.getWidth()/2);
+                    tower.setTranslateY(p.getY() - stage.getHeight()/2);
+                    game.getChildren().add(tower);
+                    teacherIndex[0] = 0;
+                    scene.setCursor(Cursor.DEFAULT);
+                    break;
+                case 2:
+                    towerImage = new Image(getClass().getResource("Map/Kwong.PNG").toExternalForm());
+                    tower = new ImageView(towerImage);
+                    tower.setOnMouseClicked(arg0 -> {
+                        if (teacherIndex[0] == 7){
+                            game.getChildren().remove(tower);
+                        }
+                    });
+                    tower.setTranslateX(p.getX() - stage.getWidth()/2);
+                    tower.setTranslateY(p.getY() - stage.getHeight()/2);
+                    game.getChildren().add(tower);
+                    teacherIndex[0] = 0;
+                    scene.setCursor(Cursor.DEFAULT);
+                    break;
+                case 3:
+                    towerImage = new Image(getClass().getResource("Map/Dunlap.PNG").toExternalForm());
+                    tower = new ImageView(towerImage);
+                    tower.setOnMouseClicked(arg0 -> {
+                        if (teacherIndex[0] == 7){
+                            game.getChildren().remove(tower);
+                        }
+                    });
+                    tower.setTranslateX(p.getX() - stage.getWidth()/2);
+                    tower.setTranslateY(p.getY() - stage.getHeight()/2);
+                    game.getChildren().add(tower);
+                    teacherIndex[0] = 0;
+                    scene.setCursor(Cursor.DEFAULT);
+                    break;
+                case 4:
+                    towerImage = new Image(getClass().getResource("Map/Taylor.PNG").toExternalForm());
+                    tower = new ImageView(towerImage);
+                    tower.setOnMouseClicked(arg0 -> {
+                        if (teacherIndex[0] == 7){
+                            game.getChildren().remove(tower);
+                        }
+                    });
+                    tower.setTranslateX(p.getX() - stage.getWidth()/2);
+                    tower.setTranslateY(p.getY() - stage.getHeight()/2);
+                    game.getChildren().add(tower);
+                    teacherIndex[0] = 0;
+                    scene.setCursor(Cursor.DEFAULT);
+                    break;
+                case 5:
+                    towerImage = new Image(getClass().getResource("Map/Albaker.PNG").toExternalForm());
+                    tower = new ImageView(towerImage);
+                    tower.setOnMouseClicked(arg0 -> {
+                        if (teacherIndex[0] == 7){
+                            game.getChildren().remove(tower);
+                        }
+                    });
+                    tower.setTranslateX(p.getX() - stage.getWidth()/2);
+                    tower.setTranslateY(p.getY() - stage.getHeight()/2);
+                    game.getChildren().add(tower);
+                    teacherIndex[0] = 0;
+                    scene.setCursor(Cursor.DEFAULT);
+                    break;
+                case 6:
+                    towerImage = new Image(getClass().getResource("Map/Pallone.PNG").toExternalForm());
+                    tower = new ImageView(towerImage);
+                    tower.setOnMouseClicked(arg0 -> {
+                        if (teacherIndex[0] == 7){
+                            game.getChildren().remove(tower);
+                        }
+                    });
+                    tower.setTranslateX(p.getX() - stage.getWidth()/2);
+                    tower.setTranslateY(p.getY() - stage.getHeight()/2);
+                    game.getChildren().add(tower);
+                    teacherIndex[0] = 0;
+                    scene.setCursor(Cursor.DEFAULT);
+                    break;
+                default:
+                    teacherIndex[0] = 0;
+                    scene.setCursor(Cursor.DEFAULT);
             }
-            scene.setCursor(Cursor.DEFAULT);
         });
 
         fullscreen.setOnAction(value ->  {
@@ -315,6 +416,7 @@ public class App extends Application {
         game.getChildren().add(health);
         game.getChildren().add(hpnum);
         game.getChildren().add(fullscreen);
+        game.getChildren().add(deleteButton);
 
         
         scene.setRoot(game);

@@ -21,6 +21,6 @@ public class Grid {
     }
 
     public Tile getTile(Location location) {
-        return tiles[location.getX()][location.getY()];
+        return tiles[(int)location.getX()][(int)location.getY()];
     }
 }
