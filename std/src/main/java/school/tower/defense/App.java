@@ -60,19 +60,6 @@ public class App extends Application {
         Tooltip startTooltip = new Tooltip("Start Game");
         menuPlayer = new MediaPlayer(menuMusic);
 
-
-        //pacman animation area
-        
-
-
-
-
-
-
-
-
-
-
         root.setId("pane");
         text.setId("menutext");
 

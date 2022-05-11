@@ -23,8 +23,13 @@ public class LetterOfRec extends Enemy {
     public String spriteStatus()
     {
         int TrueHealthToSpriteOutputRatioIKnowThisIsAnInsanelyLongVariableeName = 1;
-        String[] spriteNames = {"essay5.png", "essay4.png", "essay3.png", "essay2.png", "essay1.png"};
+        String[] spriteNames = {"Map/Enemies/Essay/essay5.png", "Map/Enemies/Essay/essay4.png", "Map/Enemies/Essay/essay3.png", "Map/Enemies/Essay/essay2.png", "Map/Enemies/Essay/essay1.png"};
         return (spriteNames[getHealth()/TrueHealthToSpriteOutputRatioIKnowThisIsAnInsanelyLongVariableeName]);
+    }
+
+    public int getReward()
+    {
+        return reward;
     }
 
     @Override
