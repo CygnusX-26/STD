@@ -52,13 +52,26 @@ public class App extends Application {
         BackgroundImage startImage = new BackgroundImage( new Image( getClass().getResource("Map/start.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
         BackgroundImage instructionsImage = new BackgroundImage( new Image( getClass().getResource("Map/Instructions.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, true, true, true, false));
         Text text = new Text("Student Tower Defense");
-        Image fulk = new Image(getClass().getResource("Map/fulk.PNG").toExternalForm());
+        Image fulk = new Image(getClass().getResource("Map/Teachers/Fulk.PNG").toExternalForm());
         ImageView FULK = new ImageView(fulk);
-        Image kwong = new Image(getClass().getResource("Map/Kwong.PNG").toExternalForm());
+        Image kwong = new Image(getClass().getResource("Map/Teachers/Kwong.PNG").toExternalForm());
         ImageView KWONG = new ImageView(kwong);
         Media menuMusic = new Media(getClass().getResource("Music/awesomeness.wav").toExternalForm());
         Tooltip startTooltip = new Tooltip("Start Game");
         menuPlayer = new MediaPlayer(menuMusic);
+
+
+        //pacman animation area
+        
+
+
+
+
+
+
+
+
+
 
         root.setId("pane");
         text.setId("menutext");
@@ -151,20 +164,20 @@ public class App extends Application {
         Button palloneButton = new Button();
         Button deleteButton = new Button();
         
-        BackgroundImage fulkImage = new BackgroundImage( new Image( getClass().getResource("Map/fulk.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
-        BackgroundImage kwongImage = new BackgroundImage( new Image( getClass().getResource("Map/Kwong.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
-        BackgroundImage dunlapImage = new BackgroundImage( new Image( getClass().getResource("Map/Dunlap.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
-        BackgroundImage taylorImage = new BackgroundImage( new Image( getClass().getResource("Map/Taylor.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
-        BackgroundImage albakerImage = new BackgroundImage( new Image( getClass().getResource("Map/Albaker.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
-        BackgroundImage palloneImage = new BackgroundImage( new Image( getClass().getResource("Map/Pallone.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+        BackgroundImage fulkImage = new BackgroundImage( new Image( getClass().getResource("Map/Teachers/Fulk.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+        BackgroundImage kwongImage = new BackgroundImage( new Image( getClass().getResource("Map/Teachers/Kwong.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+        BackgroundImage dunlapImage = new BackgroundImage( new Image( getClass().getResource("Map/Teachers/Dunlap.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+        BackgroundImage taylorImage = new BackgroundImage( new Image( getClass().getResource("Map/Teachers/Taylor.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+        BackgroundImage albakerImage = new BackgroundImage( new Image( getClass().getResource("Map/Teachers/Albaker.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+        BackgroundImage palloneImage = new BackgroundImage( new Image( getClass().getResource("Map/Teachers/Pallone.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
         BackgroundImage mappingBackground = new BackgroundImage(new Image( getClass().getResource("Map/transparent-picture.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
 
-        Image fulkPlace = new Image(getClass().getResource("Map/fulk.PNG").toExternalForm());
-        Image kwongPlace = new Image(getClass().getResource("Map/Kwong.PNG").toExternalForm());
-        Image dunlapPlace = new Image(getClass().getResource("Map/Dunlap.PNG").toExternalForm());
-        Image taylorPlace = new Image(getClass().getResource("Map/Taylor.PNG").toExternalForm());
-        Image albakerPlace = new Image(getClass().getResource("Map/Albaker.PNG").toExternalForm());
-        Image pallonePlace = new Image(getClass().getResource("Map/Pallone.PNG").toExternalForm()); 
+        Image fulkPlace = new Image(getClass().getResource("Map/Teachers/Fulk.PNG").toExternalForm());
+        Image kwongPlace = new Image(getClass().getResource("Map/Teachers/Kwong.PNG").toExternalForm());
+        Image dunlapPlace = new Image(getClass().getResource("Map/Teachers/Dunlap.PNG").toExternalForm());
+        Image taylorPlace = new Image(getClass().getResource("Map/Teachers/Taylor.PNG").toExternalForm());
+        Image albakerPlace = new Image(getClass().getResource("Map/Teachers/Albaker.PNG").toExternalForm());
+        Image pallonePlace = new Image(getClass().getResource("Map/Teachers/Pallone.PNG").toExternalForm()); 
 
 
         Tooltip fulkTip = new Tooltip("Fulk");
@@ -304,7 +317,7 @@ public class App extends Application {
             ImageView tower;
             switch (teacherIndex[0]) {
                 case 1:
-                    towerImage = new Image(getClass().getResource("Map/fulk.PNG").toExternalForm());
+                    towerImage = new Image(getClass().getResource("Map/Teachers/Fulk.PNG").toExternalForm());
                     tower = new ImageView(towerImage);
                     tower.setOnMouseClicked(arg0 -> {
                         if (teacherIndex[0] == 7){
@@ -318,7 +331,7 @@ public class App extends Application {
                     scene.setCursor(Cursor.DEFAULT);
                     break;
                 case 2:
-                    towerImage = new Image(getClass().getResource("Map/Kwong.PNG").toExternalForm());
+                    towerImage = new Image(getClass().getResource("Map/Teachers/Kwong.PNG").toExternalForm());
                     tower = new ImageView(towerImage);
                     tower.setOnMouseClicked(arg0 -> {
                         if (teacherIndex[0] == 7){
@@ -332,7 +345,7 @@ public class App extends Application {
                     scene.setCursor(Cursor.DEFAULT);
                     break;
                 case 3:
-                    towerImage = new Image(getClass().getResource("Map/Dunlap.PNG").toExternalForm());
+                    towerImage = new Image(getClass().getResource("Map/Teachers/Dunlap.PNG").toExternalForm());
                     tower = new ImageView(towerImage);
                     tower.setOnMouseClicked(arg0 -> {
                         if (teacherIndex[0] == 7){
@@ -346,7 +359,7 @@ public class App extends Application {
                     scene.setCursor(Cursor.DEFAULT);
                     break;
                 case 4:
-                    towerImage = new Image(getClass().getResource("Map/Taylor.PNG").toExternalForm());
+                    towerImage = new Image(getClass().getResource("Map/Teachers/Taylor.PNG").toExternalForm());
                     tower = new ImageView(towerImage);
                     tower.setOnMouseClicked(arg0 -> {
                         if (teacherIndex[0] == 7){
@@ -360,7 +373,7 @@ public class App extends Application {
                     scene.setCursor(Cursor.DEFAULT);
                     break;
                 case 5:
-                    towerImage = new Image(getClass().getResource("Map/Albaker.PNG").toExternalForm());
+                    towerImage = new Image(getClass().getResource("Map/Teachers/Albaker.PNG").toExternalForm());
                     tower = new ImageView(towerImage);
                     tower.setOnMouseClicked(arg0 -> {
                         if (teacherIndex[0] == 7){
@@ -374,7 +387,7 @@ public class App extends Application {
                     scene.setCursor(Cursor.DEFAULT);
                     break;
                 case 6:
-                    towerImage = new Image(getClass().getResource("Map/Pallone.PNG").toExternalForm());
+                    towerImage = new Image(getClass().getResource("Map/Teachers/Pallone.PNG").toExternalForm());
                     tower = new ImageView(towerImage);
                     tower.setOnMouseClicked(arg0 -> {
                         if (teacherIndex[0] == 7){
