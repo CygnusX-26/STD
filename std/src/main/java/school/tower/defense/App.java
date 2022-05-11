@@ -1,5 +1,7 @@
 package school.tower.defense;
 
+import school.tower.defense.Classes.Game;
+
 import java.awt.MouseInfo;
 import java.io.IOException;
 import java.net.URL;
@@ -18,7 +20,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import school.tower.defense.Classes.Game;
 
 /**
  * JavaFX App
@@ -136,7 +137,7 @@ public class App extends Application {
         menuPlayer = new MediaPlayer(gameMusic);
         menuPlayer.setVolume(0.5);
         menuPlayer.play();
-        stage.setFullScreen(true);
+        stage.setMaximized(true);
 
         //initialize objects
         int fulkCost = 10;
@@ -266,7 +267,7 @@ public class App extends Application {
         deleteButton.setTranslateY(0 - stage.getHeight()/2 + 600);
         
         towers.setTranslateX(0 - stage.getWidth()/2 + 150);
-        towers.setTranslateY(0 - stage.getHeight()/2 + 25);
+        towers.setTranslateY(0 - stage.getHeight()/2 + 50);
         health.setTranslateX(stage.getWidth()/2 - 100);
         health.setTranslateY(0 - stage.getHeight()/2 + 75);
         hpnum.setTranslateX(stage.getWidth()/2 - 100);
