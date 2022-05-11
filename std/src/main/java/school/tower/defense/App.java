@@ -10,6 +10,7 @@ import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.media.*;
@@ -138,10 +139,16 @@ public class App extends Application {
         stage.setFullScreen(true);
 
         //initialize objects
+        int fulkCost = 10;
+        int kwongCost = 1;
+        int dunlapCost = 1;
+        int taylorCost = 10;
+        int albakerCost = 100;
+        int palloneCost = 1000;
 
         Button mapping = new Button();
         Button fullscreen = new Button();
-        // Game g = new Game();
+        Game g = new Game();
 
         Button fulkButton = new Button();
         Button kwongButton = new Button();
@@ -174,9 +181,11 @@ public class App extends Application {
         Tooltip albakerTip = new Tooltip("Albaker");
         Tooltip palloneTip = new Tooltip("Pallone");
 
-        Text towers = new Text("Towers:");
+        Text towers = new Text("Hire Teachers:");
         Text health = new Text("Health:");
-        Text hpnum = new Text("69");
+        Text hpnum = new Text(g.getHealth() + "");
+        Text money = new Text("Money:");
+        Text moneynum = new Text(g.getMoney() + "");
         
         StackPane game = new StackPane();
 
@@ -224,7 +233,7 @@ public class App extends Application {
         albakerButton.setTooltip(albakerTip);
         palloneButton.setTooltip(palloneTip);
         fullscreen.setText("Fullscreen");
-        deleteButton.setText("Sell a tower");
+        deleteButton.setText("Fire a Teacher");
 
         fulkButton.setBackground(new Background(fulkImage));
         kwongButton.setBackground(new Background(kwongImage));
@@ -256,12 +265,16 @@ public class App extends Application {
         deleteButton.setTranslateX(0-stage.getWidth()/2 + 50);
         deleteButton.setTranslateY(0 - stage.getHeight()/2 + 600);
         
-        towers.setTranslateX(0 - stage.getWidth()/2 + 75);
-        towers.setTranslateY(0 - stage.getHeight()/2 + 75);
+        towers.setTranslateX(0 - stage.getWidth()/2 + 150);
+        towers.setTranslateY(0 - stage.getHeight()/2 + 25);
         health.setTranslateX(stage.getWidth()/2 - 100);
         health.setTranslateY(0 - stage.getHeight()/2 + 75);
         hpnum.setTranslateX(stage.getWidth()/2 - 100);
         hpnum.setTranslateY(0 - stage.getHeight()/2 + 125);
+        money.setTranslateX(stage.getWidth()/2 - 100);
+        money.setTranslateY(0 - stage.getHeight()/2 + 175);
+        moneynum.setTranslateX(stage.getWidth()/2 - 100);
+        moneynum.setTranslateY(0 - stage.getHeight()/2 + 225);
 
 
         mapping.setMaxWidth(1920);
@@ -302,90 +315,170 @@ public class App extends Application {
             java.awt.Point p = MouseInfo.getPointerInfo().getLocation();
             Image towerImage;
             ImageView tower;
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Not Enough Money");
+            alert.setContentText("Not Enough money! You only have " + g.getMoney() + " dollars.");
             switch (teacherIndex[0]) {
                 case 1:
-                    towerImage = new Image(getClass().getResource("Map/Teachers/Fulk.PNG").toExternalForm());
-                    tower = new ImageView(towerImage);
-                    tower.setOnMouseClicked(arg0 -> {
-                        if (teacherIndex[0] == 7){
-                            game.getChildren().remove(tower);
-                        }
-                    });
-                    tower.setTranslateX(p.getX() - stage.getWidth()/2);
-                    tower.setTranslateY(p.getY() - stage.getHeight()/2);
-                    game.getChildren().add(tower);
-                    teacherIndex[0] = 0;
-                    scene.setCursor(Cursor.DEFAULT);
+                //change this, for testing purposes only
+                    if (g.getMoney() > fulkCost){
+                        towerImage = new Image(getClass().getResource("Map/Teachers/Fulk.PNG").toExternalForm());
+                        tower = new ImageView(towerImage);
+                        tower.setOnMouseClicked(arg0 -> {
+                            if (teacherIndex[0] == 7){
+                                g.addMoney(fulkCost/2);
+                                moneynum.setText(g.getMoney() + "");
+                                game.getChildren().remove(tower);
+                            }
+                        });
+                        tower.setTranslateX(p.getX() - stage.getWidth()/2);
+                        tower.setTranslateY(p.getY() - stage.getHeight()/2);
+                        g.subtractMoney(fulkCost);
+                        moneynum.setText(g.getMoney() + "");
+                        game.getChildren().add(tower);
+                        teacherIndex[0] = 0;
+                        scene.setCursor(Cursor.DEFAULT);
+                    }
+                    else{
+                        alert.setHeaderText("You need " + fulkCost + " dollars to hire Mr Fulk.");
+                        alert.showAndWait();
+                        teacherIndex[0] = 0;
+                        scene.setCursor(Cursor.DEFAULT);
+                    }
                     break;
                 case 2:
-                    towerImage = new Image(getClass().getResource("Map/Teachers/Kwong.PNG").toExternalForm());
-                    tower = new ImageView(towerImage);
-                    tower.setOnMouseClicked(arg0 -> {
-                        if (teacherIndex[0] == 7){
-                            game.getChildren().remove(tower);
-                        }
-                    });
-                    tower.setTranslateX(p.getX() - stage.getWidth()/2);
-                    tower.setTranslateY(p.getY() - stage.getHeight()/2);
-                    game.getChildren().add(tower);
-                    teacherIndex[0] = 0;
-                    scene.setCursor(Cursor.DEFAULT);
+                    if (g.getMoney() > kwongCost){
+                        towerImage = new Image(getClass().getResource("Map/Teachers/Kwong.PNG").toExternalForm());
+                        tower = new ImageView(towerImage);
+                        tower.setOnMouseClicked(arg0 -> {
+                            if (teacherIndex[0] == 7){
+                                g.addMoney(kwongCost/2);
+                                moneynum.setText(g.getMoney() + "");
+                                game.getChildren().remove(tower);
+                            }
+                        });
+                        tower.setTranslateX(p.getX() - stage.getWidth()/2);
+                        tower.setTranslateY(p.getY() - stage.getHeight()/2);
+                        game.getChildren().add(tower);
+                        g.subtractMoney(kwongCost);
+                        moneynum.setText(g.getMoney() + "");
+                        teacherIndex[0] = 0;
+                        scene.setCursor(Cursor.DEFAULT);
+                    }
+                    else{
+                        alert.setHeaderText("You need " + kwongCost + " dollars to hire Mr Kwong.");
+                        alert.showAndWait();
+                        teacherIndex[0] = 0;
+                        scene.setCursor(Cursor.DEFAULT);
+                    }
                     break;
                 case 3:
-                    towerImage = new Image(getClass().getResource("Map/Teachers/Dunlap.PNG").toExternalForm());
-                    tower = new ImageView(towerImage);
-                    tower.setOnMouseClicked(arg0 -> {
-                        if (teacherIndex[0] == 7){
-                            game.getChildren().remove(tower);
-                        }
-                    });
-                    tower.setTranslateX(p.getX() - stage.getWidth()/2);
-                    tower.setTranslateY(p.getY() - stage.getHeight()/2);
-                    game.getChildren().add(tower);
-                    teacherIndex[0] = 0;
-                    scene.setCursor(Cursor.DEFAULT);
+                    if (g.getMoney() > dunlapCost){
+                        towerImage = new Image(getClass().getResource("Map/Teachers/Dunlap.PNG").toExternalForm());
+                        tower = new ImageView(towerImage);
+                        tower.setOnMouseClicked(arg0 -> {
+                            if (teacherIndex[0] == 7){
+                                g.addMoney(kwongCost/2);
+                                moneynum.setText(g.getMoney() + "");
+                                game.getChildren().remove(tower);
+                            }
+                        });
+                        tower.setTranslateX(p.getX() - stage.getWidth()/2);
+                        tower.setTranslateY(p.getY() - stage.getHeight()/2);
+                        game.getChildren().add(tower);
+                        g.subtractMoney(dunlapCost);
+                        moneynum.setText(g.getMoney() + "");
+                        teacherIndex[0] = 0;
+                        scene.setCursor(Cursor.DEFAULT);
+                        break;
+                    }
+                    else{
+                        alert.setHeaderText("You need " + dunlapCost + " dollars to hire Mrs Dunlap.");
+                        alert.showAndWait();
+                        teacherIndex[0] = 0;
+                        scene.setCursor(Cursor.DEFAULT);
+                    }
                     break;
                 case 4:
-                    towerImage = new Image(getClass().getResource("Map/Teachers/Taylor.PNG").toExternalForm());
-                    tower = new ImageView(towerImage);
-                    tower.setOnMouseClicked(arg0 -> {
-                        if (teacherIndex[0] == 7){
-                            game.getChildren().remove(tower);
-                        }
-                    });
-                    tower.setTranslateX(p.getX() - stage.getWidth()/2);
-                    tower.setTranslateY(p.getY() - stage.getHeight()/2);
-                    game.getChildren().add(tower);
-                    teacherIndex[0] = 0;
-                    scene.setCursor(Cursor.DEFAULT);
+                    if (g.getMoney() > taylorCost){
+                        towerImage = new Image(getClass().getResource("Map/Teachers/Taylor.PNG").toExternalForm());
+                        tower = new ImageView(towerImage);
+                        tower.setOnMouseClicked(arg0 -> {
+                            if (teacherIndex[0] == 7){
+                                g.addMoney(taylorCost/2);
+                                moneynum.setText(g.getMoney() + "");
+                                game.getChildren().remove(tower);
+                            }
+                        });
+                        tower.setTranslateX(p.getX() - stage.getWidth()/2);
+                        tower.setTranslateY(p.getY() - stage.getHeight()/2);
+                        game.getChildren().add(tower);
+                        g.subtractMoney(taylorCost);
+                        moneynum.setText(g.getMoney() + "");
+                        teacherIndex[0] = 0;
+                        scene.setCursor(Cursor.DEFAULT);
+                        break;
+                    }
+                    else{
+                        alert.setHeaderText("You need " + taylorCost + " dollars to hire Mr Taylor.");
+                        alert.showAndWait();
+                        teacherIndex[0] = 0;
+                        scene.setCursor(Cursor.DEFAULT);
+                    }
                     break;
                 case 5:
-                    towerImage = new Image(getClass().getResource("Map/Teachers/Albaker.PNG").toExternalForm());
-                    tower = new ImageView(towerImage);
-                    tower.setOnMouseClicked(arg0 -> {
-                        if (teacherIndex[0] == 7){
-                            game.getChildren().remove(tower);
-                        }
-                    });
-                    tower.setTranslateX(p.getX() - stage.getWidth()/2);
-                    tower.setTranslateY(p.getY() - stage.getHeight()/2);
-                    game.getChildren().add(tower);
-                    teacherIndex[0] = 0;
-                    scene.setCursor(Cursor.DEFAULT);
+                    if (g.getMoney() > albakerCost){
+                        towerImage = new Image(getClass().getResource("Map/Teachers/Albaker.PNG").toExternalForm());
+                        tower = new ImageView(towerImage);
+                        tower.setOnMouseClicked(arg0 -> {
+                            if (teacherIndex[0] == 7){
+                                g.addMoney(albakerCost/2);
+                                moneynum.setText(g.getMoney() + "");
+                                game.getChildren().remove(tower);
+                            }
+                        });
+                        tower.setTranslateX(p.getX() - stage.getWidth()/2);
+                        tower.setTranslateY(p.getY() - stage.getHeight()/2);
+                        game.getChildren().add(tower);
+                        g.subtractMoney(albakerCost);
+                        moneynum.setText(g.getMoney() + "");
+                        teacherIndex[0] = 0;
+                        scene.setCursor(Cursor.DEFAULT);
+                        break;
+                    }
+                    else{
+                        alert.setHeaderText("You need " + albakerCost + " dollars to hire Mrs Albaker.");
+                        alert.showAndWait();
+                        teacherIndex[0] = 0;
+                        scene.setCursor(Cursor.DEFAULT);
+                    }
                     break;
                 case 6:
-                    towerImage = new Image(getClass().getResource("Map/Teachers/Pallone.PNG").toExternalForm());
-                    tower = new ImageView(towerImage);
-                    tower.setOnMouseClicked(arg0 -> {
-                        if (teacherIndex[0] == 7){
-                            game.getChildren().remove(tower);
-                        }
-                    });
-                    tower.setTranslateX(p.getX() - stage.getWidth()/2);
-                    tower.setTranslateY(p.getY() - stage.getHeight()/2);
-                    game.getChildren().add(tower);
-                    teacherIndex[0] = 0;
-                    scene.setCursor(Cursor.DEFAULT);
+                    if (g.getMoney() > palloneCost){
+                        towerImage = new Image(getClass().getResource("Map/Teachers/Pallone.PNG").toExternalForm());
+                        tower = new ImageView(towerImage);
+                        tower.setOnMouseClicked(arg0 -> {
+                            if (teacherIndex[0] == 7){
+                                g.addMoney(palloneCost/2);
+                                moneynum.setText(g.getMoney() + "");
+                                game.getChildren().remove(tower);
+                            }
+                        });
+                        tower.setTranslateX(p.getX() - stage.getWidth()/2);
+                        tower.setTranslateY(p.getY() - stage.getHeight()/2);
+                        game.getChildren().add(tower);
+                        g.subtractMoney(palloneCost);
+                        moneynum.setText(g.getMoney() + "");
+                        teacherIndex[0] = 0;
+                        scene.setCursor(Cursor.DEFAULT);
+                        break;
+                    }
+                    else{
+                        alert.setHeaderText("You need " + palloneCost + " dollars to hire Mr Pallone.");
+                        alert.showAndWait();
+                        teacherIndex[0] = 0;
+                        scene.setCursor(Cursor.DEFAULT);
+                    }
                     break;
                 default:
                     teacherIndex[0] = 0;
@@ -404,6 +497,8 @@ public class App extends Application {
         towers.setId("towers");
         health.setId("health");
         hpnum.setId("hpnum");
+        money.setId("money");
+        moneynum.setId("money");
 
         game.getChildren().add(mapping);
         game.getChildren().add(fulkButton);
@@ -417,6 +512,8 @@ public class App extends Application {
         game.getChildren().add(hpnum);
         game.getChildren().add(fullscreen);
         game.getChildren().add(deleteButton);
+        game.getChildren().add(money);
+        game.getChildren().add(moneynum);
 
         
         scene.setRoot(game);
