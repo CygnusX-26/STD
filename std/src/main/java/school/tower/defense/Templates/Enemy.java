@@ -42,4 +42,5 @@ public abstract class Enemy {
     
         public abstract void move();
         public abstract void attack(Tower tower);
+        public abstract String spriteStatus();
 }
