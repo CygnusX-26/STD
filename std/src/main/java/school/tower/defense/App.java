@@ -126,7 +126,7 @@ public class App extends Application {
         StackPane inst = new StackPane();
         inst.setId("inst");
         scene.setRoot(inst);
-        System.out.println("test");
+        System.out.println("test"); //colin code here
     }
 
     public void loadGame() throws IOException {
