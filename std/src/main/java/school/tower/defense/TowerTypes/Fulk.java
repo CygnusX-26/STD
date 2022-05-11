@@ -83,4 +83,11 @@ public class Fulk extends Tower {
 
         tile.setTower(this);
     }
+
+    @Override
+    public void attack()
+    {
+        // TODO Auto-generated method stub
+        
+    }
 }
