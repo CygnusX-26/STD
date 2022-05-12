@@ -236,7 +236,7 @@ public class App extends Application {
         //set values for objects
         for (Tooltip t : tips){
             t.setMaxWidth(250);
-            t.setFont(new Font(t.getFont().toString(), t.getFont().getSize()*1.25));
+            //t.setFont(new Font(t.getFont().toString(), t.getFont().getSize()*1.25));
             t.setWrapText(true);
             t.setShowDelay(Duration.ZERO);
         }
