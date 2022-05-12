@@ -8,6 +8,10 @@ public class Tile {
     private boolean isOccupied;
     private Tower tower;
 
+    /**
+     * Constructing a tile and initalizing all variables
+     * @param location the location of the tile
+     */
     public Tile(Location location) {
         this.location = location;
         this.isOccupied = false;
