@@ -29,6 +29,7 @@ public class App extends Application {
     private MediaPlayer menuPlayer;
     private Stage stage;
     private StackPane root;
+    private StackPane game;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -204,7 +205,7 @@ public class App extends Application {
         Text money = new Text("Money:");
         Text moneynum = new Text(g.getMoney() + "");
         
-        StackPane game = new StackPane();
+        game = new StackPane();
 
 
         ArrayList<Button> buttons = new ArrayList<Button>();
@@ -543,4 +544,7 @@ public class App extends Application {
         g.run();
     }
 
+    public StackPane getGame(){
+        return game;
+    }
 }
