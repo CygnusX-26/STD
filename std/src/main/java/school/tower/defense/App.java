@@ -17,6 +17,7 @@ import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.media.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -192,12 +193,12 @@ public class App extends Application {
         Image pallonePlace = new Image(getClass().getResource("Map/Teachers/Pallone.PNG").toExternalForm()); 
 
 
-        Tooltip fulkTip = new Tooltip("Fulk");
-        Tooltip kwongTip = new Tooltip("Kwong");
-        Tooltip dunlapTip = new Tooltip("Dunlap");
-        Tooltip taylorTip = new Tooltip("Taylor");
-        Tooltip albakerTip = new Tooltip("Albaker");
-        Tooltip palloneTip = new Tooltip("Pallone");
+        Tooltip fulkTip = new Tooltip("Fulk \n(10 Money) \n\nHis mission is to propogate webcat to all educational institutions");
+        Tooltip kwongTip = new Tooltip("Kwong \n(1 Money) \n\nThe better CS teacher (although it's up for debate)");
+        Tooltip dunlapTip = new Tooltip("Dunlap \n(1 Money) \n\nThe reading quizes she gives will knock anyone off their feet");
+        Tooltip taylorTip = new Tooltip("Taylor \n(10 Money) \n\nHe will prove freefall objects will gain speed over time");
+        Tooltip albakerTip = new Tooltip("Albaker \n(100 Money) \n\nHer essay grading has all the foes in terror (just like her students)");
+        Tooltip palloneTip = new Tooltip("Pallone \n(1000 Money) \n\nA Biology teacher who's awesome at everything :)");
 
         Text towers = new Text("Hire Teachers:");
         Text health = new Text("Health:");
@@ -234,7 +235,8 @@ public class App extends Application {
 
         //set values for objects
         for (Tooltip t : tips){
-            t.setMaxWidth(100);
+            t.setMaxWidth(250);
+            t.setFont(new Font(t.getFont().toString(), t.getFont().getSize()*1.25));
             t.setWrapText(true);
             t.setShowDelay(Duration.ZERO);
         }
