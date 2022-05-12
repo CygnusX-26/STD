@@ -25,7 +25,10 @@ public abstract class Enemy {
             this.location = new Location(-100, -100);
             this.s = s;
             sprite = new ImageView(new Image(getClass().getResource(pathName).toExternalForm()));
-
+            sprite.setFitWidth(75);
+            sprite.setFitHeight(75);
+            sprite.setX(location.getX());
+            sprite.setY(location.getY());
             s.getChildren().add(sprite);
         }
     
