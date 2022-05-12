@@ -150,7 +150,7 @@ public class App extends Application {
         StackPane inst = new StackPane();
         Button back = new Button();
         back.setText("Back to menu");
-        back.setTranslateY(stage.getHeight()-50);
+        back.setTranslateY(stage.getHeight() - 150);
         back.setOnMouseClicked(arg0 -> {
             stage.setHeight(480);
             stage.setWidth(640);
