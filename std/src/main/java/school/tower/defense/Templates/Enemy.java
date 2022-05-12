@@ -8,14 +8,15 @@ import school.tower.defense.Classes.Location;
 public abstract class Enemy {
     
         private String name;
-        private int health, speed, reward;
+        private int health, reward;
+        private double speed;
         private int pathNumber;
         private double traveledPercent;
         private Location location;
         private StackPane s;
         private ImageView sprite;
     
-        public Enemy(String name, int health, int speed, int reward, StackPane s, String pathName) {
+        public Enemy(String name, int health, double speed, int reward, StackPane s, String pathName) {
             this.name = name;
             this.health = health;
             this.speed = speed;
@@ -40,20 +41,32 @@ public abstract class Enemy {
             return health;
         }
     
-        public int getSpeed() {
+        public double getSpeed() {
             return speed;
         }
     
         public int getReward() {
             return reward;
         }
+
+        public void setPathNumber(int pathNumber) {
+            this.pathNumber = pathNumber;
+        }
     
         public int getPathNumber() {
             return pathNumber;
         }
 
+        public void setTraveledPercent(double traveledPercent) {
+            this.traveledPercent = traveledPercent;
+        }
+
         public double getTraveledPercent() {
             return traveledPercent;
+        }
+
+        public void setLocation(Location location) {
+            this.location = location;
         }
 
         public Location getLocation() {

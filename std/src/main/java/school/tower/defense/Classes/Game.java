@@ -98,6 +98,14 @@ public class Game extends App {
     public void updateFrame(long Delta) {
         for (int i = 0; i < enemies.size(); i++) {
             Enemy enemy = enemies.get(i);
+
+            if (enemy.getPathNumber() >= pathLocations.size() - 1) {
+                continue;
+            }
+
+            //System.out.println(enemy.getPathNumber());
+            //System.out.println(enemy.getTraveledPercent() * 100);
+
             double distanceToMove = enemy.getSpeed() * Delta;
             Location currentPathLocation = enemy.getLocation();
             Location nextPathLocation = pathLocations.get(enemy.getPathNumber() + 1);
@@ -106,7 +114,41 @@ public class Game extends App {
                 if (currentPathLocation.distanceBetween(nextPathLocation) > distanceToMove) {
                     break;
                 }
+
+                distanceToMove -= currentPathLocation.distanceBetween(nextPathLocation);
+                enemy.setTraveledPercent(0);
+
+                System.out.println(enemy.getPathNumber());
+
+                if (enemy.getPathNumber() + 1 < pathLocations.size()) {
+                    enemy.setPathNumber(enemy.getPathNumber() + 1);
+                }
+
+                if (enemy.getPathNumber() + 1 < pathLocations.size()) {
+                    currentPathLocation = nextPathLocation;
+                    nextPathLocation = pathLocations.get(enemy.getPathNumber() + 1);
+                } else {
+                    break;
+                }
             }
+
+            double distance = currentPathLocation.distanceBetween(nextPathLocation);
+            double traveledPercent = enemy.getTraveledPercent() + (distanceToMove/distance);
+            double xDifference = (nextPathLocation.getX() - currentPathLocation.getX()) * traveledPercent;
+            double yDifference = (nextPathLocation.getY() - currentPathLocation.getY()) * traveledPercent;
+
+            enemy.setTraveledPercent(traveledPercent);
+            enemy.setLocation(new Location(currentPathLocation.getX() + xDifference, currentPathLocation.getY() + yDifference));
+            /*enemy.getSprite().setX(enemy.getLocation().getX());
+            enemy.getSprite().setY(enemy.getLocation().getY());*/
+
+            enemy.getSprite().setTranslateX(enemy.getLocation().getX());
+            enemy.getSprite().setTranslateY(enemy.getLocation().getY()); //Sprite does not move pls fix
+
+            System.out.println(enemy.getLocation().getX());
+            System.out.println(enemy.getLocation().getY());
+
+            System.out.println("Updated");
         }
     }
     
@@ -122,7 +164,7 @@ public class Game extends App {
 
             while (health > 0) {
                 try {
-                    long length = (long) (16);
+                    long length = (long) (500);
                     TimeUnit.MILLISECONDS.sleep(length);
 
                     updateFrame(System.currentTimeMillis() - lastUpdate); //Create a new method otherwise it gets cluttered
