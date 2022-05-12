@@ -23,4 +23,12 @@ public class Grid {
     public Tile getTile(Location location) {
         return tiles[(int)location.getX()][(int)location.getY()];
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }
