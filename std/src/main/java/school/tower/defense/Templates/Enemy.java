@@ -1,6 +1,9 @@
 package school.tower.defense.Templates;
 
-import school.tower.defense.Classes.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import school.tower.defense.Classes.Location;
 
 public abstract class Enemy {
     
@@ -9,8 +12,10 @@ public abstract class Enemy {
         private int pathNumber;
         private double traveledPercent;
         private Location location;
+        private StackPane s;
+        private ImageView sprite;
     
-        public Enemy(String name, int health, int speed, int reward) {
+        public Enemy(String name, int health, int speed, int reward, StackPane s, String pathName) {
             this.name = name;
             this.health = health;
             this.speed = speed;
@@ -18,6 +23,10 @@ public abstract class Enemy {
             this.pathNumber = 0;
             this.traveledPercent = 0; //Starts from the beginning
             this.location = new Location(-100, -100);
+            this.s = s;
+            sprite = new ImageView(new Image(getClass().getResource(pathName).toExternalForm()));
+
+            s.getChildren().add(sprite);
         }
     
         public String getName() {
@@ -50,6 +59,10 @@ public abstract class Enemy {
 
         public void damage(int amount) {
             health -= amount;
+        }
+
+        public ImageView getSprite() {
+            return sprite;
         }
     
         public abstract void move();

@@ -1,14 +1,14 @@
 package school.tower.defense.EnemyTypes;
 
+import javafx.scene.layout.StackPane;
 import school.tower.defense.Templates.Enemy;
 import school.tower.defense.Templates.Tower;
 
 public class LetterOfRec extends Enemy {
     private int reward;
     
-    public LetterOfRec() {
-        super("Letter Of Rec", 5, 10, 1);
-
+    public LetterOfRec(StackPane s) {
+        super("Letter Of Rec", 5, 10, 1, s, "defense/Map/test.jpg");
         this.reward = 1;
     }
     

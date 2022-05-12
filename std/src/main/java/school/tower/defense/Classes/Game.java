@@ -24,6 +24,7 @@ public class Game extends App {
         grid = new Grid(width/75, height/75);
         clicked = false;
         health = 69;
+        pathLocations = new ArrayList<Location>();
 
         File file = new File("std/src/main/java/school/tower/defense/DataFiles/Maps/Map.txt");
         Scanner scanner = null;
@@ -111,7 +112,7 @@ public class Game extends App {
     public void run() {
         //run the game
 
-        Enemy enemy = new LetterOfRec(Sprite);
+        Enemy enemy = new LetterOfRec(super.getGame());
 
         enemies.add(enemy);
 
