@@ -40,7 +40,7 @@ public class Game extends App {
             double x = Double.parseDouble(line.substring(0, line.indexOf(" ")));
             double y = Double.parseDouble(line.substring(line.indexOf(" ") + 1));
 
-            pathLocations.add(new Location(x * , y));
+            pathLocations.add(new Location(x * width, y * height));
         }
     }
 
@@ -97,10 +97,13 @@ public class Game extends App {
         for (int i = 0; i < enemies.size(); i++) {
             Enemy enemy = enemies.get(i);
             double distanceToMove = enemy.getSpeed() * Delta;
-            Location currentPathLocation = new Location()
+            Location currentPathLocation = enemy.getLocation();
+            Location nextPathLocation = pathLocations.get(enemy.getPathNumber() + 1);
             
             while (true) {
-                if ()
+                if (currentPathLocation.distanceBetween(nextPathLocation) > distanceToMove) {
+                    break;
+                }
             }
         }
     }
