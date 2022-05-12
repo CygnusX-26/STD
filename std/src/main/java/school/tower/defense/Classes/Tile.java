@@ -3,6 +3,9 @@ package school.tower.defense.Classes;
 import school.tower.defense.Templates.Tower;
 import school.tower.defense.Classes.Location;
 
+/**
+ * A tile may or may not contain a teacher, and is implemented in a 2d array in the grid class
+ */
 public class Tile {
     private Location location;
     private boolean isOccupied;
