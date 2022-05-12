@@ -107,6 +107,7 @@ public class Game extends App {
             //System.out.println(enemy.getTraveledPercent() * 100);
 
             double distanceToMove = enemy.getSpeed() * Delta;
+            Location originalPathLocation = enemy.getLocation();
             Location currentPathLocation = enemy.getLocation();
             Location nextPathLocation = pathLocations.get(enemy.getPathNumber() + 1);
             
@@ -142,8 +143,11 @@ public class Game extends App {
             /*enemy.getSprite().setX(enemy.getLocation().getX());
             enemy.getSprite().setY(enemy.getLocation().getY());*/
 
-            enemy.getSprite().setTranslateX(enemy.getLocation().getX());
-            enemy.getSprite().setTranslateY(enemy.getLocation().getY()); //Sprite does not move pls fix
+            double xTranslate = enemy.getLocation().getX() - originalPathLocation.getX();
+            double yTranslate = enemy.getLocation().getY() - originalPathLocation.getY();
+
+            enemy.getSprite().setTranslateX(xTranslate);
+            enemy.getSprite().setTranslateY(yTranslate); //Sprite does not move pls fix
 
             System.out.println(enemy.getLocation().getX());
             System.out.println(enemy.getLocation().getY());
@@ -164,7 +168,7 @@ public class Game extends App {
 
             while (health > 0) {
                 try {
-                    long length = (long) (500);
+                    long length = (long) (50);
                     TimeUnit.MILLISECONDS.sleep(length);
 
                     updateFrame(System.currentTimeMillis() - lastUpdate); //Create a new method otherwise it gets cluttered
