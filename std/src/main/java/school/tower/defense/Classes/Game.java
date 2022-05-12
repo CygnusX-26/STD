@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+import javafx.scene.layout.StackPane;
 import school.tower.defense.App;
 import school.tower.defense.EnemyTypes.*;
 import school.tower.defense.Templates.*;
@@ -109,10 +110,10 @@ public class Game extends App {
         }
     }
     
-    public void run() {
+    public void run(StackPane s) {
         //run the game
 
-        Enemy enemy = new LetterOfRec(super.getGame());
+        Enemy enemy = new LetterOfRec(s);
 
         enemies.add(enemy);
 

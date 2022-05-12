@@ -543,10 +543,6 @@ public class App extends Application {
 
         
         scene.setRoot(game);
-        g.run();
-    }
-
-    public StackPane getGame(){
-        return game;
+        g.run(game);
     }
 }

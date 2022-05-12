@@ -8,7 +8,7 @@ public class LetterOfRec extends Enemy {
     private int reward;
     
     public LetterOfRec(StackPane s) {
-        super("Letter Of Rec", 5, 10, 1, s, "defense/Map/test.jpg");
+        super("Letter Of Rec", 5, 10, 1, s, "Enemies/Essay/essay5.png");
         this.reward = 1;
     }
     
