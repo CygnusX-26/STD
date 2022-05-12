@@ -16,4 +16,8 @@ public class Location {
     public double getY() {
         return y;
     }
+
+    public double distanceBetween(Location location) {
+        return Math.sqrt(Math.pow(location.getX() - x, 2) + Math.pow(location.getY() - y, 2));
+    }
 }
