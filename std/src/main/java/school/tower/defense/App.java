@@ -17,7 +17,6 @@ import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.media.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -32,6 +31,11 @@ public class App extends Application {
     private StackPane root;
     private StackPane game;
 
+    /**
+     * starts the JavaFX application
+     * @param stage the stage to be displayed
+     * @throws IOException if the application fails to start
+     */
     @Override
     public void start(Stage stage) throws IOException {
         loadMenu();
@@ -44,9 +48,18 @@ public class App extends Application {
         this.stage.show();
     }
 
+    /**
+     * Runs the JavaFX application
+     * @param args
+     */
     public static void main(String[] args) {
         launch();
     }
+
+    /**
+     * Loads the menu scene
+     * @throws IOException if fails to load the scene
+     */
     public void loadMenu() throws IOException {
         root  = new StackPane();
 
@@ -129,6 +142,10 @@ public class App extends Application {
         scene = new Scene(root, 640, 480, Color.BLACK);
     }
 
+    /**
+     * loads the instructions scene
+     * @throws IOException if fails to load the scene
+     */
     public void loadInstructions() throws IOException {
         StackPane inst = new StackPane();
         Button back = new Button();
@@ -148,6 +165,10 @@ public class App extends Application {
         scene.setRoot(inst);
     }
 
+    /**
+     * loads the game scene
+     * @throws IOException if fails to load the scene
+     */
     public void loadGame() throws IOException {
         //music things, dont worry about this
         menuPlayer.stop();
