@@ -1,7 +1,7 @@
 package school.tower.defense;
 
 import school.tower.defense.Classes.Game;
-
+import school.tower.defense.TowerTypes.Fulk;
 import java.awt.MouseInfo;
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +29,8 @@ public class App extends Application {
     private static Scene scene;
     private MediaPlayer menuPlayer;
     private Stage stage;
+    private StackPane root;
+    private StackPane game;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -46,7 +48,7 @@ public class App extends Application {
         launch();
     }
     public void loadMenu() throws IOException {
-        StackPane root  = new StackPane();
+        root  = new StackPane();
 
         TranslateTransition fulkTransition = new TranslateTransition();
         TranslateTransition kwongTransition = new TranslateTransition();
@@ -61,6 +63,8 @@ public class App extends Application {
         ImageView KWONG = new ImageView(kwong);
         Media menuMusic = new Media(getClass().getResource("Music/awesomeness.wav").toExternalForm());
         Tooltip startTooltip = new Tooltip("Start Game");
+        // Image fulkGif = new Image(getClass().getResource("Map/OptionalLoginAnimation.gif").toExternalForm());
+        // ImageView fulkGifView = new ImageView(fulkGif);
         menuPlayer = new MediaPlayer(menuMusic);
 
         root.setId("pane");
@@ -116,6 +120,7 @@ public class App extends Application {
         root.getChildren().add(FULK);
         root.getChildren().add(KWONG);
         root.getChildren().add(instructions);
+        //root.getChildren().add(fulkGifView);
 
         fulkTransition.play();
         kwongTransition.play();
@@ -126,9 +131,21 @@ public class App extends Application {
 
     public void loadInstructions() throws IOException {
         StackPane inst = new StackPane();
+        Button back = new Button();
+        back.setText("Back to menu");
+        back.setTranslateY(stage.getHeight()-50);
+        back.setOnMouseClicked(arg0 -> {
+            stage.setHeight(480);
+            stage.setWidth(640);
+            scene.setRoot(root);
+                
+        });
+        ImageView instruction = new ImageView(new Image(getClass().getResource("Map/InstructionScreen.png").toExternalForm()));
         inst.setId("inst");
+        inst.getChildren().add(instruction);
+        inst.getChildren().add(back);
+        stage.setMaximized(true);
         scene.setRoot(inst);
-        System.out.println("test"); //colin code here
     }
 
     public void loadGame() throws IOException {
@@ -189,7 +206,7 @@ public class App extends Application {
         Text money = new Text("Money:");
         Text moneynum = new Text(g.getMoney() + "");
         
-        StackPane game = new StackPane();
+        game = new StackPane();
 
 
         ArrayList<Button> buttons = new ArrayList<Button>();
@@ -526,6 +543,10 @@ public class App extends Application {
 
         
         scene.setRoot(game);
+        g.run();
     }
 
+    public StackPane getGame(){
+        return game;
+    }
 }

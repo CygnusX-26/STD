@@ -6,14 +6,18 @@ public abstract class Enemy {
     
         private String name;
         private int health, speed, reward;
+        private int pathNumber;
+        private double traveledPercent;
         private Location location;
     
-        public Enemy(String name, int health, int speed, int reward, int x, int y) {
+        public Enemy(String name, int health, int speed, int reward) {
             this.name = name;
             this.health = health;
             this.speed = speed;
             this.reward = reward;
-            this.location = new Location(x, y);
+            this.pathNumber = 0;
+            this.traveledPercent = 0; //Starts from the beginning
+            this.location = new Location(-100, -100);
         }
     
         public String getName() {
@@ -32,6 +36,14 @@ public abstract class Enemy {
             return reward;
         }
     
+        public int getPathNumber() {
+            return pathNumber;
+        }
+
+        public double getTraveledPercent() {
+            return traveledPercent;
+        }
+
         public Location getLocation() {
             return location;
         }
