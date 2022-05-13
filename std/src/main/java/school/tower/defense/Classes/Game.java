@@ -186,8 +186,16 @@ public class Game extends App {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    Enemy enemy = new LetterOfRec(s, stage, pathLocations);
-                    enemies.add(enemy); 
+                    if (enemyQueue.size() > 0)
+                    {
+                        enemies.add(enemyQueue.remove());
+                    }
+                    if (enemies.size() == 0)
+                    {
+                        roundNum++;
+                        System.out.println(roundNum);
+                        loadEnemiesIntoQueue(roundNum, enemyQueue, s);
+                    } 
                 }
             }));
             timeline.setCycleCount(5);
