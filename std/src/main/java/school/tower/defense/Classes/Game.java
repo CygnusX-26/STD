@@ -4,10 +4,14 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import school.tower.defense.App;
 import school.tower.defense.EnemyTypes.*;
 import school.tower.defense.Templates.*;
@@ -154,12 +158,12 @@ public class Game extends App {
     public void run(StackPane s) {
         //run the game
 
+        final long[] round = {1};
         new Thread(() -> {
             long lastUpdate = System.currentTimeMillis();
-
             while (health > 0) {
                 try {
-                    long length = (long) (100);
+                    long length = (long) (10);
                     TimeUnit.MILLISECONDS.sleep(length);
 
                     updateFrame(System.currentTimeMillis() - lastUpdate); //Create a new method otherwise it gets cluttered
@@ -169,30 +173,18 @@ public class Game extends App {
                     e.printStackTrace();
                 }
             }
+            
         }).start();
-
-        Platform.runLater(
-            () -> {
-                for (int i = 0; i < 5; i++) {
+        Platform.runLater(() -> {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
                     Enemy enemy = new LetterOfRec(s, stage, pathLocations);
-
                     enemies.add(enemy);
-
-                    System.out.println("spawned enemy");
-
-                    try {
-                        TimeUnit.MILLISECONDS.sleep(500);
-                    } catch (InterruptedException e) {
-                        System.out.println("I hate java sleep");
-                    }
                 }
-
-                try {
-                    TimeUnit.MILLISECONDS.sleep(500);
-                } catch (InterruptedException e) {
-                    System.out.println("I hate java sleep");
-                }
-            }
-        );
+            }));
+            timeline.setCycleCount(1);
+            timeline.play();
+        });
     }
 }
