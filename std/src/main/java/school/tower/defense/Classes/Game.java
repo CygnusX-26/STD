@@ -223,13 +223,110 @@ public class Game extends App {
                                 health--;
                                 hpnum.setText(health + "");
                             }
+                        }
                     }
                 }
             }
-        }
             ));
-            timeline.setCycleCount(999999999);
-            timeline.play(); });;
+            timeline.setCycleCount(90);
+            timeline.play();
+
+            //speeding up the spawn rate over every 90 seconds
+            Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(0.8), new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if (enemyQueue.size() > 0)
+                        {
+                            enemies.add(enemyQueue.remove());
+                        }
+                        if (enemies.size() == 0)
+                        {
+                            roundNum++;
+                            //System.out.println(roundNum);
+                            loadEnemiesIntoQueue(roundNum, enemyQueue, s);
+                        } 
+                        for (Enemy i : enemies)
+                        {
+                            if (i.getLocation().getX()>(stage.getWidth()*0.898697-20) && i.getLocation().getX()<(stage.getWidth()*0.898697+20))
+                            {
+                                if (i.getLocation().getY()>(stage.getHeight()*0.71102-50) && i.getLocation().getY()<(stage.getHeight()*0.71102+50))
+                                {
+                                    enemies.remove(enemies.indexOf(i));
+                                    s.getChildren().remove(i.getSprite());
+                                    health--;
+                                    hpnum.setText(health + "");
+                                }
+                            }
+                        }
+                    }
+                }
+                ));
+                timeline2.setCycleCount(113);
+                timeline2.play(); 
+
+                Timeline timeline3 = new Timeline(new KeyFrame(Duration.seconds(0.6), new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if (enemyQueue.size() > 0)
+                        {
+                            enemies.add(enemyQueue.remove());
+                        }
+                        if (enemies.size() == 0)
+                        {
+                            roundNum++;
+                            //System.out.println(roundNum);
+                            loadEnemiesIntoQueue(roundNum, enemyQueue, s);
+                        } 
+                        for (Enemy i : enemies)
+                        {
+                            if (i.getLocation().getX()>(stage.getWidth()*0.898697-20) && i.getLocation().getX()<(stage.getWidth()*0.898697+20))
+                            {
+                                if (i.getLocation().getY()>(stage.getHeight()*0.71102-50) && i.getLocation().getY()<(stage.getHeight()*0.71102+50))
+                                {
+                                    enemies.remove(enemies.indexOf(i));
+                                    s.getChildren().remove(i.getSprite());
+                                    health--;
+                                    hpnum.setText(health + "");
+                                }
+                            }
+                        }
+                    }
+                }
+                ));
+                timeline3.setCycleCount(150);
+                timeline3.play();
+                Timeline timeline4 = new Timeline(new KeyFrame(Duration.seconds(0.4), new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if (enemyQueue.size() > 0)
+                        {
+                            enemies.add(enemyQueue.remove());
+                        }
+                        if (enemies.size() == 0)
+                        {
+                            roundNum++;
+                            //System.out.println(roundNum);
+                            loadEnemiesIntoQueue(roundNum, enemyQueue, s);
+                        } 
+                        for (Enemy i : enemies)
+                        {
+                            if (i.getLocation().getX()>(stage.getWidth()*0.898697-20) && i.getLocation().getX()<(stage.getWidth()*0.898697+20))
+                            {
+                                if (i.getLocation().getY()>(stage.getHeight()*0.71102-50) && i.getLocation().getY()<(stage.getHeight()*0.71102+50))
+                                {
+                                    enemies.remove(enemies.indexOf(i));
+                                    s.getChildren().remove(i.getSprite());
+                                    health--;
+                                    hpnum.setText(health + "");
+                                }
+                            }
+                        }
+                    }
+                }
+                ));
+                timeline4.setCycleCount(999999999); //should be 225 times
+                timeline4.play(); });
+
         // backup code
         //     Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
         //         @Override
