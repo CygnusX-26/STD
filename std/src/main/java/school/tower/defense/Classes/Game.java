@@ -12,7 +12,10 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import school.tower.defense.App;
@@ -37,7 +40,7 @@ public class Game extends App {
         money = 1000;
         grid = new Grid(width/75, height/75);
         clicked = false;
-        health = 69;
+        health = 1;
         pathLocations = new ArrayList<Location>();
         stage = s;
         roundNum = -1;
@@ -161,7 +164,7 @@ public class Game extends App {
         }
     }
     
-    public void run(StackPane s) {
+    public void run(StackPane s, Text hpnum) {
         //run the game
         Queue<Enemy> enemyQueue = new LinkedList<>();
         final long[] round = {1};
@@ -180,6 +183,14 @@ public class Game extends App {
                     e.printStackTrace();
                 }
             }
+            Platform.runLater(() -> {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("L");
+                alert.setContentText("You survived " + (roundNum - 2) + " rounds!");
+                alert.setHeaderText("You Lose!");
+                alert.showAndWait();
+                stage.close();
+            });
             
         }).start();
         Platform.runLater(() -> {
@@ -206,6 +217,8 @@ public class Game extends App {
                                 System.out.println("it works");
                                 enemies.remove(enemies.indexOf(i));
                                 s.getChildren().remove(i.getSprite());
+                                health--;
+                                hpnum.setText(health + "");
                             }
                     }
                 }
@@ -229,7 +242,7 @@ public class Game extends App {
     public Queue<Enemy> loadEnemiesIntoQueue(int roundNum, Queue<Enemy> enemyQueue, StackPane s)
     {
         Random rando = new Random();
-        rando.setSeed(roundNum*223); //it's a prime number
+        rando.setSeed(roundNum*263); //it's a prime number
         for (int i = 0; i < roundNum; i++) //do roundnum times
         {
             int cap = rando.nextInt(roundNum);

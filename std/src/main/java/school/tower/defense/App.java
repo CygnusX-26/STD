@@ -186,9 +186,11 @@ public class App extends Application {
         int albakerCost = 100;
         int palloneCost = 1000;
 
+        Text hpnum = new Text("69");
+        Game g = new Game(stage, (int)stage.getWidth(), (int)stage.getHeight());
+
         Button mapping = new Button();
         Button fullscreen = new Button();
-        Game g = new Game(stage, (int)stage.getWidth(), (int)stage.getHeight());
 
         Button fulkButton = new Button();
         Button kwongButton = new Button();
@@ -223,9 +225,10 @@ public class App extends Application {
 
         Text towers = new Text("Hire Teachers:");
         Text health = new Text("Health:");
-        Text hpnum = new Text(g.getHealth() + "");
+        hpnum = new Text(g.getHealth() + "");
         Text money = new Text("Money:");
         Text moneynum = new Text(g.getMoney() + "");
+        
         
         game = new StackPane();
 
@@ -559,6 +562,7 @@ public class App extends Application {
         money.setId("money");
         moneynum.setId("money");
 
+        game.getChildren().add(hpnum);
         game.getChildren().add(mapping);
         game.getChildren().add(fulkButton);
         game.getChildren().add(kwongButton);
@@ -568,7 +572,6 @@ public class App extends Application {
         game.getChildren().add(albakerButton);
         game.getChildren().add(palloneButton);
         game.getChildren().add(health);
-        game.getChildren().add(hpnum);
         game.getChildren().add(fullscreen);
         game.getChildren().add(deleteButton);
         game.getChildren().add(money);
@@ -576,6 +579,6 @@ public class App extends Application {
 
         
         scene.setRoot(game);
-        g.run(game);
+        g.run(game, hpnum);
     }
 }
