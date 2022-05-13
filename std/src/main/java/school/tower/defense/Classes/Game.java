@@ -204,8 +204,8 @@ public class Game extends App {
                             if (i.getLocation().getY()>(stage.getHeight()*0.71102-50) && i.getLocation().getY()<(stage.getHeight()*0.71102+50))
                             {
                                 System.out.println("it works");
-                                //enemies.remove(enemies.indexOf(i));
-                                s.getChildren().remove(s.getChildren().indexOf(i.getSprite()));//i.getSprite());
+                                enemies.remove(enemies.indexOf(i));
+                                s.getChildren().remove(i.getSprite());
                             }
                     }
                 }
