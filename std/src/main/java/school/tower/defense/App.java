@@ -361,7 +361,7 @@ public class App extends Application {
             double x = p.getX()/stage.getWidth();
             double y = p.getY()/stage.getHeight();
 
-            System.out.println(x + ", " + y);
+            //System.out.println(x + ", " + y);
 
             Image towerImage;
             ImageView tower;

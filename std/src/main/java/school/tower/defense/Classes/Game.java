@@ -113,6 +113,11 @@ public class Game extends App {
         return false;
     }
 
+
+    /**
+     * Updates enemy positions
+     * @param Delta the time since the last update
+     */
     public void updateFrame(long Delta) {
         for (int i = 0; i < enemies.size(); i++) {
             Enemy enemy = enemies.get(i);
@@ -204,12 +209,11 @@ public class Game extends App {
                     if (enemies.size() == 0)
                     {
                         roundNum++;
-                        System.out.println(roundNum);
+                        //System.out.println(roundNum);
                         loadEnemiesIntoQueue(roundNum, enemyQueue, s);
                     } 
                     for (Enemy i : enemies)
                     {
-                        System.out.println(i.getLocation().getX());
                         if (i.getLocation().getX()>(stage.getWidth()*0.898697-20) && i.getLocation().getX()<(stage.getWidth()*0.898697+20))
                         {
                             if (i.getLocation().getY()>(stage.getHeight()*0.71102-50) && i.getLocation().getY()<(stage.getHeight()*0.71102+50))
