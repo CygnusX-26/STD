@@ -188,7 +188,7 @@ public class App extends Application {
 
         Button mapping = new Button();
         Button fullscreen = new Button();
-        Game g = new Game((int)stage.getWidth(), (int)stage.getHeight());
+        Game g = new Game(stage, (int)stage.getWidth(), (int)stage.getHeight());
 
         Button fulkButton = new Button();
         Button kwongButton = new Button();

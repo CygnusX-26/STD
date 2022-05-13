@@ -1,12 +1,14 @@
 package school.tower.defense.Templates;
 
+import java.util.ArrayList;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import school.tower.defense.Classes.Location;
 
 public abstract class Enemy {
-    
         private String name;
         private int health, reward;
         private double speed;
@@ -16,20 +18,19 @@ public abstract class Enemy {
         private StackPane s;
         private ImageView sprite;
     
-        public Enemy(String name, int health, double speed, int reward, StackPane s, String pathName) {
+        public Enemy(String name, int health, double speed, int reward, StackPane s, String pathName, Stage stage, ArrayList<Location> pathLocations) {
             this.name = name;
             this.health = health;
             this.speed = speed;
             this.reward = reward;
             this.pathNumber = 0;
             this.traveledPercent = 0; //Starts from the beginning
-            this.location = new Location(-100, -100);
+            this.location = pathLocations.get(0);
             this.s = s;
             sprite = new ImageView(new Image(getClass().getResource(pathName).toExternalForm()));
             sprite.setFitWidth(75);
             sprite.setFitHeight(75);
-            sprite.setX(location.getX());
-            sprite.setY(location.getY());
+            sprite.setTranslateX(this.getLocation().getX() - stage.getWidth()/2);
             s.getChildren().add(sprite);
         }
     

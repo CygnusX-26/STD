@@ -4,7 +4,10 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+
+import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import school.tower.defense.App;
 import school.tower.defense.EnemyTypes.*;
 import school.tower.defense.Templates.*;
@@ -17,8 +20,9 @@ public class Game extends App {
     private double money;
     private boolean clicked;
     private int health;
+    private Stage stage;
 
-    public Game(int width, int height) {
+    public Game(Stage s, int width, int height) {
         towers = new ArrayList<Tower>();
         enemies = new ArrayList<Enemy>();
         money = 1000;
@@ -26,6 +30,7 @@ public class Game extends App {
         clicked = false;
         health = 69;
         pathLocations = new ArrayList<Location>();
+        stage = s;
 
         File file = new File("std/src/main/java/school/tower/defense/DataFiles/Maps/Map.txt");
         Scanner scanner = null;
@@ -107,7 +112,6 @@ public class Game extends App {
             //System.out.println(enemy.getTraveledPercent() * 100);
 
             double distanceToMove = enemy.getSpeed() * Delta;
-            Location originalPathLocation = enemy.getLocation();
             Location currentPathLocation = enemy.getLocation();
             Location nextPathLocation = pathLocations.get(enemy.getPathNumber() + 1);
             
@@ -118,8 +122,6 @@ public class Game extends App {
 
                 distanceToMove -= currentPathLocation.distanceBetween(nextPathLocation);
                 enemy.setTraveledPercent(0);
-
-                System.out.println(enemy.getPathNumber());
 
                 if (enemy.getPathNumber() + 1 < pathLocations.size()) {
                     enemy.setPathNumber(enemy.getPathNumber() + 1);
@@ -140,35 +142,24 @@ public class Game extends App {
 
             enemy.setTraveledPercent(traveledPercent);
             enemy.setLocation(new Location(currentPathLocation.getX() + xDifference, currentPathLocation.getY() + yDifference));
-            /*enemy.getSprite().setX(enemy.getLocation().getX());
-            enemy.getSprite().setY(enemy.getLocation().getY());*/
 
-            double xTranslate = enemy.getLocation().getX() - originalPathLocation.getX();
-            double yTranslate = enemy.getLocation().getY() - originalPathLocation.getY();
+            enemy.getSprite().setTranslateX(enemy.getLocation().getX() - stage.getWidth()/2);
+            enemy.getSprite().setTranslateY(enemy.getLocation().getY() - stage.getHeight()/2);
 
-            enemy.getSprite().setTranslateX(xTranslate);
-            enemy.getSprite().setTranslateY(yTranslate); //Sprite does not move pls fix
-
-            System.out.println(enemy.getLocation().getX());
-            System.out.println(enemy.getLocation().getY());
-
-            System.out.println("Updated");
+            // System.out.println(enemy.getLocation().getX());
+            // System.out.println(enemy.getLocation().getY());
         }
     }
     
     public void run(StackPane s) {
         //run the game
 
-        Enemy enemy = new LetterOfRec(s);
-
-        enemies.add(enemy);
-
         new Thread(() -> {
             long lastUpdate = System.currentTimeMillis();
 
             while (health > 0) {
                 try {
-                    long length = (long) (50);
+                    long length = (long) (100);
                     TimeUnit.MILLISECONDS.sleep(length);
 
                     updateFrame(System.currentTimeMillis() - lastUpdate); //Create a new method otherwise it gets cluttered
@@ -179,5 +170,29 @@ public class Game extends App {
                 }
             }
         }).start();
+
+        Platform.runLater(
+            () -> {
+                for (int i = 0; i < 5; i++) {
+                    Enemy enemy = new LetterOfRec(s, stage, pathLocations);
+
+                    enemies.add(enemy);
+
+                    System.out.println("spawned enemy");
+
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(500);
+                    } catch (InterruptedException e) {
+                        System.out.println("I hate java sleep");
+                    }
+                }
+
+                try {
+                    TimeUnit.MILLISECONDS.sleep(500);
+                } catch (InterruptedException e) {
+                    System.out.println("I hate java sleep");
+                }
+            }
+        );
     }
 }
