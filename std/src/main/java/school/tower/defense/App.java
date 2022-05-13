@@ -65,17 +65,20 @@ public class App extends Application {
 
         TranslateTransition fulkTransition = new TranslateTransition();
         TranslateTransition kwongTransition = new TranslateTransition();
+        //RotateTransition titleTransition = new RotateTransition();
         Button startButton = new Button();
         Button instructions = new Button();
         BackgroundImage startImage = new BackgroundImage( new Image( getClass().getResource("Map/startButton.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
         BackgroundImage instructionsImage = new BackgroundImage( new Image( getClass().getResource("Map/instructionButton.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, true, true, true, false));
+        //Image menuTitle = new Image(getClass().getResource("Map/menuTitle1.PNG").toExternalForm());
+        //ImageView MENUTITLE = new ImageView(menuTitle);
         Text text = new Text("Student Tower Defense");
         Image fulk = new Image(getClass().getResource("Map/Teachers/Fulk.PNG").toExternalForm());
         ImageView FULK = new ImageView(fulk);
         Image kwong = new Image(getClass().getResource("Map/Teachers/Kwong.PNG").toExternalForm());
         ImageView KWONG = new ImageView(kwong);
         Media menuMusic = new Media(getClass().getResource("Music/awesomeness.wav").toExternalForm());
-        Tooltip startTooltip = new Tooltip("Start Game");
+        //Tooltip startTooltip = new Tooltip("Start Game");
         // Image fulkGif = new Image(getClass().getResource("Map/OptionalLoginAnimation.gif").toExternalForm());
         // ImageView fulkGifView = new ImageView(fulkGif);
         menuPlayer = new MediaPlayer(menuMusic);
@@ -83,14 +86,14 @@ public class App extends Application {
         root.setId("pane");
         text.setId("menutext");
 
-        startTooltip.setMaxWidth(100);
-        startTooltip.setWrapText(true);
+        //startTooltip.setMaxWidth(100);
+        //startTooltip.setWrapText(true);
         text.setTranslateY(-150);
         startButton.setBackground( new Background( startImage ));
         startButton.setTranslateY(-25);
         startButton.setMaxWidth(150);
         startButton.setMaxHeight(75);
-        startButton.setTooltip(startTooltip);
+        //startButton.setTooltip(startTooltip);
         instructions.setBackground(new Background( instructionsImage ));
         instructions.setMaxWidth(150);
         instructions.setMaxHeight(75);
@@ -107,6 +110,20 @@ public class App extends Application {
         kwongTransition.setCycleCount(Animation.INDEFINITE);
         menuPlayer.setAutoPlay(true);
         menuPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+
+        /*
+        MENUTITLE.setTranslateY(-150);
+        titleTransition.setNode(MENUTITLE);
+        MENUTITLE.setScaleX(0.5);
+        MENUTITLE.setScaleY(0.5);
+        //titleTransition.autoReverseProperty();
+        titleTransition.setAutoReverse(true);
+        titleTransition.setFromAngle(-30);
+        titleTransition.setByAngle(60);
+        titleTransition.setCycleCount(Animation.INDEFINITE);
+        titleTransition.setDuration(new Duration(2));
+        //TODO the rotation of STD title
+`       */
 
         startButton.setOnAction(value ->  {
             try {
@@ -133,6 +150,7 @@ public class App extends Application {
         root.getChildren().add(FULK);
         root.getChildren().add(KWONG);
         root.getChildren().add(instructions);
+        //root.getChildren().add(MENUTITLE);
         //root.getChildren().add(fulkGifView);
 
         fulkTransition.play();
@@ -179,8 +197,8 @@ public class App extends Application {
         stage.setMaximized(true);
 
         //initialize objects
-        int fulkCost = 10;
-        int kwongCost = 1;
+        int fulkCost = 10; //make sure to modify the tooltips when modifying this
+        int kwongCost = 1; // also put more stats in the tooltips maybe??
         int dunlapCost = 1;
         int taylorCost = 10;
         int albakerCost = 100;
