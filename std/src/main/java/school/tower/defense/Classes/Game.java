@@ -183,25 +183,24 @@ public class Game extends App {
             
         }).start();
         Platform.runLater(() -> {
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), new EventHandler<ActionEvent>() {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    //Enemy enemy = new LetterOfRec(s, stage, pathLocations);
-                    if (enemyQueue.size() > 0)
-                    {
-                        enemies.add(enemyQueue.remove());
-                    }
-                    if (enemies.size() == 0)
-                    {
-                        roundNum++;
-                        System.out.println(roundNum);
-                        loadEnemiesIntoQueue(roundNum, enemyQueue, s);
-                    }
-                    for ()
+                    Enemy enemy = new LetterOfRec(s, stage, pathLocations);
+                    enemies.add(enemy); 
                 }
             }));
-            timeline.setCycleCount(10);
+            timeline.setCycleCount(5);
             timeline.play();
+            Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    Enemy enemy = new LetterOfRec(s, stage, pathLocations);
+                    enemies.add(enemy);
+                }
+            }));
+            timeline2.setCycleCount(5);
+            timeline2.play();
         });
     }
 
