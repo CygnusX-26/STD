@@ -263,8 +263,8 @@ public class App extends Application {
         }
 
         for (Button b : buttons){
-            b.setMaxHeight(75);
-            b.setMaxWidth(75);
+            b.setMaxHeight(100);
+            b.setMaxWidth(100);
         }
 
         fulkButton.setTooltip(fulkTip);
@@ -371,6 +371,8 @@ public class App extends Application {
                     if (g.getMoney() > fulkCost){
                         towerImage = new Image(getClass().getResource("Map/Teachers/Fulk.PNG").toExternalForm());
                         tower = new ImageView(towerImage);
+                        tower.setScaleX(0.5);
+                        tower.setScaleY(0.5);
                         tower.setOnMouseClicked(arg0 -> {
                             if (teacherIndex[0] == 7){
                                 g.addMoney(fulkCost/2);
@@ -397,6 +399,8 @@ public class App extends Application {
                     if (g.getMoney() > kwongCost){
                         towerImage = new Image(getClass().getResource("Map/Teachers/Kwong.PNG").toExternalForm());
                         tower = new ImageView(towerImage);
+                        tower.setScaleX(0.5);
+                        tower.setScaleY(0.5);
                         tower.setOnMouseClicked(arg0 -> {
                             if (teacherIndex[0] == 7){
                                 g.addMoney(kwongCost/2);
@@ -423,6 +427,8 @@ public class App extends Application {
                     if (g.getMoney() > dunlapCost){
                         towerImage = new Image(getClass().getResource("Map/Teachers/Dunlap.PNG").toExternalForm());
                         tower = new ImageView(towerImage);
+                        tower.setScaleX(0.5);
+                        tower.setScaleY(0.5);
                         tower.setOnMouseClicked(arg0 -> {
                             if (teacherIndex[0] == 7){
                                 g.addMoney(kwongCost/2);
@@ -450,6 +456,8 @@ public class App extends Application {
                     if (g.getMoney() > taylorCost){
                         towerImage = new Image(getClass().getResource("Map/Teachers/Taylor.PNG").toExternalForm());
                         tower = new ImageView(towerImage);
+                        tower.setScaleX(0.5);
+                        tower.setScaleY(0.5);
                         tower.setOnMouseClicked(arg0 -> {
                             if (teacherIndex[0] == 7){
                                 g.addMoney(taylorCost/2);
@@ -477,6 +485,8 @@ public class App extends Application {
                     if (g.getMoney() > albakerCost){
                         towerImage = new Image(getClass().getResource("Map/Teachers/Albaker.PNG").toExternalForm());
                         tower = new ImageView(towerImage);
+                        tower.setScaleX(0.5);
+                        tower.setScaleY(0.5);
                         tower.setOnMouseClicked(arg0 -> {
                             if (teacherIndex[0] == 7){
                                 g.addMoney(albakerCost/2);
@@ -504,6 +514,8 @@ public class App extends Application {
                     if (g.getMoney() > palloneCost){
                         towerImage = new Image(getClass().getResource("Map/Teachers/Pallone.PNG").toExternalForm());
                         tower = new ImageView(towerImage);
+                        tower.setScaleX(0.5);
+                        tower.setScaleY(0.5);
                         tower.setOnMouseClicked(arg0 -> {
                             if (teacherIndex[0] == 7){
                                 g.addMoney(palloneCost/2);
