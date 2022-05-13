@@ -204,17 +204,15 @@ public class Game extends App {
                     if (enemies.size() == 0)
                     {
                         roundNum++;
-                        System.out.println(roundNum);
+                        //System.out.println(roundNum);
                         loadEnemiesIntoQueue(roundNum, enemyQueue, s);
                     } 
                     for (Enemy i : enemies)
                     {
-                        System.out.println(i.getLocation().getX());
                         if (i.getLocation().getX()>(stage.getWidth()*0.898697-20) && i.getLocation().getX()<(stage.getWidth()*0.898697+20))
                         {
                             if (i.getLocation().getY()>(stage.getHeight()*0.71102-50) && i.getLocation().getY()<(stage.getHeight()*0.71102+50))
                             {
-                                System.out.println("it works");
                                 enemies.remove(enemies.indexOf(i));
                                 s.getChildren().remove(i.getSprite());
                                 health--;
@@ -227,6 +225,7 @@ public class Game extends App {
             ));
             timeline.setCycleCount(999999999);
             timeline.play(); });;
+        // backup code
         //     Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
         //         @Override
         //         public void handle(ActionEvent event) {
@@ -242,7 +241,7 @@ public class Game extends App {
     public Queue<Enemy> loadEnemiesIntoQueue(int roundNum, Queue<Enemy> enemyQueue, StackPane s)
     {
         Random rando = new Random();
-        rando.setSeed(roundNum*263); //it's a prime number
+        rando.setSeed(roundNum*271); //it's a prime number
         for (int i = 0; i < roundNum; i++) //do roundnum times
         {
             int cap = rando.nextInt(roundNum);

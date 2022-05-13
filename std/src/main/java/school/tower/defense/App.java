@@ -325,7 +325,7 @@ public class App extends Application {
         mapping.setBackground(new Background(mappingBackground));
         mapping.setMaxHeight(1080);
 
-        String[] teachers = new String[]{"", "Fulk", "Kwong", "Dunlap", "Taylor", "Albaker", "Pallone"}; //delete later
+        String[] teachers = new String[]{"", "Fulk", "Kwong", "Dunlap", "Taylor", "Albaker", "Pallone", "Fire a Teacher"}; //delete later
         final int[] teacherIndex = {0};
         fulkButton.setOnAction(value ->  {
             scene.setCursor(new ImageCursor(fulkPlace));
@@ -361,7 +361,7 @@ public class App extends Application {
             double x = p.getX()/stage.getWidth();
             double y = p.getY()/stage.getHeight();
 
-            System.out.println(x + ", " + y);
+            //System.out.println(x + ", " + y);
 
             Image towerImage;
             ImageView tower;
