@@ -196,20 +196,34 @@ public class Game extends App {
                         System.out.println(roundNum);
                         loadEnemiesIntoQueue(roundNum, enemyQueue, s);
                     } 
+                    for (Enemy i : enemies)
+                    {
+                        System.out.println(i.getLocation().getX());
+                        if (i.getLocation().getX()>(stage.getWidth()*0.898697-20) && i.getLocation().getX()<(stage.getWidth()*0.898697+20))
+                        {
+                            if (i.getLocation().getY()>(stage.getHeight()*0.71102-50) && i.getLocation().getY()<(stage.getHeight()*0.71102+50))
+                            {
+                                System.out.println("it works");
+                                //enemies.remove(enemies.indexOf(i));
+                                s.getChildren().remove(s.getChildren().indexOf(i.getSprite()));//i.getSprite());
+                            }
+                    }
                 }
-            }));
-            timeline.setCycleCount(5);
-            timeline.play();
-            Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    Enemy enemy = new LetterOfRec(s, stage, pathLocations);
-                    enemies.add(enemy);
-                }
-            }));
-            timeline2.setCycleCount(5);
-            timeline2.play();
-        });
+            }
+        }
+            ));
+            timeline.setCycleCount(999999999);
+            timeline.play(); });;
+        //     Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
+        //         @Override
+        //         public void handle(ActionEvent event) {
+        //             Enemy enemy = new LetterOfRec(s, stage, pathLocations);
+        //             enemies.add(enemy);
+        //         }
+        //     }));
+        //     timeline2.setCycleCount(5);
+        //     timeline2.play();
+        // });
     }
 
     public Queue<Enemy> loadEnemiesIntoQueue(int roundNum, Queue<Enemy> enemyQueue, StackPane s)
