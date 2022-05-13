@@ -113,6 +113,11 @@ public class Game extends App {
         return false;
     }
 
+
+    /**
+     * Updates enemy positions
+     * @param Delta the time since the last update
+     */
     public void updateFrame(long Delta) {
         for (int i = 0; i < enemies.size(); i++) {
             Enemy enemy = enemies.get(i);

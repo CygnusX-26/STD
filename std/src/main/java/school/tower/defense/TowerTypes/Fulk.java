@@ -19,15 +19,11 @@ public class Fulk extends Tower {
     public Fulk(Game game) {
         this.tile = null;
         this.game = game;
-        currentUpgrade = new Upgrade("Base", 0, 1, 1, 1);
+        currentUpgrade = new Upgrade("Base", 0, 1, 1000, 1);
         cost = 100;
 
         new Thread(() -> {
             while (true) {
-                if (tile == null) {
-                    continue;
-                }
-    
                 try {
                     long length = (long) (1000 / ((double) currentUpgrade.getAttackspeed()));
                     TimeUnit.MILLISECONDS.sleep(length);
@@ -43,6 +39,8 @@ public class Fulk extends Tower {
     public void scanEnemies() {
         for (Enemy enemy : game.getEnemies()) {
             double distance = Math.sqrt(Math.pow(enemy.getLocation().getX() - tile.getLocation().getX(), 2) + Math.pow(enemy.getLocation().getY() - tile.getLocation().getY(), 2));
+
+            System.out.println(distance);
             
             if (distance < currentUpgrade.getRange()) {
                 attack(enemy);
@@ -51,6 +49,8 @@ public class Fulk extends Tower {
     }
 
     private void attack(Enemy enemy) {
+        System.out.println("Damaged");
+
         enemy.damage(currentUpgrade.getDamage());
     }
     
