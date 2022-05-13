@@ -2,6 +2,9 @@ package school.tower.defense.Classes;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import javafx.animation.KeyFrame;
@@ -13,8 +16,9 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import school.tower.defense.App;
-import school.tower.defense.EnemyTypes.*;
-import school.tower.defense.Templates.*;
+import school.tower.defense.EnemyTypes.LetterOfRec;
+import school.tower.defense.Templates.Enemy;
+import school.tower.defense.Templates.Tower;
 
 public class Game extends App {
     private ArrayList<Tower> towers;
@@ -25,6 +29,7 @@ public class Game extends App {
     private boolean clicked;
     private int health;
     private Stage stage;
+    private int roundNum;
 
     public Game(Stage s, int width, int height) {
         towers = new ArrayList<Tower>();
@@ -35,6 +40,7 @@ public class Game extends App {
         health = 69;
         pathLocations = new ArrayList<Location>();
         stage = s;
+        roundNum = -1;
 
         File file = new File("std/src/main/java/school/tower/defense/DataFiles/Maps/Map.txt");
         Scanner scanner = null;
@@ -157,7 +163,7 @@ public class Game extends App {
     
     public void run(StackPane s) {
         //run the game
-
+        Queue<Enemy> enemyQueue = new LinkedList<>();
         final long[] round = {1};
         new Thread(() -> {
             long lastUpdate = System.currentTimeMillis();
@@ -169,6 +175,7 @@ public class Game extends App {
                     updateFrame(System.currentTimeMillis() - lastUpdate); //Create a new method otherwise it gets cluttered
 
                     lastUpdate = System.currentTimeMillis();
+                    
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -176,15 +183,60 @@ public class Game extends App {
             
         }).start();
         Platform.runLater(() -> {
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    Enemy enemy = new LetterOfRec(s, stage, pathLocations);
-                    enemies.add(enemy);
+                    //Enemy enemy = new LetterOfRec(s, stage, pathLocations);
+                    if (enemyQueue.size() > 0)
+                    {
+                        enemies.add(enemyQueue.remove());
+                    }
+                    if (enemies.size() == 0)
+                    {
+                        roundNum++;
+                        System.out.println(roundNum);
+                        loadEnemiesIntoQueue(roundNum, enemyQueue, s);
+                    }
+                    for ()
                 }
             }));
-            timeline.setCycleCount(1);
+            timeline.setCycleCount(10);
             timeline.play();
         });
+    }
+
+    public Queue<Enemy> loadEnemiesIntoQueue(int roundNum, Queue<Enemy> enemyQueue, StackPane s)
+    {
+        Random rando = new Random();
+        rando.setSeed(roundNum*223); //it's a prime number
+        for (int i = 0; i < roundNum; i++) //do roundnum times
+        {
+            int cap = rando.nextInt(roundNum);
+            double probability = rando.nextDouble();
+            int enemyType = 0;
+            if (probability < 0.25)
+            {
+                continue;
+            }
+            if (probability < 1 )
+            {
+                enemyType = 0;
+            }
+            for (int j = 0; j < cap; j++) // generate a type of enemy rando times
+            {
+                switch (enemyType)
+                {
+                    case 0:
+                    enemyQueue.add(new LetterOfRec(s, stage, pathLocations));
+                    break;
+                    case 1:
+                    enemyQueue.add(new LetterOfRec(s, stage, pathLocations));
+                    break;
+                    default:
+                    break;
+                }
+            }
+        }
+        return enemyQueue;
     }
 }
