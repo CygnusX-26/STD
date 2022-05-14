@@ -255,12 +255,12 @@ public class App extends Application {
         Tooltip taylorTip = new Tooltip("Taylor \n(10 Money) \n\nHe will prove freefall objects will gain speed over time");
         Tooltip albakerTip = new Tooltip("Albaker \n(100 Money) \n\nHer essay grading has all the foes in terror (just like her students)");
         Tooltip palloneTip = new Tooltip("Pallone \n(1000 Money) \n\nA Biology teacher who's awesome at everything :)");
-        Tooltip fulkUpgradeTip = new Tooltip("Fulk's Upgrade 1 -- Damage increased to 2 damage per shot");
-        Tooltip kwongUpgradeTip = new Tooltip("Kwong's Upgrade 1 -- Damage increased to 2 damage per shot");
-        Tooltip taylorUpgradeTip = new Tooltip("Dunlap's Upgrade 1 -- Damage increased to 2 damage per shot");
-        Tooltip dunlapUpgradeTip = new Tooltip("Taylor's Upgrade 1 -- Damage increased to 2 damage per shot");
-        Tooltip albakerUpgradeTip = new Tooltip("Albaker's Upgrade 1 -- Damage increased to 2 damage per shot");
-        Tooltip palloneUpgradeTip = new Tooltip("Pallone's Upgrade 1 -- Damage increased to 2 damage per shot");
+        Tooltip fulkUpgradeTip = new Tooltip("Fulk's Upgrade (100 Money)-- Damage increased for all Fulks on screen");
+        Tooltip kwongUpgradeTip = new Tooltip("Kwong's Upgrade (100 Money)-- Damage increased for all Kwongs on screen");
+        Tooltip taylorUpgradeTip = new Tooltip("Dunlap's Upgrade (100 Money)-- Damage increased for all Dunlaps on screen");
+        Tooltip dunlapUpgradeTip = new Tooltip("Taylor's Upgrade (100 Money)-- Damage increased for all Taylors on screen");
+        Tooltip albakerUpgradeTip = new Tooltip("Albaker's Upgrade (100 Money)-- Damage increased for all Albakers on screen");
+        Tooltip palloneUpgradeTip = new Tooltip("Pallone's Upgrade (100 Money)-- Damage increased for all Pallones on screen");
 
         Text towers = new Text("Hire Teachers:");
         Text health = new Text("Health:");
@@ -355,21 +355,33 @@ public class App extends Application {
 
         fulkButton.setTranslateX(0 - stage.getWidth()/2 + 50);
         fulkButton.setTranslateY(0 - stage.getHeight()/2 + 125);
+        fulkButton.setScaleX(0.80);
+        fulkButton.setScaleY(0.80);
         
         kwongButton.setTranslateX(0 - stage.getWidth()/2 + 50);
         kwongButton.setTranslateY(0 - stage.getHeight()/2 + 200);
+        kwongButton.setScaleX(0.80);
+        kwongButton.setScaleY(0.80);
 
         dunlapButton.setTranslateX(0 - stage.getWidth()/2 + 50);
         dunlapButton.setTranslateY(0 - stage.getHeight()/2 + 275);
+        dunlapButton.setScaleX(0.80);
+        dunlapButton.setScaleY(0.80);
 
         taylorButton.setTranslateX(0 - stage.getWidth()/2 + 50);
         taylorButton.setTranslateY(0 - stage.getHeight()/2 + 350);
+        taylorButton.setScaleX(0.80);
+        taylorButton.setScaleY(0.80);
 
         albakerButton.setTranslateX(0 - stage.getWidth()/2 + 50);
         albakerButton.setTranslateY(0 - stage.getHeight()/2 + 425);
+        albakerButton.setScaleX(0.80);
+        albakerButton.setScaleY(0.80);
 
         palloneButton.setTranslateX(0 - stage.getWidth()/2 + 50);
         palloneButton.setTranslateY(0 - stage.getHeight()/2 + 500);
+        palloneButton.setScaleX(0.80);
+        palloneButton.setScaleY(0.80);
 
         fulkUpgradeButton.setTranslateX(0 - stage.getWidth()/2 + 125);
         fulkUpgradeButton.setTranslateY(0 - stage.getHeight()/2 + 125);
@@ -452,63 +464,67 @@ public class App extends Application {
             teacherIndex[0] = 7;
         });
         fulkUpgradeButton.setOnAction(arg0 -> {
-            System.out.println("case 8 start");
-                    if (fulkUpgradeAmt[0] < 5)
-                    {
-                        if (g.getMoney() > costOfUpgrade)
-                        {
-                            g.subtractMoney(costOfUpgrade);
-                            g.upgradeTower(8);
-                            
-                            if (fulkUpgradeAmt[0] == 0) {
-                                System.out.println("upgrade 2 tooltip");
-                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 2 -- Speed increased by 2")); 
-                            }
-                            if (fulkUpgradeAmt[0] == 1) {
-                                System.out.println("upgrade 3 tooltip");
-                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 3 -- Damage increased to 2 damage per shot")); 
-                            }
-                            if (fulkUpgradeAmt[0] == 2) {
-                                System.out.println("upgrade 4 tooltip");
-                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 4 -- Speed increased by 2")); 
-                            }
-                            if (fulkUpgradeAmt[0] == 3) {
-                                System.out.println("upgrade 5 tooltip");
-                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 5 -- Damage increased to 2 damage per shot")); 
-                            }
-                            if (fulkUpgradeAmt[0] == 4) {
-                                System.out.println("upgrade 6 tooltip");
-                                fulkUpgradeButton.setTooltip(new Tooltip("This upgrade path is maxed out. You cannot buy another upgrade here.")); 
-                            }
-                        }
-                        else
-                        {
-                            Alert alert2 = new Alert(AlertType.INFORMATION);
-                            alert2.setTitle("Not Enough Money");
-                            alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " dollars.");
-                            alert2.setHeaderText("You need " + costOfUpgrade + " dollars to buy this upgrade.");
-                            alert2.showAndWait();
-                            teacherIndex[0] = 0;
-                            scene.setCursor(Cursor.DEFAULT);
-                        }
+            System.out.print("upgrade button pressed");
+            if (true)//(fulkUpgradeAmt[0] < 5)
+            {
+                if (g.getMoney() > costOfUpgrade)
+                /*{
+                    g.subtractMoney(costOfUpgrade);
+                    g.upgradeTower(8);
+                    
+                    if (fulkUpgradeAmt[0] == 0) {
+                        System.out.println("upgrade 2 tooltip");
+                        fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 2 -- Speed increased by 2")); 
                     }
-                    fulkUpgradeAmt[0]++;
+                    if (fulkUpgradeAmt[0] == 1) {
+                        System.out.println("upgrade 3 tooltip");
+                        fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 3 -- Damage increased to 2 damage per shot")); 
+                    }
+                    if (fulkUpgradeAmt[0] == 2) {
+                        System.out.println("upgrade 4 tooltip");
+                        fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 4 -- Speed increased by 2")); 
+                    }
+                    if (fulkUpgradeAmt[0] == 3) {
+                        System.out.println("upgrade 5 tooltip");
+                        fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 5 -- Damage increased to 2 damage per shot")); 
+                    }
+                    if (fulkUpgradeAmt[0] == 4) {
+                        System.out.println("upgrade 6 tooltip");
+                        fulkUpgradeButton.setTooltip(new Tooltip("This upgrade path is maxed out. You cannot buy another upgrade here.")); 
+                    }
+                }*/
+                {
+                    g.subtractMoney(costOfUpgrade);
+                    System.out.print(" upgrading all fulks");
+                    g.upgradeTower(8); //not sending through //TODO fix upgrades right here
+                    moneynum.setText(g.getMoney() + "");
+                }
+                else
+                {
+                    Alert alert2 = new Alert(AlertType.INFORMATION);
+                    alert2.setTitle("Not Enough Money");
+                    alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " dollars.");
+                    alert2.setHeaderText("You need " + costOfUpgrade + " dollars to upgrade Mr. Fulk.");
+                    alert2.showAndWait();
                     teacherIndex[0] = 0;
+                    scene.setCursor(Cursor.DEFAULT);
+                }
+            }
         });
         kwongUpgradeButton.setOnAction(arg0 -> {
-            teacherIndex[0] = 9;
+            //do nothing for now
         });
         dunlapUpgradeButton.setOnAction(arg0 -> {
-            teacherIndex[0] = 10;
+            //do nothing for now
         });
         taylorUpgradeButton.setOnAction(arg0 -> {
-            teacherIndex[0] = 11;
+            //do nothing for now
         });
         albakerUpgradeButton.setOnAction(arg0 -> {
-            teacherIndex[0] = 12;
+            //do nothing for now
         });
         palloneUpgradeButton.setOnAction(arg0 -> {
-            teacherIndex[0] = 13;
+            //do nothing for now
         });
 
         mapping.setOnMouseClicked(value ->  {
@@ -539,11 +555,14 @@ public class App extends Application {
                                 game.getChildren().remove(tower);
                             }
                         });
-                        tower.setTranslateX(p.getX() - stage.getWidth()/2);
-                        tower.setTranslateY(p.getY() - stage.getHeight()/2);
+                        tower.setTranslateX(p.getX() - stage.getWidth()/2 + 90); //added an offset here to match the head of teachers 
+                        tower.setTranslateY(p.getY() - stage.getHeight()/2 + 20); //neil plz test on ur machine to see if offsets look good on ur machine
                         g.subtractMoney(fulkCost);
                         moneynum.setText(g.getMoney() + "");
                         game.getChildren().add(tower);
+                        g.getTowers().add(new Fulk(g)); 
+                        //TODO fix this tower initalizations. why isn't this constucting a tower beforehand? -Colin
+                        // might be due to the testing purposes comment above. 
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
                     }
@@ -698,81 +717,6 @@ public class App extends Application {
                         scene.setCursor(Cursor.DEFAULT);
                     }
                     break;
-                /*case 8:
-                    System.out.println("case 8 start");
-                    if (fulkUpgradeAmt[0] < 5)
-                    {
-                        if (g.getMoney() > costOfUpgrade)
-                        {
-                            g.subtractMoney(costOfUpgrade);
-                            g.upgradeTower(8);
-                            
-                            if (fulkUpgradeAmt[0] == 0) {
-                                System.out.println("upgrade 2 tooltip");
-                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 2 -- Speed increased by 2")); 
-                            }
-                            if (fulkUpgradeAmt[0] == 1) {
-                                System.out.println("upgrade 3 tooltip");
-                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 3 -- Damage increased to 2 damage per shot")); 
-                            }
-                            if (fulkUpgradeAmt[0] == 2) {
-                                System.out.println("upgrade 4 tooltip");
-                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 4 -- Speed increased by 2")); 
-                            }
-                            if (fulkUpgradeAmt[0] == 3) {
-                                System.out.println("upgrade 5 tooltip");
-                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 5 -- Damage increased to 2 damage per shot")); 
-                            }
-                            if (fulkUpgradeAmt[0] == 4) {
-                                System.out.println("upgrade 6 tooltip");
-                                fulkUpgradeButton.setTooltip(new Tooltip("This upgrade path is maxed out. You cannot buy another upgrade here.")); 
-                            }
-                        }
-                        else
-                        {
-                            alert.setHeaderText("You need " + costOfUpgrade + " dollars to hire Mr Pallone.");
-                            alert.showAndWait();
-                            teacherIndex[0] = 0;
-                            scene.setCursor(Cursor.DEFAULT);
-                        }
-                    }
-                    fulkUpgradeAmt[0]++;
-                    teacherIndex[0] = 0;
-                    break;
-                    case 9: //recopy the case 8 code and copy paste
-                    if (fulkUpgradeAmt[0] < 5)
-                    {
-                        if (g.getMoney() > costOfUpgrade)
-                        {
-                            g.upgradeTower(8);
-                            
-                            if (fulkUpgradeAmt[0] == 0) {
-                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 2 -- Speed increased by 2")); 
-                            }
-                            if (fulkUpgradeAmt[0] == 1) {
-                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 3 -- Damage increased to 2 damage per shot")); 
-                            }
-                            if (fulkUpgradeAmt[0] == 2) {
-                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 4 -- Speed increased by 2")); 
-                            }
-                            if (fulkUpgradeAmt[0] == 3) {
-                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 5 -- Damage increased to 2 damage per shot")); 
-                            }
-                            if (fulkUpgradeAmt[0] == 4) {
-                                fulkUpgradeButton.setTooltip(new Tooltip("This upgrade path is maxed out. You cannot buy another upgrade here.")); 
-                            }
-                        }
-                        else
-                        {
-                            alert.setHeaderText("You need " + costOfUpgrade + " dollars to hire Mr Pallone.");
-                            alert.showAndWait();
-                            teacherIndex[0] = 0;
-                            scene.setCursor(Cursor.DEFAULT);
-                        }
-                    }
-                    fulkUpgradeAmt[0]++;
-                    teacherIndex[0] = 0;
-                    break;*/
                 default:
                     teacherIndex[0] = 0;
                     scene.setCursor(Cursor.DEFAULT);

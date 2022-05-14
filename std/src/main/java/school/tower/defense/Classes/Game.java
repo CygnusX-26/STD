@@ -299,18 +299,19 @@ public class Game extends App {
         return enemyQueue;
     }
 
-    public void upgradeTower(int i)
+    public void upgradeTower(int ID)
     {
+        System.out.print("game.upgradeTower");
         for (Tower t : towers)
         {
-            if (i == 8)
+            if (ID == 8)
             {
                 if (t instanceof Fulk)
                 {
                     t.upgrade();
                 }
             }
-            if (i == 9)
+            if (ID == 9)
             {
                 if (t instanceof Fulk) //replace with next teacher and copy paste
                 {
