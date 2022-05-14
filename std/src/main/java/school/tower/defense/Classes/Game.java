@@ -301,7 +301,7 @@ public class Game extends App {
 
     public void upgradeTower(int ID)
     {
-        System.out.print("game.upgradeTower");
+        System.out.print("game.upgradeTower ");
         for (Tower t : towers)
         {
             if (ID == 8)
