@@ -19,9 +19,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import school.tower.defense.App;
-import school.tower.defense.EnemyTypes.LetterOfRec;
-import school.tower.defense.Templates.Enemy;
-import school.tower.defense.Templates.Tower;
+import school.tower.defense.EnemyTypes.*;
+import school.tower.defense.Templates.*;
+import school.tower.defense.TowerTypes.*;
 
 public class Game extends App {
     private ArrayList<Tower> towers;
@@ -33,6 +33,7 @@ public class Game extends App {
     private int health;
     private Stage stage;
     private int roundNum;
+    private int fulkUpgradeNum;
 
     public Game(Stage s, int width, int height) {
         towers = new ArrayList<Tower>();
@@ -40,10 +41,11 @@ public class Game extends App {
         money = 1000;
         grid = new Grid(width/75, height/75);
         clicked = false;
-        health = 1;
+        health = 19999;
         pathLocations = new ArrayList<Location>();
         stage = s;
         roundNum = -1;
+        fulkUpgradeNum = 0;
 
         File file = new File("std/src/main/java/school/tower/defense/DataFiles/Maps/Map.txt");
         Scanner scanner = null;
@@ -199,7 +201,7 @@ public class Game extends App {
             
         }).start();
         Platform.runLater(() -> {
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+            /*Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     if (enemyQueue.size() > 0)
@@ -212,24 +214,34 @@ public class Game extends App {
                         //System.out.println(roundNum);
                         loadEnemiesIntoQueue(roundNum, enemyQueue, s);
                     } 
-                    for (Enemy i : enemies)
+
+                    for (int i = 0; i < enemies.size(); i++)
                     {
-                        if (i.getLocation().getX()>(stage.getWidth()*0.898697-20) && i.getLocation().getX()<(stage.getWidth()*0.898697+20))
+                        if (enemies.get(i).getHealth() <= 0)
                         {
-                            if (i.getLocation().getY()>(stage.getHeight()*0.71102-50) && i.getLocation().getY()<(stage.getHeight()*0.71102+50))
+                            enemies.remove(enemies.get(i));
+                            s.getChildren().remove(enemies.get(i).getSprite());
+                            i--;
+                        }
+                        else if (enemies.get(i).getLocation().getX()>(stage.getWidth()*0.898697-50) && enemies.get(i).getLocation().getX()<(stage.getWidth()*0.898697+50))
+                        {
+                            if (enemies.get(i).getLocation().getY()>(stage.getHeight()*0.71102-50) && enemies.get(i).getLocation().getY()<(stage.getHeight()*0.71102+50))
                             {
-                                enemies.remove(enemies.indexOf(i));
-                                s.getChildren().remove(i.getSprite());
+                                enemies.remove(enemies.get(i));
+                                s.getChildren().remove(enemies.get(i).getSprite());
                                 health--;
                                 hpnum.setText(health + "");
+                                i--;
                             }
                         }
                     }
                 }
             }
             ));
-            timeline.setCycleCount(90);
-            timeline.play();
+            timeline1.setCycleCount(999999999);
+            timeline1.play();
+
+            System.out.println("timeline1 complete");
 
             //speeding up the spawn rate over every 90 seconds
             Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(0.8), new EventHandler<ActionEvent>() {
@@ -245,16 +257,23 @@ public class Game extends App {
                             //System.out.println(roundNum);
                             loadEnemiesIntoQueue(roundNum, enemyQueue, s);
                         } 
-                        for (Enemy i : enemies)
+                        for (int i = 0; i < enemies.size(); i++)
                         {
-                            if (i.getLocation().getX()>(stage.getWidth()*0.898697-20) && i.getLocation().getX()<(stage.getWidth()*0.898697+20))
+                            if (enemies.get(i).getHealth() <= 0)
                             {
-                                if (i.getLocation().getY()>(stage.getHeight()*0.71102-50) && i.getLocation().getY()<(stage.getHeight()*0.71102+50))
+                                enemies.remove(enemies.get(i));
+                                s.getChildren().remove(enemies.get(i).getSprite());
+                                i--;
+                            }
+                            if (enemies.get(i).getLocation().getX()>(stage.getWidth()*0.898697-20) && enemies.get(i).getLocation().getX()<(stage.getWidth()*0.898697+20))
+                            {
+                                if (enemies.get(i).getLocation().getY()>(stage.getHeight()*0.71102-50) && enemies.get(i).getLocation().getY()<(stage.getHeight()*0.71102+50))
                                 {
-                                    enemies.remove(enemies.indexOf(i));
-                                    s.getChildren().remove(i.getSprite());
+                                    enemies.remove(enemies.get(i));
+                                    s.getChildren().remove(enemies.get(i).getSprite());
                                     health--;
                                     hpnum.setText(health + "");
+                                    i--;
                                 }
                             }
                         }
@@ -263,6 +282,8 @@ public class Game extends App {
                 ));
                 timeline2.setCycleCount(113);
                 timeline2.play(); 
+
+                System.out.println("timeline2 complete");
 
                 Timeline timeline3 = new Timeline(new KeyFrame(Duration.seconds(0.6), new EventHandler<ActionEvent>() {
                     @Override
@@ -277,16 +298,23 @@ public class Game extends App {
                             //System.out.println(roundNum);
                             loadEnemiesIntoQueue(roundNum, enemyQueue, s);
                         } 
-                        for (Enemy i : enemies)
+                        for (int i = 0; i < enemies.size(); i++)
                         {
-                            if (i.getLocation().getX()>(stage.getWidth()*0.898697-20) && i.getLocation().getX()<(stage.getWidth()*0.898697+20))
+                            if (enemies.get(i).getHealth() <= 0)
                             {
-                                if (i.getLocation().getY()>(stage.getHeight()*0.71102-50) && i.getLocation().getY()<(stage.getHeight()*0.71102+50))
+                                enemies.remove(enemies.get(i));
+                                s.getChildren().remove(enemies.get(i).getSprite());
+                                i--;
+                            }
+                            if (enemies.get(i).getLocation().getX()>(stage.getWidth()*0.898697-20) && enemies.get(i).getLocation().getX()<(stage.getWidth()*0.898697+20))
+                            {
+                                if (enemies.get(i).getLocation().getY()>(stage.getHeight()*0.71102-50) && enemies.get(i).getLocation().getY()<(stage.getHeight()*0.71102+50))
                                 {
-                                    enemies.remove(enemies.indexOf(i));
-                                    s.getChildren().remove(i.getSprite());
+                                    enemies.remove(enemies.get(i));
+                                    s.getChildren().remove(enemies.get(i).getSprite());
                                     health--;
                                     hpnum.setText(health + "");
+                                    i--;
                                 }
                             }
                         }
@@ -295,6 +323,9 @@ public class Game extends App {
                 ));
                 timeline3.setCycleCount(150);
                 timeline3.play();
+
+                System.out.println("timeline3 complete");*/
+
                 Timeline timeline4 = new Timeline(new KeyFrame(Duration.seconds(0.4), new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -327,6 +358,8 @@ public class Game extends App {
                 timeline4.setCycleCount(999999999); //should be 225 times
                 timeline4.play(); });
 
+                System.out.println("timeline4 complete");
+
         // backup code
         //     Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
         //         @Override
@@ -353,9 +386,17 @@ public class Game extends App {
             {
                 continue;
             }
-            if (probability < 1 )
+            if (probability < 0.5 )
             {
                 enemyType = 0;
+            }
+            else if (probability < 0.66 )
+            {
+                enemyType = 1;
+            }
+            else if (probability < 1 )
+            {
+                enemyType = 2;
             }
             for (int j = 0; j < cap; j++) // generate a type of enemy rando times
             {
@@ -367,11 +408,35 @@ public class Game extends App {
                     case 1:
                     enemyQueue.add(new LetterOfRec(s, stage, pathLocations));
                     break;
+                    case 2:
+                    enemyQueue.add(new LetterOfRec(s, stage, pathLocations));
+                    break;
                     default:
                     break;
                 }
             }
         }
         return enemyQueue;
+    }
+
+    public void upgradeTower(int i)
+    {
+        for (Tower t : towers)
+        {
+            if (i == 8)
+            {
+                if (t instanceof Fulk)
+                {
+                    t.upgrade();
+                }
+            }
+            if (i == 9)
+            {
+                if (t instanceof Fulk) //replace with next teacher and copy paste
+                {
+                    t.upgrade();
+                }
+            }
+        }
     }
 }

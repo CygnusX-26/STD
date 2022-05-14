@@ -203,6 +203,13 @@ public class App extends Application {
         int taylorCost = 10;
         int albakerCost = 100;
         int palloneCost = 1000;
+        int[] fulkUpgradeAmt = {0};
+        int[] kwongUpgradeAmt = {0};
+        int[] dunlapUpgradeAmt = {0};
+        int[] taylorUpgradeAmt = {0};
+        int[] albakerUpgradeAmt = {0};
+        int[] palloneUpgradeAmt = {0};
+        int costOfUpgrade = 100;
 
         Text hpnum = new Text("69");
         Game g = new Game(stage, (int)stage.getWidth(), (int)stage.getHeight());
@@ -217,6 +224,12 @@ public class App extends Application {
         Button albakerButton = new Button();
         Button palloneButton = new Button();
         Button deleteButton = new Button();
+        Button fulkUpgradeButton = new Button();
+        Button kwongUpgradeButton = new Button();
+        Button dunlapUpgradeButton = new Button();
+        Button albakerUpgradeButton = new Button();
+        Button palloneUpgradeButton = new Button();
+        Button taylorUpgradeButton = new Button();
         
         BackgroundImage fulkImage = new BackgroundImage( new Image( getClass().getResource("Map/Teachers/Fulk.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
         BackgroundImage kwongImage = new BackgroundImage( new Image( getClass().getResource("Map/Teachers/Kwong.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
@@ -225,6 +238,7 @@ public class App extends Application {
         BackgroundImage albakerImage = new BackgroundImage( new Image( getClass().getResource("Map/Teachers/Albaker.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
         BackgroundImage palloneImage = new BackgroundImage( new Image( getClass().getResource("Map/Teachers/Pallone.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
         BackgroundImage mappingBackground = new BackgroundImage(new Image( getClass().getResource("Map/transparent-picture.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
+        BackgroundImage upgradeButtonImage = new BackgroundImage( new Image( getClass().getResource("Map/Upgrade.PNG").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
 
         Image fulkPlace = new Image(getClass().getResource("Map/Teachers/Fulk.PNG").toExternalForm());
         Image kwongPlace = new Image(getClass().getResource("Map/Teachers/Kwong.PNG").toExternalForm());
@@ -232,6 +246,7 @@ public class App extends Application {
         Image taylorPlace = new Image(getClass().getResource("Map/Teachers/Taylor.PNG").toExternalForm());
         Image albakerPlace = new Image(getClass().getResource("Map/Teachers/Albaker.PNG").toExternalForm());
         Image pallonePlace = new Image(getClass().getResource("Map/Teachers/Pallone.PNG").toExternalForm()); 
+        Image upgradePlace = new Image(getClass().getResource("Map/Upgrade.PNG").toExternalForm()); 
 
 
         Tooltip fulkTip = new Tooltip("Fulk \n(10 Money) \n\nHis mission is to propogate webcat to all educational institutions");
@@ -240,6 +255,12 @@ public class App extends Application {
         Tooltip taylorTip = new Tooltip("Taylor \n(10 Money) \n\nHe will prove freefall objects will gain speed over time");
         Tooltip albakerTip = new Tooltip("Albaker \n(100 Money) \n\nHer essay grading has all the foes in terror (just like her students)");
         Tooltip palloneTip = new Tooltip("Pallone \n(1000 Money) \n\nA Biology teacher who's awesome at everything :)");
+        Tooltip fulkUpgradeTip = new Tooltip("Fulk's Upgrade 1 -- Damage increased to 2 damage per shot");
+        Tooltip kwongUpgradeTip = new Tooltip("Kwong's Upgrade 1 -- Damage increased to 2 damage per shot");
+        Tooltip taylorUpgradeTip = new Tooltip("Dunlap's Upgrade 1 -- Damage increased to 2 damage per shot");
+        Tooltip dunlapUpgradeTip = new Tooltip("Taylor's Upgrade 1 -- Damage increased to 2 damage per shot");
+        Tooltip albakerUpgradeTip = new Tooltip("Albaker's Upgrade 1 -- Damage increased to 2 damage per shot");
+        Tooltip palloneUpgradeTip = new Tooltip("Pallone's Upgrade 1 -- Damage increased to 2 damage per shot");
 
         Text towers = new Text("Hire Teachers:");
         Text health = new Text("Health:");
@@ -261,18 +282,31 @@ public class App extends Application {
         buttons.add(taylorButton);
         buttons.add(albakerButton);
         buttons.add(palloneButton);
+        buttons.add(fulkUpgradeButton);
+        buttons.add(kwongUpgradeButton);
+        buttons.add(albakerUpgradeButton);
+        buttons.add(taylorUpgradeButton);
+        buttons.add(dunlapUpgradeButton);
+        buttons.add(palloneUpgradeButton);
         tips.add(fulkTip);
         tips.add(kwongTip);
         tips.add(dunlapTip);
         tips.add(taylorTip);
         tips.add(albakerTip);
         tips.add(palloneTip);
+        tips.add(fulkUpgradeTip);
+        tips.add(kwongUpgradeTip);
+        tips.add(dunlapUpgradeTip);
+        tips.add(taylorUpgradeTip);
+        tips.add(albakerUpgradeTip);
+        tips.add(palloneUpgradeTip);
         placeImages.add(fulkPlace);
         placeImages.add(kwongPlace);
         placeImages.add(dunlapPlace);   
         placeImages.add(taylorPlace);   
         placeImages.add(albakerPlace);
         placeImages.add(pallonePlace);
+        placeImages.add(upgradePlace);
 
 
         //set values for objects
@@ -294,6 +328,13 @@ public class App extends Application {
         taylorButton.setTooltip(taylorTip);
         albakerButton.setTooltip(albakerTip);
         palloneButton.setTooltip(palloneTip);
+        fulkUpgradeButton.setTooltip(fulkUpgradeTip);
+        taylorUpgradeButton.setTooltip(taylorUpgradeTip);
+        kwongUpgradeButton.setTooltip(kwongUpgradeTip);
+        albakerUpgradeButton.setTooltip(albakerUpgradeTip);
+        dunlapUpgradeButton.setTooltip(dunlapUpgradeTip);
+        palloneUpgradeButton.setTooltip(palloneUpgradeTip);
+
         fullscreen.setText("Fullscreen");
         deleteButton.setText("Fire a Teacher");
 
@@ -303,6 +344,14 @@ public class App extends Application {
         taylorButton.setBackground(new Background(taylorImage));
         albakerButton.setBackground(new Background(albakerImage));
         palloneButton.setBackground(new Background(palloneImage));
+        fulkUpgradeButton.setBackground(new Background(upgradeButtonImage));
+        kwongUpgradeButton.setBackground(new Background(upgradeButtonImage));
+        albakerUpgradeButton.setBackground(new Background(upgradeButtonImage));
+        taylorUpgradeButton.setBackground(new Background(upgradeButtonImage));
+        dunlapUpgradeButton.setBackground(new Background(upgradeButtonImage));
+        palloneUpgradeButton.setBackground(new Background(upgradeButtonImage));
+
+
 
         fulkButton.setTranslateX(0 - stage.getWidth()/2 + 50);
         fulkButton.setTranslateY(0 - stage.getHeight()/2 + 125);
@@ -321,6 +370,36 @@ public class App extends Application {
 
         palloneButton.setTranslateX(0 - stage.getWidth()/2 + 50);
         palloneButton.setTranslateY(0 - stage.getHeight()/2 + 500);
+
+        fulkUpgradeButton.setTranslateX(0 - stage.getWidth()/2 + 125);
+        fulkUpgradeButton.setTranslateY(0 - stage.getHeight()/2 + 125);
+        fulkUpgradeButton.setScaleX(0.50);
+        fulkUpgradeButton.setScaleY(0.50);
+
+        kwongUpgradeButton.setTranslateX(0 - stage.getWidth()/2 + 125);
+        kwongUpgradeButton.setTranslateY(0 - stage.getHeight()/2 + 200);
+        kwongUpgradeButton.setScaleX(0.50);
+        kwongUpgradeButton.setScaleY(0.50);
+
+        dunlapUpgradeButton.setTranslateX(0 - stage.getWidth()/2 + 125);
+        dunlapUpgradeButton.setTranslateY(0 - stage.getHeight()/2 + 275);
+        dunlapUpgradeButton.setScaleX(0.50);
+        dunlapUpgradeButton.setScaleY(0.50);
+
+        taylorUpgradeButton.setTranslateX(0 - stage.getWidth()/2 + 125);
+        taylorUpgradeButton.setTranslateY(0 - stage.getHeight()/2 + 350);
+        taylorUpgradeButton.setScaleX(0.50);
+        taylorUpgradeButton.setScaleY(0.50);
+
+        albakerUpgradeButton.setTranslateX(0 - stage.getWidth()/2 + 125);
+        albakerUpgradeButton.setTranslateY(0 - stage.getHeight()/2 + 425);
+        albakerUpgradeButton.setScaleX(0.50);
+        albakerUpgradeButton.setScaleY(0.50);
+
+        palloneUpgradeButton.setTranslateX(0 - stage.getWidth()/2 + 125);
+        palloneUpgradeButton.setTranslateY(0 - stage.getHeight()/2 + 500);
+        palloneUpgradeButton.setScaleX(0.50);
+        palloneUpgradeButton.setScaleY(0.50);
 
         fullscreen.setTranslateX(0 - stage.getWidth()/2 + 50);
         fullscreen.setTranslateY(0 - stage.getHeight()/2 + 650);
@@ -371,6 +450,65 @@ public class App extends Application {
         });
         deleteButton.setOnAction(arg0 -> {
             teacherIndex[0] = 7;
+        });
+        fulkUpgradeButton.setOnAction(arg0 -> {
+            System.out.println("case 8 start");
+                    if (fulkUpgradeAmt[0] < 5)
+                    {
+                        if (g.getMoney() > costOfUpgrade)
+                        {
+                            g.subtractMoney(costOfUpgrade);
+                            g.upgradeTower(8);
+                            
+                            if (fulkUpgradeAmt[0] == 0) {
+                                System.out.println("upgrade 2 tooltip");
+                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 2 -- Speed increased by 2")); 
+                            }
+                            if (fulkUpgradeAmt[0] == 1) {
+                                System.out.println("upgrade 3 tooltip");
+                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 3 -- Damage increased to 2 damage per shot")); 
+                            }
+                            if (fulkUpgradeAmt[0] == 2) {
+                                System.out.println("upgrade 4 tooltip");
+                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 4 -- Speed increased by 2")); 
+                            }
+                            if (fulkUpgradeAmt[0] == 3) {
+                                System.out.println("upgrade 5 tooltip");
+                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 5 -- Damage increased to 2 damage per shot")); 
+                            }
+                            if (fulkUpgradeAmt[0] == 4) {
+                                System.out.println("upgrade 6 tooltip");
+                                fulkUpgradeButton.setTooltip(new Tooltip("This upgrade path is maxed out. You cannot buy another upgrade here.")); 
+                            }
+                        }
+                        else
+                        {
+                            Alert alert2 = new Alert(AlertType.INFORMATION);
+                            alert2.setTitle("Not Enough Money");
+                            alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " dollars.");
+                            alert2.setHeaderText("You need " + costOfUpgrade + " dollars to buy this upgrade.");
+                            alert2.showAndWait();
+                            teacherIndex[0] = 0;
+                            scene.setCursor(Cursor.DEFAULT);
+                        }
+                    }
+                    fulkUpgradeAmt[0]++;
+                    teacherIndex[0] = 0;
+        });
+        kwongUpgradeButton.setOnAction(arg0 -> {
+            teacherIndex[0] = 9;
+        });
+        dunlapUpgradeButton.setOnAction(arg0 -> {
+            teacherIndex[0] = 10;
+        });
+        taylorUpgradeButton.setOnAction(arg0 -> {
+            teacherIndex[0] = 11;
+        });
+        albakerUpgradeButton.setOnAction(arg0 -> {
+            teacherIndex[0] = 12;
+        });
+        palloneUpgradeButton.setOnAction(arg0 -> {
+            teacherIndex[0] = 13;
         });
 
         mapping.setOnMouseClicked(value ->  {
@@ -560,6 +698,81 @@ public class App extends Application {
                         scene.setCursor(Cursor.DEFAULT);
                     }
                     break;
+                /*case 8:
+                    System.out.println("case 8 start");
+                    if (fulkUpgradeAmt[0] < 5)
+                    {
+                        if (g.getMoney() > costOfUpgrade)
+                        {
+                            g.subtractMoney(costOfUpgrade);
+                            g.upgradeTower(8);
+                            
+                            if (fulkUpgradeAmt[0] == 0) {
+                                System.out.println("upgrade 2 tooltip");
+                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 2 -- Speed increased by 2")); 
+                            }
+                            if (fulkUpgradeAmt[0] == 1) {
+                                System.out.println("upgrade 3 tooltip");
+                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 3 -- Damage increased to 2 damage per shot")); 
+                            }
+                            if (fulkUpgradeAmt[0] == 2) {
+                                System.out.println("upgrade 4 tooltip");
+                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 4 -- Speed increased by 2")); 
+                            }
+                            if (fulkUpgradeAmt[0] == 3) {
+                                System.out.println("upgrade 5 tooltip");
+                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 5 -- Damage increased to 2 damage per shot")); 
+                            }
+                            if (fulkUpgradeAmt[0] == 4) {
+                                System.out.println("upgrade 6 tooltip");
+                                fulkUpgradeButton.setTooltip(new Tooltip("This upgrade path is maxed out. You cannot buy another upgrade here.")); 
+                            }
+                        }
+                        else
+                        {
+                            alert.setHeaderText("You need " + costOfUpgrade + " dollars to hire Mr Pallone.");
+                            alert.showAndWait();
+                            teacherIndex[0] = 0;
+                            scene.setCursor(Cursor.DEFAULT);
+                        }
+                    }
+                    fulkUpgradeAmt[0]++;
+                    teacherIndex[0] = 0;
+                    break;
+                    case 9: //recopy the case 8 code and copy paste
+                    if (fulkUpgradeAmt[0] < 5)
+                    {
+                        if (g.getMoney() > costOfUpgrade)
+                        {
+                            g.upgradeTower(8);
+                            
+                            if (fulkUpgradeAmt[0] == 0) {
+                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 2 -- Speed increased by 2")); 
+                            }
+                            if (fulkUpgradeAmt[0] == 1) {
+                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 3 -- Damage increased to 2 damage per shot")); 
+                            }
+                            if (fulkUpgradeAmt[0] == 2) {
+                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 4 -- Speed increased by 2")); 
+                            }
+                            if (fulkUpgradeAmt[0] == 3) {
+                                fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 5 -- Damage increased to 2 damage per shot")); 
+                            }
+                            if (fulkUpgradeAmt[0] == 4) {
+                                fulkUpgradeButton.setTooltip(new Tooltip("This upgrade path is maxed out. You cannot buy another upgrade here.")); 
+                            }
+                        }
+                        else
+                        {
+                            alert.setHeaderText("You need " + costOfUpgrade + " dollars to hire Mr Pallone.");
+                            alert.showAndWait();
+                            teacherIndex[0] = 0;
+                            scene.setCursor(Cursor.DEFAULT);
+                        }
+                    }
+                    fulkUpgradeAmt[0]++;
+                    teacherIndex[0] = 0;
+                    break;*/
                 default:
                     teacherIndex[0] = 0;
                     scene.setCursor(Cursor.DEFAULT);
@@ -589,6 +802,12 @@ public class App extends Application {
         game.getChildren().add(taylorButton);
         game.getChildren().add(albakerButton);
         game.getChildren().add(palloneButton);
+        game.getChildren().add(fulkUpgradeButton);
+        game.getChildren().add(kwongUpgradeButton);
+        game.getChildren().add(dunlapUpgradeButton);
+        game.getChildren().add(taylorUpgradeButton);
+        game.getChildren().add(albakerUpgradeButton);
+        game.getChildren().add(palloneUpgradeButton);
         game.getChildren().add(health);
         game.getChildren().add(fullscreen);
         game.getChildren().add(deleteButton);

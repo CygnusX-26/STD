@@ -8,6 +8,7 @@ import school.tower.defense.Templates.Tower;
 
 public class Fulk extends Tower {
     Game game;
+    Upgrade[] upgradeList = new Upgrade[6];
     Upgrade currentUpgrade;
     int cost;
     Tile tile;
@@ -19,7 +20,16 @@ public class Fulk extends Tower {
     public Fulk(Game game) {
         this.tile = null;
         this.game = game;
-        currentUpgrade = new Upgrade("Base", 0, 1, 1000, 1);
+        
+        //if updating these powerups make sure to update the tooltips on app.loadgame()
+        upgradeList[0] = new Upgrade("0", 0, 1, 1000, 1);
+        upgradeList[1] = new Upgrade("1", 0, 3, 1000, 1);
+        upgradeList[2] = new Upgrade("2", 0, 3, 1000, 2);
+        upgradeList[3] = new Upgrade("3", 0, 5, 1000, 2);
+        upgradeList[4] = new Upgrade("4", 0, 3, 1000, 3);
+        upgradeList[5] = new Upgrade("4", 0, 5, 1000, 3); 
+        
+        currentUpgrade = upgradeList[0];
         cost = 100;
 
         new Thread(() -> {
@@ -60,7 +70,37 @@ public class Fulk extends Tower {
     }
 
     public void upgrade() {
-        //do nothing
+        if (currentUpgrade == upgradeList[0])
+        {
+            currentUpgrade = upgradeList[1];
+            System.out.println("first upgrade");
+            return;
+        }
+        if (currentUpgrade == upgradeList[1])
+        {
+            currentUpgrade = upgradeList[2];
+            System.out.println("second upgrade");
+            return;
+        }
+        if (currentUpgrade == upgradeList[2])
+        {
+            currentUpgrade = upgradeList[3];
+            System.out.println("third upgrade");
+            return;
+        }
+        if (currentUpgrade == upgradeList[3])
+        {
+            currentUpgrade = upgradeList[4];
+            System.out.println("fourth upgrade");
+            return;
+        }
+        if (currentUpgrade == upgradeList[4])
+        {
+            currentUpgrade = upgradeList[5];
+            System.out.println("fifth upgrade");
+            return;
+        }
+        System.out.println("out of upgrades");
     }
 
     public int getCost() {
