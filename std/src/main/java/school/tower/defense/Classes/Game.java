@@ -40,7 +40,7 @@ public class Game extends App {
         money = 1000;
         grid = new Grid(width/75, height/75);
         clicked = false;
-        health = 1;
+        health = 69;
         pathLocations = new ArrayList<Location>();
         stage = s;
         roundNum = -1;
