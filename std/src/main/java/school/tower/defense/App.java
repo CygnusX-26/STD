@@ -44,7 +44,7 @@ public class App extends Application {
         String css = url.toExternalForm();
         scene.getStylesheets().add(css);
         this.stage.setScene(scene);
-        this.stage.setTitle("Student Tower Defense");
+        this.stage.setTitle("School Tower Defense");
         this.stage.show();
     }
 
@@ -72,7 +72,7 @@ public class App extends Application {
         BackgroundImage instructionsImage = new BackgroundImage( new Image( getClass().getResource("Map/instructionButton.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, true, true, true, false));
         //Image menuTitle = new Image(getClass().getResource("Map/menuTitle1.PNG").toExternalForm());
         //ImageView MENUTITLE = new ImageView(menuTitle);
-        Text text = new Text("Student Tower Defense");
+        Text text = new Text("School Tower Defense");
         Image fulk = new Image(getClass().getResource("Map/Teachers/Fulk.PNG").toExternalForm());
         ImageView FULK = new ImageView(fulk);
         Image kwong = new Image(getClass().getResource("Map/Teachers/Kwong.PNG").toExternalForm());
@@ -197,12 +197,12 @@ public class App extends Application {
         stage.setMaximized(true);
 
         //initialize objects
-        int fulkCost = 10; //make sure to modify the tooltips when modifying this
-        int kwongCost = 1; // also put more stats in the tooltips maybe??
-        int dunlapCost = 1;
-        int taylorCost = 10;
-        int albakerCost = 100;
-        int palloneCost = 1000;
+        int fulkCost = 35; //make sure to modify the tooltips when modifying this
+        int kwongCost = 45; // also put more stats in the tooltips maybe??
+        int dunlapCost = 60;
+        int taylorCost = 70;
+        int albakerCost = 90;
+        int palloneCost = 500;
         int[] fulkUpgradeAmt = {0};
         int[] kwongUpgradeAmt = {0};
         int[] dunlapUpgradeAmt = {0};
@@ -249,12 +249,12 @@ public class App extends Application {
         Image upgradePlace = new Image(getClass().getResource("Map/Upgrade.PNG").toExternalForm()); 
 
 
-        Tooltip fulkTip = new Tooltip("Fulk \n(10 Money) \n\nHis mission is to propogate webcat to all educational institutions");
-        Tooltip kwongTip = new Tooltip("Kwong \n(1 Money) \n\nThe better CS teacher (although it's up for debate)");
-        Tooltip dunlapTip = new Tooltip("Dunlap \n(1 Money) \n\nThe reading quizes she gives will knock anyone off their feet");
-        Tooltip taylorTip = new Tooltip("Taylor \n(10 Money) \n\nHe will prove freefall objects will gain speed over time");
-        Tooltip albakerTip = new Tooltip("Albaker \n(100 Money) \n\nHer essay grading has all the foes in terror (just like her students)");
-        Tooltip palloneTip = new Tooltip("Pallone \n(1000 Money) \n\nA Biology teacher who's awesome at everything :)");
+        Tooltip fulkTip = new Tooltip("Fulk \n(35 Money) \n\nHis mission is to propogate webcat to all educational institutions");
+        Tooltip kwongTip = new Tooltip("Kwong \n(45 Money) \n\nThe better CS teacher (although it's up for debate)");
+        Tooltip dunlapTip = new Tooltip("Dunlap \n(60 Money) \n\nThe reading quizes she gives will knock anyone off their feet");
+        Tooltip taylorTip = new Tooltip("Taylor \n(70 Money) \n\nHe will prove freefall objects will gain speed over time");
+        Tooltip albakerTip = new Tooltip("Albaker \n(90 Money) \n\nHer essay grading has all the foes in terror (just like her students)");
+        Tooltip palloneTip = new Tooltip("Pallone \n(500 Money) \n\nA Biology teacher who's awesome at everything :)");
         Tooltip fulkUpgradeTip = new Tooltip("Fulk's Upgrade (100 Money)-- Damage increased for all Fulks on screen");
         Tooltip kwongUpgradeTip = new Tooltip("Kwong's Upgrade (100 Money)-- Damage increased for all Kwongs on screen");
         Tooltip taylorUpgradeTip = new Tooltip("Dunlap's Upgrade (100 Money)-- Damage increased for all Dunlaps on screen");
@@ -496,7 +496,7 @@ public class App extends Application {
                 {
                     g.subtractMoney(costOfUpgrade);
                     System.out.print(" upgrading all fulks");
-                    g.upgradeTower(8); //not sending through //TODO fix upgrades right here
+                    g.upgradeTower(8);
                     moneynum.setText("$"+ (int)g.getMoney() + "");
                     fulkUpgradeAmt[0]++;
                 }
@@ -504,8 +504,8 @@ public class App extends Application {
                 {
                     Alert alert2 = new Alert(AlertType.INFORMATION);
                     alert2.setTitle("Not Enough Money");
-                    alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " dollars.");
-                    alert2.setHeaderText("You need " + costOfUpgrade + " dollars to upgrade Mr. Fulk.");
+                    alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
+                    alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Fulk.");
                     alert2.showAndWait();
                     teacherIndex[0] = 0;
                     scene.setCursor(Cursor.DEFAULT);
@@ -540,7 +540,7 @@ public class App extends Application {
             ImageView tower;
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Not Enough Money");
-            alert.setContentText("Not Enough money! You only have " + g.getMoney() + " dollars.");
+            alert.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
             switch (teacherIndex[0]) {
                 case 1:
                 //change this, for testing purposes only
@@ -568,7 +568,7 @@ public class App extends Application {
                         scene.setCursor(Cursor.DEFAULT);
                     }
                     else{
-                        alert.setHeaderText("You need " + fulkCost + " dollars to hire Mr Fulk.");
+                        alert.setHeaderText("You need " + fulkCost + " Money to hire Mr Fulk.");
                         alert.showAndWait();
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
@@ -596,7 +596,7 @@ public class App extends Application {
                         scene.setCursor(Cursor.DEFAULT);
                     }
                     else{
-                        alert.setHeaderText("You need " + kwongCost + " dollars to hire Mr Kwong.");
+                        alert.setHeaderText("You need " + kwongCost + " Money to hire Mr Kwong.");
                         alert.showAndWait();
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
@@ -625,7 +625,7 @@ public class App extends Application {
                         break;
                     }
                     else{
-                        alert.setHeaderText("You need " + dunlapCost + " dollars to hire Mrs Dunlap.");
+                        alert.setHeaderText("You need " + dunlapCost + " Money to hire Mrs Dunlap.");
                         alert.showAndWait();
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
@@ -654,7 +654,7 @@ public class App extends Application {
                         break;
                     }
                     else{
-                        alert.setHeaderText("You need " + taylorCost + " dollars to hire Mr Taylor.");
+                        alert.setHeaderText("You need " + taylorCost + " Money to hire Mr Taylor.");
                         alert.showAndWait();
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
@@ -683,7 +683,7 @@ public class App extends Application {
                         break;
                     }
                     else{
-                        alert.setHeaderText("You need " + albakerCost + " dollars to hire Mrs Albaker.");
+                        alert.setHeaderText("You need " + albakerCost + " Money to hire Mrs Albaker.");
                         alert.showAndWait();
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
@@ -712,7 +712,7 @@ public class App extends Application {
                         break;
                     }
                     else{
-                        alert.setHeaderText("You need " + palloneCost + " dollars to hire Mr Pallone.");
+                        alert.setHeaderText("You need " + palloneCost + " Money to hire Mr Pallone.");
                         alert.showAndWait();
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
@@ -761,6 +761,6 @@ public class App extends Application {
 
         
         scene.setRoot(game);
-        g.run(game, hpnum);
+        g.run(game, hpnum, moneynum);
     }
 }

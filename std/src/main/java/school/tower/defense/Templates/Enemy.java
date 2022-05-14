@@ -17,8 +17,11 @@ public abstract class Enemy {
         private Location location;
         private StackPane s;
         private ImageView sprite;
+        private String[] pathName;
+        private Stage stage;
+        private ArrayList<Enemy> enemies;
     
-        public Enemy(String name, int health, double speed, int reward, StackPane s, String pathName, Stage stage, ArrayList<Location> pathLocations) {
+        public Enemy(String name, int health, double speed, int reward, StackPane s, String[] pathName, Stage stage, ArrayList<Location> pathLocations, ArrayList<Enemy> enemies) {
             this.name = name;
             this.health = health;
             this.speed = speed;
@@ -27,7 +30,10 @@ public abstract class Enemy {
             this.traveledPercent = 0; //Starts from the beginning
             this.location = pathLocations.get(0);
             this.s = s;
-            sprite = new ImageView(new Image(getClass().getResource(pathName).toExternalForm()));
+            this.pathName = pathName;
+            this.stage = stage;
+            this.enemies = enemies;
+            sprite = new ImageView(new Image(getClass().getResource(pathName[health]).toExternalForm()));
             sprite.setFitWidth(75);
             sprite.setFitHeight(75);
             sprite.setTranslateX(this.getLocation().getX() - stage.getWidth()/2);
@@ -76,6 +82,19 @@ public abstract class Enemy {
 
         public void damage(int amount) {
             health -= amount;
+            if (health < 0)
+            {
+                health = 0;
+            }
+            //System.out.println("damaged health now " + health);
+            //enemies.remove(this);
+            s.getChildren().remove(sprite);
+            sprite = new ImageView(new Image(getClass().getResource(pathName[health]).toExternalForm()));
+            sprite.setFitWidth(75);
+            sprite.setFitHeight(75);
+            sprite.setTranslateX(this.getLocation().getX() - stage.getWidth()/2);
+            s.getChildren().add(sprite);
+            //enemies.add(this);        
         }
 
         public ImageView getSprite() {
@@ -84,5 +103,5 @@ public abstract class Enemy {
     
         public abstract void move();
         public abstract void attack(Tower tower);
-        public abstract String spriteStatus();
+        //public abstract String spriteStatus();
 }

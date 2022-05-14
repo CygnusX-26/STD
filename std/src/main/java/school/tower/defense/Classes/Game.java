@@ -33,7 +33,7 @@ public class Game extends App {
     private int health;
     private Stage stage;
     private int roundNum;
-    private int fulkUpgradeNum;
+    private int fulkUpgradeNum; //could be used for spawning new towers to the currect upgrade number
 
     public Game(Stage s, int width, int height) {
         towers = new ArrayList<Tower>();
@@ -41,7 +41,7 @@ public class Game extends App {
         money = 1000;
         grid = new Grid(width/75, height/75);
         clicked = false;
-        health = 69;
+        health = 20; //change to 69 later
         pathLocations = new ArrayList<Location>();
         stage = s;
         roundNum = -1;
@@ -171,7 +171,7 @@ public class Game extends App {
         }
     }
     
-    public void run(StackPane s, Text hpnum) {
+    public void run(StackPane s, Text hpnum, Text moneynum) {
         //run the game
         Queue<Enemy> enemyQueue = new LinkedList<>();
         final long[] round = {1};
@@ -211,7 +211,7 @@ public class Game extends App {
                     if (enemies.size() == 0)
                     {
                         roundNum++;
-                        //System.out.println(roundNum);
+                        System.out.println(roundNum + "<-- round number");
                         loadEnemiesIntoQueue(roundNum, enemyQueue, s);
                     } 
 
@@ -219,6 +219,9 @@ public class Game extends App {
                     {
                         if (enemies.get(i).getHealth() <= 0)
                         {
+                            addMoney(enemies.get(i).getReward());
+                            moneynum.setText("$" + (int)getMoney() + "");
+                            //System.out.println("death due to damage");
                             s.getChildren().remove(enemies.get(i).getSprite());
                             enemies.remove(enemies.get(i));
                         }
@@ -232,8 +235,12 @@ public class Game extends App {
                                 hpnum.setText(health + " \u2665");
                             }
                         }
+                        if (enemies.size() >= 5) //temp testing code for damamge values
+                        {
+                            enemies.get(i).damage(1);
+                        }
                     }
-                    System.out.print(". ");
+                    System.out.print(enemies.size()+" ");
                 }
             }
             ));
@@ -283,13 +290,13 @@ public class Game extends App {
                 switch (enemyType)
                 {
                     case 0:
-                    enemyQueue.add(new LetterOfRec(s, stage, pathLocations));
+                    enemyQueue.add(new LetterOfRec(s, stage, pathLocations, enemies));
                     break;
                     case 1:
-                    enemyQueue.add(new LetterOfRec(s, stage, pathLocations));
+                    enemyQueue.add(new LetterOfRec(s, stage, pathLocations, enemies));
                     break;
                     case 2:
-                    enemyQueue.add(new LetterOfRec(s, stage, pathLocations));
+                    enemyQueue.add(new LetterOfRec(s, stage, pathLocations, enemies));
                     break;
                     default:
                     break;
