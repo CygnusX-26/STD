@@ -264,9 +264,9 @@ public class App extends Application {
 
         Text towers = new Text("Hire Teachers:");
         Text health = new Text("Health:");
-        hpnum = new Text(g.getHealth() + "");
+        hpnum = new Text(g.getHealth() + " \u2665");
         Text money = new Text("Money:");
-        Text moneynum = new Text(g.getMoney() + "");
+        Text moneynum = new Text("$" + (int)g.getMoney() + "");
         
         
         game = new StackPane();
@@ -420,12 +420,12 @@ public class App extends Application {
         
         towers.setTranslateX(0 - stage.getWidth()/2 + 150);
         towers.setTranslateY(0 - stage.getHeight()/2 + 50);
-        health.setTranslateX(stage.getWidth()/2 - 100);
-        health.setTranslateY(0 - stage.getHeight()/2 + 75);
+        health.setTranslateX(stage.getWidth()/2 - 275); //neil check if offsets look good on ur screen (origial 100)
+        health.setTranslateY(0 - stage.getHeight()/2 + 125); //neil check if offsets look good on ur screen (origial 75)
         hpnum.setTranslateX(stage.getWidth()/2 - 100);
-        hpnum.setTranslateY(0 - stage.getHeight()/2 + 125);
-        money.setTranslateX(stage.getWidth()/2 - 100);
-        money.setTranslateY(0 - stage.getHeight()/2 + 175);
+        hpnum.setTranslateY(0 - stage.getHeight()/2 + 125); 
+        money.setTranslateX(stage.getWidth()/2 - 275); //neil check if offsets look good on ur screen (origial 100)
+        money.setTranslateY(0 - stage.getHeight()/2 + 225); //neil check if offsets look good on ur screen (origial 175)
         moneynum.setTranslateX(stage.getWidth()/2 - 100);
         moneynum.setTranslateY(0 - stage.getHeight()/2 + 225);
 
@@ -497,7 +497,8 @@ public class App extends Application {
                     g.subtractMoney(costOfUpgrade);
                     System.out.print(" upgrading all fulks");
                     g.upgradeTower(8); //not sending through //TODO fix upgrades right here
-                    moneynum.setText(g.getMoney() + "");
+                    moneynum.setText("$"+ (int)g.getMoney() + "");
+                    fulkUpgradeAmt[0]++;
                 }
                 else
                 {
@@ -551,14 +552,14 @@ public class App extends Application {
                         tower.setOnMouseClicked(arg0 -> {
                             if (teacherIndex[0] == 7){
                                 g.addMoney(fulkCost/2);
-                                moneynum.setText(g.getMoney() + "");
+                                moneynum.setText("$"+ (int)g.getMoney() + "");
                                 game.getChildren().remove(tower);
                             }
                         });
                         tower.setTranslateX(p.getX() - stage.getWidth()/2 + 90); //added an offset here to match the head of teachers 
                         tower.setTranslateY(p.getY() - stage.getHeight()/2 + 20); //neil plz test on ur machine to see if offsets look good on ur machine
                         g.subtractMoney(fulkCost);
-                        moneynum.setText(g.getMoney() + "");
+                        moneynum.setText("$"+ (int)g.getMoney() + "");
                         game.getChildren().add(tower);
                         g.getTowers().add(new Fulk(g)); 
                         //TODO fix this tower initalizations. why isn't this constucting a tower beforehand? -Colin
@@ -582,7 +583,7 @@ public class App extends Application {
                         tower.setOnMouseClicked(arg0 -> {
                             if (teacherIndex[0] == 7){
                                 g.addMoney(kwongCost/2);
-                                moneynum.setText(g.getMoney() + "");
+                                moneynum.setText("$"+ (int)g.getMoney() + "");
                                 game.getChildren().remove(tower);
                             }
                         });
@@ -590,7 +591,7 @@ public class App extends Application {
                         tower.setTranslateY(p.getY() - stage.getHeight()/2);
                         game.getChildren().add(tower);
                         g.subtractMoney(kwongCost);
-                        moneynum.setText(g.getMoney() + "");
+                        moneynum.setText("$"+ (int)g.getMoney() + "");
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
                     }
@@ -610,7 +611,7 @@ public class App extends Application {
                         tower.setOnMouseClicked(arg0 -> {
                             if (teacherIndex[0] == 7){
                                 g.addMoney(kwongCost/2);
-                                moneynum.setText(g.getMoney() + "");
+                                moneynum.setText("$"+ (int)g.getMoney() + "");
                                 game.getChildren().remove(tower);
                             }
                         });
@@ -618,7 +619,7 @@ public class App extends Application {
                         tower.setTranslateY(p.getY() - stage.getHeight()/2);
                         game.getChildren().add(tower);
                         g.subtractMoney(dunlapCost);
-                        moneynum.setText(g.getMoney() + "");
+                        moneynum.setText("$"+ (int)g.getMoney() + "");
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
                         break;
@@ -639,7 +640,7 @@ public class App extends Application {
                         tower.setOnMouseClicked(arg0 -> {
                             if (teacherIndex[0] == 7){
                                 g.addMoney(taylorCost/2);
-                                moneynum.setText(g.getMoney() + "");
+                                moneynum.setText("$"+ (int)g.getMoney() + "");
                                 game.getChildren().remove(tower);
                             }
                         });
@@ -647,7 +648,7 @@ public class App extends Application {
                         tower.setTranslateY(p.getY() - stage.getHeight()/2);
                         game.getChildren().add(tower);
                         g.subtractMoney(taylorCost);
-                        moneynum.setText(g.getMoney() + "");
+                        moneynum.setText("$"+ (int)g.getMoney() + "");
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
                         break;
@@ -668,7 +669,7 @@ public class App extends Application {
                         tower.setOnMouseClicked(arg0 -> {
                             if (teacherIndex[0] == 7){
                                 g.addMoney(albakerCost/2);
-                                moneynum.setText(g.getMoney() + "");
+                                moneynum.setText("$"+ (int)g.getMoney() + "");
                                 game.getChildren().remove(tower);
                             }
                         });
@@ -676,7 +677,7 @@ public class App extends Application {
                         tower.setTranslateY(p.getY() - stage.getHeight()/2);
                         game.getChildren().add(tower);
                         g.subtractMoney(albakerCost);
-                        moneynum.setText(g.getMoney() + "");
+                        moneynum.setText("$"+ (int)g.getMoney() + "");
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
                         break;
@@ -697,7 +698,7 @@ public class App extends Application {
                         tower.setOnMouseClicked(arg0 -> {
                             if (teacherIndex[0] == 7){
                                 g.addMoney(palloneCost/2);
-                                moneynum.setText(g.getMoney() + "");
+                                moneynum.setText("$"+ (int)g.getMoney() + "");
                                 game.getChildren().remove(tower);
                             }
                         });
@@ -705,7 +706,7 @@ public class App extends Application {
                         tower.setTranslateY(p.getY() - stage.getHeight()/2);
                         game.getChildren().add(tower);
                         g.subtractMoney(palloneCost);
-                        moneynum.setText(g.getMoney() + "");
+                        moneynum.setText("$"+ (int)g.getMoney() + "");
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
                         break;

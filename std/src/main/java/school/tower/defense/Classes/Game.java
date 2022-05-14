@@ -222,14 +222,14 @@ public class Game extends App {
                             s.getChildren().remove(enemies.get(i).getSprite());
                             enemies.remove(enemies.get(i));
                         }
-                        else if (enemies.get(i).getLocation().getX()>(stage.getWidth()*0.898697-50) && enemies.get(i).getLocation().getX()<(stage.getWidth()*0.898697+50))
+                        else if (enemies.get(i).getLocation().getX()>(stage.getWidth()*0.898697-25) && enemies.get(i).getLocation().getX()<(stage.getWidth()*0.898697+25))
                         {
-                            if (enemies.get(i).getLocation().getY()>(stage.getHeight()*0.71102-50) && enemies.get(i).getLocation().getY()<(stage.getHeight()*0.71102+50))
+                            if (enemies.get(i).getLocation().getY()>(stage.getHeight()*0.71102-25) && enemies.get(i).getLocation().getY()<(stage.getHeight()*0.71102+25))
                             {
                                 s.getChildren().remove(enemies.get(i).getSprite());
                                 enemies.remove(enemies.get(i));
                                 health--;
-                                hpnum.setText(health + "");
+                                hpnum.setText(health + " \u2665");
                             }
                         }
                     }

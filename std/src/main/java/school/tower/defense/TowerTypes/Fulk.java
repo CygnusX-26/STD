@@ -71,7 +71,9 @@ public class Fulk extends Tower {
 
     public void upgrade() {
         System.out.println("Fulk upgrading to lvl "+ (currentUpgrade.getDamage() + 1));
+        //alternativly we could do it so upgrades are made in game.java and pushed out to all towers -colin
         currentUpgrade = new Upgrade("not base", 100, currentUpgrade.getDamage() + 1, currentUpgrade.getRange() + 50, currentUpgrade.getAttackspeed() + 1);
+       
         // // the old upgrade system is below
         // if (currentUpgrade == upgradeList[0])
         // {
