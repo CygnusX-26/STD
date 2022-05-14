@@ -1,0 +1,56 @@
+#pane{
+    -fx-background-image: url("Map/lynbrook.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 640 480;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}
+
+#game{
+    -fx-background-image: url("Map/MAP.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 100% 100%;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}
+
+#inst{
+    -fx-background-size: 640 480;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}
+
+#menutext {
+    -fx-font: 50px Serif;
+    -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, red 0%, blue 100%);
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+}
+
+#towers {
+    -fx-font: 50px Serif;
+    -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, red 0%, green 100%);
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+}
+
+#health {
+    -fx-font: 50px Serif;
+    -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, red 0%, orange 100%);
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+}
+
+#hpnum {
+    -fx-font: 50px Serif;
+    -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, red 0%, orange 100%);
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+}
+
+#money {
+    -fx-font: 50px Serif;
+    -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, green 0%, blue 100%);
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+}

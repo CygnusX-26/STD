@@ -26,8 +26,8 @@ public class Fulk extends Tower {
         upgradeList[1] = new Upgrade("1", 0, 3, 1000, 1);
         upgradeList[2] = new Upgrade("2", 0, 3, 1000, 2);
         upgradeList[3] = new Upgrade("3", 0, 5, 1000, 2);
-        upgradeList[4] = new Upgrade("4", 0, 3, 1000, 3);
-        upgradeList[5] = new Upgrade("4", 0, 5, 1000, 3); 
+        upgradeList[4] = new Upgrade("4", 0, 5, 1000, 3);
+        upgradeList[5] = new Upgrade("4", 0, 7, 1000, 3); 
         
         currentUpgrade = upgradeList[0];
         cost = 100;
