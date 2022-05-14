@@ -201,7 +201,7 @@ public class Game extends App {
             
         }).start();
         Platform.runLater(() -> {
-            /*Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+            Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     if (enemyQueue.size() > 0)
@@ -219,146 +219,26 @@ public class Game extends App {
                     {
                         if (enemies.get(i).getHealth() <= 0)
                         {
-                            enemies.remove(enemies.get(i));
                             s.getChildren().remove(enemies.get(i).getSprite());
-                            i--;
+                            enemies.remove(enemies.get(i));
                         }
                         else if (enemies.get(i).getLocation().getX()>(stage.getWidth()*0.898697-50) && enemies.get(i).getLocation().getX()<(stage.getWidth()*0.898697+50))
                         {
                             if (enemies.get(i).getLocation().getY()>(stage.getHeight()*0.71102-50) && enemies.get(i).getLocation().getY()<(stage.getHeight()*0.71102+50))
                             {
-                                enemies.remove(enemies.get(i));
                                 s.getChildren().remove(enemies.get(i).getSprite());
+                                enemies.remove(enemies.get(i));
                                 health--;
                                 hpnum.setText(health + "");
-                                i--;
                             }
                         }
                     }
+                    System.out.print(". ");
                 }
             }
             ));
             timeline1.setCycleCount(999999999);
-            timeline1.play();
-
-            System.out.println("timeline1 complete");
-
-            //speeding up the spawn rate over every 90 seconds
-            Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(0.8), new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        if (enemyQueue.size() > 0)
-                        {
-                            enemies.add(enemyQueue.remove());
-                        }
-                        if (enemies.size() == 0)
-                        {
-                            roundNum++;
-                            //System.out.println(roundNum);
-                            loadEnemiesIntoQueue(roundNum, enemyQueue, s);
-                        } 
-                        for (int i = 0; i < enemies.size(); i++)
-                        {
-                            if (enemies.get(i).getHealth() <= 0)
-                            {
-                                enemies.remove(enemies.get(i));
-                                s.getChildren().remove(enemies.get(i).getSprite());
-                                i--;
-                            }
-                            if (enemies.get(i).getLocation().getX()>(stage.getWidth()*0.898697-20) && enemies.get(i).getLocation().getX()<(stage.getWidth()*0.898697+20))
-                            {
-                                if (enemies.get(i).getLocation().getY()>(stage.getHeight()*0.71102-50) && enemies.get(i).getLocation().getY()<(stage.getHeight()*0.71102+50))
-                                {
-                                    enemies.remove(enemies.get(i));
-                                    s.getChildren().remove(enemies.get(i).getSprite());
-                                    health--;
-                                    hpnum.setText(health + "");
-                                    i--;
-                                }
-                            }
-                        }
-                    }
-                }
-                ));
-                timeline2.setCycleCount(113);
-                timeline2.play(); 
-
-                System.out.println("timeline2 complete");
-
-                Timeline timeline3 = new Timeline(new KeyFrame(Duration.seconds(0.6), new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        if (enemyQueue.size() > 0)
-                        {
-                            enemies.add(enemyQueue.remove());
-                        }
-                        if (enemies.size() == 0)
-                        {
-                            roundNum++;
-                            //System.out.println(roundNum);
-                            loadEnemiesIntoQueue(roundNum, enemyQueue, s);
-                        } 
-                        for (int i = 0; i < enemies.size(); i++)
-                        {
-                            if (enemies.get(i).getHealth() <= 0)
-                            {
-                                enemies.remove(enemies.get(i));
-                                s.getChildren().remove(enemies.get(i).getSprite());
-                                i--;
-                            }
-                            if (enemies.get(i).getLocation().getX()>(stage.getWidth()*0.898697-20) && enemies.get(i).getLocation().getX()<(stage.getWidth()*0.898697+20))
-                            {
-                                if (enemies.get(i).getLocation().getY()>(stage.getHeight()*0.71102-50) && enemies.get(i).getLocation().getY()<(stage.getHeight()*0.71102+50))
-                                {
-                                    enemies.remove(enemies.get(i));
-                                    s.getChildren().remove(enemies.get(i).getSprite());
-                                    health--;
-                                    hpnum.setText(health + "");
-                                    i--;
-                                }
-                            }
-                        }
-                    }
-                }
-                ));
-                timeline3.setCycleCount(150);
-                timeline3.play();
-
-                System.out.println("timeline3 complete");*/
-
-                Timeline timeline4 = new Timeline(new KeyFrame(Duration.seconds(0.4), new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        if (enemyQueue.size() > 0)
-                        {
-                            enemies.add(enemyQueue.remove());
-                        }
-                        if (enemies.size() == 0)
-                        {
-                            roundNum++;
-                            //System.out.println(roundNum);
-                            loadEnemiesIntoQueue(roundNum, enemyQueue, s);
-                        } 
-                        for (Enemy i : enemies)
-                        {
-                            if (i.getLocation().getX()>(stage.getWidth()*0.898697-20) && i.getLocation().getX()<(stage.getWidth()*0.898697+20))
-                            {
-                                if (i.getLocation().getY()>(stage.getHeight()*0.71102-50) && i.getLocation().getY()<(stage.getHeight()*0.71102+50))
-                                {
-                                    enemies.remove(enemies.indexOf(i));
-                                    s.getChildren().remove(i.getSprite());
-                                    health--;
-                                    hpnum.setText(health + "");
-                                }
-                            }
-                        }
-                    }
-                }
-                ));
-                timeline4.setCycleCount(999999999); //should be 225 times
-                timeline4.play(); });
-
-                System.out.println("timeline4 complete");
+            timeline1.play(); });
 
         // backup code
         //     Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
@@ -376,7 +256,7 @@ public class Game extends App {
     public Queue<Enemy> loadEnemiesIntoQueue(int roundNum, Queue<Enemy> enemyQueue, StackPane s)
     {
         Random rando = new Random();
-        rando.setSeed(roundNum*271); //it's a prime number
+        rando.setSeed(roundNum*223); //it's a prime number
         for (int i = 0; i < roundNum; i++) //do roundnum times
         {
             int cap = rando.nextInt(roundNum);
