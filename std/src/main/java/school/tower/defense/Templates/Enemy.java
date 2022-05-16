@@ -18,6 +18,7 @@ public abstract class Enemy {
         private StackPane s;
         private ImageView sprite;
         private String[] pathName;
+        private double distanceTraveled;
         private Stage stage;
         private ArrayList<Enemy> enemies;
     
@@ -28,6 +29,7 @@ public abstract class Enemy {
             this.reward = reward;
             this.pathNumber = 0;
             this.traveledPercent = 0; //Starts from the beginning
+            this.distanceTraveled = 0;
             this.location = pathLocations.get(0);
             this.s = s;
             this.pathName = pathName;
@@ -70,6 +72,14 @@ public abstract class Enemy {
 
         public double getTraveledPercent() {
             return traveledPercent;
+        }
+
+        public void addDistanceTraveled(double distance) {
+            this.distanceTraveled += distance;
+        }
+
+        public double getDistanceTraveled() {
+            return distanceTraveled;
         }
 
         public void setLocation(Location location) {

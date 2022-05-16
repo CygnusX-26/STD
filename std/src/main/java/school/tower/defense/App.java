@@ -1,6 +1,7 @@
 package school.tower.defense;
 
 import school.tower.defense.Classes.Game;
+import school.tower.defense.Classes.Location;
 import school.tower.defense.TowerTypes.Fulk;
 import java.awt.MouseInfo;
 import java.io.IOException;
@@ -561,7 +562,7 @@ public class App extends Application {
                         g.subtractMoney(fulkCost);
                         moneynum.setText("$"+ (int)g.getMoney() + "");
                         game.getChildren().add(tower);
-                        g.getTowers().add(new Fulk(g)); 
+                        g.getTowers().add(new Fulk(g, game, "Map/Teachers/Fulk.PNG", new Location(p.getX(), p.getY()))); 
                         //TODO fix this tower initalizations. why isn't this constucting a tower beforehand? -Colin
                         // might be due to the testing purposes comment above. 
                         teacherIndex[0] = 0;

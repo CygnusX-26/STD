@@ -134,12 +134,14 @@ public class Game extends App {
             double distanceToMove = enemy.getSpeed() * Delta;
             Location currentPathLocation = enemy.getLocation();
             Location nextPathLocation = pathLocations.get(enemy.getPathNumber() + 1);
+            double distanceTraveled = 0;
             
             while (true) {
                 if (currentPathLocation.distanceBetween(nextPathLocation) > distanceToMove) {
                     break;
                 }
 
+                distanceTraveled += currentPathLocation.distanceBetween(nextPathLocation);
                 distanceToMove -= currentPathLocation.distanceBetween(nextPathLocation);
                 enemy.setTraveledPercent(0);
 
@@ -160,6 +162,8 @@ public class Game extends App {
             double xDifference = (nextPathLocation.getX() - currentPathLocation.getX()) * traveledPercent;
             double yDifference = (nextPathLocation.getY() - currentPathLocation.getY()) * traveledPercent;
 
+            enemy.addDistanceTraveled(Math.sqrt(Math.pow(xDifference, 2) + Math.pow(yDifference, 2)));
+
             enemy.setTraveledPercent(traveledPercent);
             enemy.setLocation(new Location(currentPathLocation.getX() + xDifference, currentPathLocation.getY() + yDifference));
 
@@ -179,7 +183,7 @@ public class Game extends App {
             long lastUpdate = System.currentTimeMillis();
             while (health > 0) {
                 try {
-                    long length = (long) (10);
+                    long length = (long) (100);
                     TimeUnit.MILLISECONDS.sleep(length);
 
                     updateFrame(System.currentTimeMillis() - lastUpdate); //Create a new method otherwise it gets cluttered
@@ -200,6 +204,7 @@ public class Game extends App {
             });
             
         }).start();
+
         Platform.runLater(() -> {
             Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
                 @Override
