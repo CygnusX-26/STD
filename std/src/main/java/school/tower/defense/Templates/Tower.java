@@ -1,5 +1,6 @@
 package school.tower.defense.Templates;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
@@ -15,6 +16,7 @@ public abstract class Tower {
     StackPane s;
     String pathName;
     int cost;
+    ArrayList<Projectile> projectiles;
 
     public abstract void upgrade(); //Will upgrade the tower and deduct the cost
 
@@ -25,6 +27,7 @@ public abstract class Tower {
         this.location = location;
         this.pathName = pathName;
         this.s = s;
+        this.projectiles = new ArrayList<Projectile>();
 
         new Thread(() -> {
             while (true) {
@@ -69,16 +72,7 @@ public abstract class Tower {
     private void attack(Enemy enemy) {
         //System.out.println("Damaged");
 
-        Platform.runLater(() -> {
-            ImageView sprite = new ImageView(new Image(getClass().getResource(pathName).toExternalForm()));
-            sprite.setFitWidth(15);
-            sprite.setFitHeight(15);
-            sprite.setTranslateX(location.getX());
-            sprite.setTranslateY(location.getY());
-            s.getChildren().add(sprite);
-
-            enemy.damage(currentUpgrade.getDamage());
-        });
+        projectiles.add(new Projectile(pathName, s, enemy, location, currentUpgrade.getDamage()));
     }
 
     public int getCost() {

@@ -27,7 +27,6 @@ public class Game extends App {
     private ArrayList<Tower> towers;
     private ArrayList<Enemy> enemies;
     private ArrayList<Location> pathLocations;
-    private Grid grid;
     private double money;
     private boolean clicked;
     private int health;
@@ -39,7 +38,6 @@ public class Game extends App {
         towers = new ArrayList<Tower>();
         enemies = new ArrayList<Enemy>();
         money = 1000;
-        grid = new Grid(width/75, height/75);
         clicked = false;
         health = 20; //change to 69 later
         pathLocations = new ArrayList<Location>();
@@ -73,11 +71,7 @@ public class Game extends App {
     public ArrayList<Enemy> getEnemies() {
         return enemies;
     }
-
-    public Grid getGrid() {
-        return grid;
-    }
-
+    
     public double getMoney() {
         return money;
     }

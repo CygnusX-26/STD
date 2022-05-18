@@ -8,7 +8,6 @@ public class Fulk extends Tower {
     //Upgrade[] upgradeList = new Upgrade[6];
     Game game;
     Upgrade currentUpgrade;
-    Tile tile;
 
     /**
      * Constructor for the tower
