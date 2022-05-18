@@ -66,21 +66,6 @@ public abstract class Tower {
         game.addMoney(cost * 0.7);
     }
 
-    private void attack(Enemy enemy) {
-        //System.out.println("Damaged");
-
-        Platform.runLater(() -> {
-            ImageView sprite = new ImageView(new Image(getClass().getResource(pathName).toExternalForm()));
-            sprite.setFitWidth(15);
-            sprite.setFitHeight(15);
-            sprite.setTranslateX(location.getX());
-            sprite.setTranslateY(location.getY());
-            s.getChildren().add(sprite);
-
-            enemy.damage(currentUpgrade.getDamage());
-        });
-    }
-
     public int getCost() {
         return cost;
     }
@@ -88,4 +73,11 @@ public abstract class Tower {
     public Upgrade getUpgrade() {
         return currentUpgrade;
     }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    abstract public void attack(Enemy enemy);
+     
 }
