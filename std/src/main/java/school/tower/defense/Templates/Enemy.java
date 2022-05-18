@@ -20,9 +20,8 @@ public abstract class Enemy {
         private String[] pathName;
         private double distanceTraveled;
         private Stage stage;
-        private ArrayList<Enemy> enemies;
     
-        public Enemy(String name, int health, double speed, int reward, StackPane s, String[] pathName, Stage stage, ArrayList<Location> pathLocations, ArrayList<Enemy> enemies) {
+        public Enemy(String name, int health, double speed, int reward, StackPane s, String[] pathName, Stage stage, ArrayList<Location> pathLocations) {
             this.name = name;
             this.health = health;
             this.speed = speed;
@@ -34,11 +33,12 @@ public abstract class Enemy {
             this.s = s;
             this.pathName = pathName;
             this.stage = stage;
-            this.enemies = enemies;
             sprite = new ImageView(new Image(getClass().getResource(pathName[health]).toExternalForm()));
             sprite.setFitWidth(75);
             sprite.setFitHeight(75);
-            sprite.setTranslateX(this.getLocation().getX() - stage.getWidth()/2);
+            sprite.setTranslateX(this.getLocation().getX());// - stage.getWidth()/2);
+            sprite.setTranslateY(this.getLocation().getY());// - stage.getHeight()/2);
+
             s.getChildren().add(sprite);
         }
     
@@ -102,7 +102,8 @@ public abstract class Enemy {
             sprite = new ImageView(new Image(getClass().getResource(pathName[health]).toExternalForm()));
             sprite.setFitWidth(75);
             sprite.setFitHeight(75);
-            sprite.setTranslateX(this.getLocation().getX() - stage.getWidth()/2);
+            sprite.setTranslateX(this.getLocation().getX());
+            sprite.setTranslateY(this.getLocation().getY());
             s.getChildren().add(sprite);
             //enemies.add(this);        
         }
@@ -110,8 +111,5 @@ public abstract class Enemy {
         public ImageView getSprite() {
             return sprite;
         }
-    
-        public abstract void move();
-        public abstract void attack(Tower tower);
         //public abstract String spriteStatus();
 }

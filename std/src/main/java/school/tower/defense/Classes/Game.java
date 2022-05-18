@@ -272,7 +272,7 @@ public class Game extends App {
             {
                 continue;
             }
-            if (probability < 0.5 )
+            if (probability < 0.45 )
             {
                 enemyType = 0;
             }
@@ -280,25 +280,39 @@ public class Game extends App {
             {
                 enemyType = 1;
             }
-            else if (probability < 1 )
+            else if (probability < 0.75 )
             {
                 enemyType = 2;
+            }
+            else if (probability < 0.9 )
+            {
+                enemyType = 3;
+            }
+            else if (probability < 1 )
+            {
+                enemyType = 4;
             }
             for (int j = 0; j < cap; j++) // generate a type of enemy rando times
             {
                 switch (enemyType)
                 {
                     case 0:
-                    enemyQueue.add(new LetterOfRec(s, stage, pathLocations, enemies));
-                    break;
+                        enemyQueue.add(new LetterOfRec(s, stage, pathLocations, enemies));
+                        break;
                     case 1:
-                    enemyQueue.add(new LetterOfRec(s, stage, pathLocations, enemies));
-                    break;
+                        enemyQueue.add(new Collegeboard(s, stage, pathLocations, enemies));
+                        break;
                     case 2:
-                    enemyQueue.add(new LetterOfRec(s, stage, pathLocations, enemies));
-                    break;
+                        enemyQueue.add(new Mail(s, stage, pathLocations, enemies));
+                        break;
+                    case 3:
+                        enemyQueue.add(new Schoology(s, stage, pathLocations, enemies));
+                        break;
+                    case 4:
+                        enemyQueue.add(new Wifi(s, stage, pathLocations, enemies));
+                        break;
                     default:
-                    break;
+                        break;
                 }
             }
         }
