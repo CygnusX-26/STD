@@ -102,7 +102,8 @@ public abstract class Enemy {
             sprite = new ImageView(new Image(getClass().getResource(pathName[health]).toExternalForm()));
             sprite.setFitWidth(75);
             sprite.setFitHeight(75);
-            sprite.setTranslateX(this.getLocation().getX() - stage.getWidth()/2);
+            sprite.setTranslateX(this.getLocation().getX());
+            sprite.setTranslateY(this.getLocation().getY());
             s.getChildren().add(sprite);
             //enemies.add(this);        
         }
