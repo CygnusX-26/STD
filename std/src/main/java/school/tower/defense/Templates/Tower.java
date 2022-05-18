@@ -82,4 +82,8 @@ public abstract class Tower {
     public Upgrade getUpgrade() {
         return currentUpgrade;
     }
+
+    public Location getLocation() {
+        return location;
+    }
 }
