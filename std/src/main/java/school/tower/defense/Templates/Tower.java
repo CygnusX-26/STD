@@ -49,8 +49,6 @@ public abstract class Tower {
 
         for (Enemy enemy : game.getEnemies()) {
             double distance = Math.sqrt(Math.pow(enemy.getLocation().getX() - location.getX(), 2) + Math.pow(enemy.getLocation().getY() - location.getY(), 2));
-
-            System.out.println("Enemy is" + distance);
             
             if (distance < currentUpgrade.getRange() && enemy.getDistanceTraveled() > furthestTraveled) {
                 furthestEnemy = enemy;

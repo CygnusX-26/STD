@@ -1,5 +1,7 @@
 package school.tower.defense.Classes;
 
+import java.util.concurrent.TimeUnit;
+
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,6 +23,8 @@ public class Projectile {
         this.damage = damage;
         this.s = s;
 
+        System.out.println("yes");
+
         Platform.runLater(() -> {
             ImageView sprite = new ImageView(new Image(getClass().getResource(pathName).toExternalForm()));
             sprite.setFitWidth(15);
@@ -28,10 +32,66 @@ public class Projectile {
             sprite.setTranslateX(location.getX() - s.getWidth()/2);
             sprite.setTranslateY(location.getY() - s.getHeight()/2);
             s.getChildren().add(sprite);
+
+            this.sprite = sprite;
         });
+
+        new Thread(() -> {
+            long lastUpdate = System.currentTimeMillis();
+
+            while (sprite == null) {
+                try {
+                    TimeUnit.MILLISECONDS.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            while (true) {
+                try {
+                    long length = (long) (100);
+                    TimeUnit.MILLISECONDS.sleep(length);
+
+                    if (sprite == null) {
+                        break;
+                    }
+
+                    updateProjectile(System.currentTimeMillis() - lastUpdate);
+
+                    lastUpdate = System.currentTimeMillis();
+                    
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     public void updateProjectile(double delta) {
+        double distance = Math.sqrt(Math.pow(target.getLocation().getX() - location.getX(), 2) + Math.pow(target.getLocation().getY() - location.getY(), 2));
+        double canMoveDistance = delta/1.5;
+        double distanceToMove = distance >= canMoveDistance ? canMoveDistance : distance;
+        double percentToMove = distanceToMove/distance;
 
+        double locationToMoveX = location.getX() + (target.getLocation().getX() - location.getX()) * percentToMove;
+        double locationToMoveY = location.getY() + (target.getLocation().getY() - location.getY()) * percentToMove;
+
+        sprite.setTranslateX(locationToMoveX - s.getWidth()/2);
+        sprite.setTranslateY(locationToMoveY - s.getHeight()/2);
+
+        location = new Location(locationToMoveX, locationToMoveY);
+
+        distance = Math.sqrt(Math.pow(target.getLocation().getX() - location.getX(), 2) + Math.pow(target.getLocation().getY() - location.getY(), 2));
+
+        if (distance < 5) {
+            Platform.runLater(() -> {
+                System.out.println("hit enemy");
+
+                target.damage(damage);
+                s.getChildren().remove(sprite);
+
+                sprite = null;
+            });
+        }
     }
 }
