@@ -9,6 +9,6 @@ import school.tower.defense.Templates.Enemy;
 public class Mail extends Enemy {
     
     public Mail(StackPane s, Stage stage, ArrayList<Location> pathLocations, ArrayList<Enemy> enemies) {
-        super("Mail", 3, 0.3, 5, s, new String[] {"Enemies/Gmail/gmail1.png", "Enemies/Gmail/gmail1.png", "Enemies/Gmail/gmail2.png", "Enemies/Gmail/gmail3.png"}, stage, pathLocations); 
+        super("Mail", 3, 0.25, 5, s, new String[] {"Enemies/Gmail/gmail1.png", "Enemies/Gmail/gmail1.png", "Enemies/Gmail/gmail2.png", "Enemies/Gmail/gmail3.png"}, stage, pathLocations); 
     }
 }
