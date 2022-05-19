@@ -19,7 +19,6 @@ public abstract class Enemy {
     private ImageView sprite;
     private String[] pathName;
     private double distanceTraveled;
-    private Stage stage;
 
     /**
      * Creates an enemy
@@ -29,10 +28,9 @@ public abstract class Enemy {
      * @param reward The reward of the enemy
      * @param s The stackpane
      * @param pathName The path name of the enemy
-     * @param stage The stage
      * @param pathLocations The points on the path
      */
-    public Enemy(String name, int health, double speed, int reward, StackPane s, String[] pathName, Stage stage, ArrayList<Location> pathLocations) {
+    public Enemy(String name, int health, double speed, int reward, StackPane s, String[] pathName, ArrayList<Location> pathLocations) {
         this.name = name;
         this.health = health;
         this.speed = speed;
@@ -43,7 +41,6 @@ public abstract class Enemy {
         this.location = pathLocations.get(0);
         this.s = s;
         this.pathName = pathName;
-        this.stage = stage;
         sprite = new ImageView(new Image(getClass().getResource(pathName[health]).toExternalForm()));
         sprite.setFitWidth(75);
         sprite.setFitHeight(75);
