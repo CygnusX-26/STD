@@ -7,11 +7,9 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.event.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
@@ -23,21 +21,28 @@ import school.tower.defense.EnemyTypes.*;
 import school.tower.defense.Templates.*;
 import school.tower.defense.TowerTypes.*;
 
+/**
+ * Game controls the logic of STD, runs all the behind the scenes magic
+ */
 public class Game extends App {
     private ArrayList<Tower> towers;
     private ArrayList<Enemy> enemies;
     private ArrayList<Location> pathLocations;
     private double money;
-    private boolean clicked;
     private int health;
     private Stage stage;
     private int roundNum;
 
+    /**
+     * constructs a new game instance
+     * @param s the stackplane of all images on screen
+     * @param width the width of the screen
+     * @param height the height of the screen
+     */
     public Game(Stage s, int width, int height) {
         towers = new ArrayList<Tower>();
         enemies = new ArrayList<Enemy>();
         money = 1000;
-        clicked = false;
         health = 20; //change to 69 later
         pathLocations = new ArrayList<Location>();
         stage = s;
@@ -62,34 +67,74 @@ public class Game extends App {
         }
     }
 
+    
+    /** 
+     * returns an arraylist of all towers
+     * @return ArrayList<Tower> of all towers on screen
+     */
     public ArrayList<Tower> getTowers() {
         return towers;
     }
 
+    
+    /** 
+     * returns an arraylist of all enemires
+     * @return ArrayList<Enemy> of all enemies on screen
+     */
     public ArrayList<Enemy> getEnemies() {
         return enemies;
     }
     
+    
+    /** 
+     * returns the amount of money in player account
+     * @return double of curent money
+     */
     public double getMoney() {
         return money;
     }
 
+    
+    /** 
+     * fixes money to player's account
+     * @param money set the amount of money to account
+     */
     public void setMoney(double money) {
         this.money = money;
     }
 
+    
+    /** 
+     * adds money to player's account
+     * @param money the amount of money to add to the account
+     */
     public void addMoney(double money) {
         this.money += money;
     }
 
+    
+    /** 
+     * removes money from player's account
+     * @param money the amount of money to remove from the account
+     */
     public void subtractMoney(double money) {
         this.money -= money;
     }
 
+    
+    /** 
+     * returns current player health
+     * @return int of health value
+     */
     public int getHealth(){
         return health;
     }
 
+    
+    /** 
+     * Updates the health of the player
+     * @return int of the new health value
+     */
     public int takeDamage(){
         health--;
         return health;
@@ -119,9 +164,6 @@ public class Game extends App {
             if (enemy.getPathNumber() >= pathLocations.size() - 1) {
                 continue;
             }
-
-            //System.out.println(enemy.getPathNumber());
-            //System.out.println(enemy.getTraveledPercent() * 100);
 
             double distanceToMove = enemy.getSpeed() * Delta;
             Location currentPathLocation = enemy.getLocation();
@@ -164,6 +206,14 @@ public class Game extends App {
         }
     }
     
+    
+    /** 
+     * run() starts multiple threads that control the timinigs of the game. 
+     * It updates enemy position, checks for damages, updates health and spawns enemies when appropriate
+     * @param s the layers of images on the screen
+     * @param hpnum the textbox of the current health
+     * @param moneynum the textbox of current amount of money
+     */
     public void run(StackPane s, Text hpnum, Text moneynum) {
         Queue<Enemy> enemyQueue = new LinkedList<>();
         final long[] round = {1};
@@ -252,6 +302,14 @@ public class Game extends App {
         // });
     }
 
+    
+    /** 
+     * Creates and adds enemies into the queue each and every round
+     * @param roundNum the current round number
+     * @param enemyQueue the queue of enemeies to add enemies into
+     * @param s the StackPane to add enemies on top of
+     * @return Queue<Enemy> a fully loaded list of enemies to spawn during the round
+     */
     public Queue<Enemy> loadEnemiesIntoQueue(int roundNum, Queue<Enemy> enemyQueue, StackPane s)
     {
         Random rando = new Random();
@@ -312,6 +370,11 @@ public class Game extends App {
         return enemyQueue;
     }
 
+    
+    /** 
+     * upgrades all towers with the ID that matches
+     * @param ID the tower ID type it should upgrade
+     */
     public void upgradeTower(int ID)
     {
         System.out.print("game.upgradeTower ");
