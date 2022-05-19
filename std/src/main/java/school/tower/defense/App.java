@@ -8,6 +8,7 @@ import java.awt.MouseInfo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javafx.animation.*;
 import javafx.application.Application;
 import javafx.scene.Cursor;
@@ -505,6 +506,7 @@ public class App extends Application {
             //do nothing for now
         });
 
+        HashMap<ImageView, Tower> h = new HashMap<ImageView, Tower>();
         mapping.setOnMouseClicked(value ->  {
             java.awt.Point p = MouseInfo.getPointerInfo().getLocation();
 
@@ -530,7 +532,8 @@ public class App extends Application {
                                 g.addMoney(fulkCost/2);
                                 moneynum.setText("$"+ (int)g.getMoney() + "");
                                 game.getChildren().remove(tower);
-                                g.getTowers().remove(f);
+                                g.getTowers().remove(h.get(tower));
+                                h.get(tower).stopThread();
                             }
                         });
                         tower.setTranslateX(p.getX() - stage.getWidth()/2 + 90); //added an offset here to match the head of teachers 
@@ -540,6 +543,7 @@ public class App extends Application {
                         game.getChildren().add(tower);
                         
                         g.getTowers().add(f); 
+                        h.put(tower, f);
                         //TODO fix this tower initalizations. why isn't this constucting a tower beforehand? -Colin
                         // might be due to the testing purposes comment above. 
                         teacherIndex[0] = 0;

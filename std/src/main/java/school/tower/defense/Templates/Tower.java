@@ -17,6 +17,8 @@ public abstract class Tower {
     String pathName;
     int cost;
     ArrayList<Projectile> projectiles;
+    Thread t;
+    boolean exists;
 
     public abstract void upgrade(); //Will upgrade the tower and deduct the cost
 
@@ -28,9 +30,10 @@ public abstract class Tower {
         this.pathName = pathName;
         this.s = s;
         this.projectiles = new ArrayList<Projectile>();
+        exists = true;
 
-        new Thread(() -> {
-            while (true) {
+        t = new Thread(() -> {
+            while (exists) {
                 try {
                     long length = (long) (1000 / ((double) currentUpgrade.getAttackspeed()));
                     TimeUnit.MILLISECONDS.sleep(length);
@@ -40,7 +43,8 @@ public abstract class Tower {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        });
+        t.start();
     }
     
     public void scanEnemies() {
@@ -83,4 +87,9 @@ public abstract class Tower {
     public Location getLocation() {
         return location;
     }
+
+    public void stopThread(){
+        exists = false;
+    }
+
 }
