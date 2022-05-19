@@ -1,9 +1,8 @@
 package school.tower.defense;
 
-import school.tower.defense.Classes.Game;
-import school.tower.defense.Classes.Location;
+import school.tower.defense.Classes.*;
 import school.tower.defense.Templates.Tower;
-import school.tower.defense.TowerTypes.Fulk;
+import school.tower.defense.TowerTypes.*;
 import java.awt.MouseInfo;
 import java.io.IOException;
 import java.net.URL;
