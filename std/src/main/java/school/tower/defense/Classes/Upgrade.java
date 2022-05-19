@@ -8,7 +8,7 @@ public class Upgrade {
     int cost;
     int damage;
     int range;
-    int attackspeed;
+    double attackspeed;
 
     /**
      * Constructing a upgrade and initalizing all variables
@@ -18,7 +18,7 @@ public class Upgrade {
      * @param range the range increase of the upgrade
      * @param attackspeed the reload speed increase of the update
      */
-    public Upgrade(String name, int cost, int damage, int range, int attackspeed) {
+    public Upgrade(String name, int cost, int damage, int range, double attackspeed) {
         this.name = name;
         this.cost = cost;
         this.damage = damage;
@@ -67,7 +67,7 @@ public class Upgrade {
      * Returns the attack speed of the upgrade
      * @return int
      */
-    public int getAttackspeed() {
+    public double getAttackspeed() {
         return attackspeed;
     }
 }
