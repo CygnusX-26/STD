@@ -8,6 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import school.tower.defense.Templates.Enemy;
 
+/**
+ * creates a projectile from the tower to hit the enemy and deals damage
+ */
 public class Projectile {
     ImageView sprite;
     String pathName;
@@ -16,14 +19,20 @@ public class Projectile {
     int damage;
     StackPane s;
 
+    /**
+     * Creates a projectile and runs a loop to update the projectiles position
+     * @param pathName The path name of the projectile
+     * @param s The scene to add the projectile to
+     * @param target The enemy to attack
+     * @param location The location of the projectile
+     * @param damage The damage of the projectile
+     */
     public Projectile(String pathName, StackPane s, Enemy target, Location location, int damage) {
         this.pathName = pathName;
         this.target = target;
         this.location = location;
         this.damage = damage;
         this.s = s;
-
-        System.out.println("yes");
 
         Platform.runLater(() -> {
             ImageView sprite = new ImageView(new Image(getClass().getResource(pathName).toExternalForm()));
@@ -67,6 +76,10 @@ public class Projectile {
         }).start();
     }
 
+    /**
+     * Updates the projectiles position and damaged the target
+     * @param time The time since the last projectile update
+     */
     public void updateProjectile(double delta) {
         double distance = Math.sqrt(Math.pow(target.getLocation().getX() - location.getX(), 2) + Math.pow(target.getLocation().getY() - location.getY(), 2));
         double canMoveDistance = delta/1.5;
@@ -85,8 +98,6 @@ public class Projectile {
 
         if (distance < 5) {
             Platform.runLater(() -> {
-                System.out.println("hit enemy");
-
                 target.damage(damage);
                 s.getChildren().remove(sprite);
 

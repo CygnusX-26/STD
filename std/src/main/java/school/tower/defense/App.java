@@ -1,9 +1,8 @@
 package school.tower.defense;
 
-import school.tower.defense.Classes.Game;
-import school.tower.defense.Classes.Location;
+import school.tower.defense.Classes.*;
 import school.tower.defense.Templates.Tower;
-import school.tower.defense.TowerTypes.Fulk;
+import school.tower.defense.TowerTypes.*;
 import java.awt.MouseInfo;
 import java.io.IOException;
 import java.net.URL;
@@ -11,9 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.animation.*;
 import javafx.application.Application;
-import javafx.scene.Cursor;
-import javafx.scene.ImageCursor;
-import javafx.scene.Scene;
+import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.*;
@@ -25,7 +22,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
- * JavaFX App
+ * The front end graphics of STD
  */
 public class App extends Application {
     private static Scene scene;
@@ -35,7 +32,7 @@ public class App extends Application {
     private StackPane game;
 
     /**
-     * starts the JavaFX application
+     * starts the JavaFX application graphics
      * @param stage the stage to be displayed
      * @throws IOException if the application fails to start
      */
@@ -53,14 +50,14 @@ public class App extends Application {
 
     /**
      * Runs the JavaFX application
-     * @param args
+     * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch();
     }
 
     /**
-     * Loads the menu scene
+     * Loads the menu opening scene
      * @throws IOException if fails to load the scene
      */
     public void loadMenu() throws IOException {
@@ -113,20 +110,6 @@ public class App extends Application {
         kwongTransition.setCycleCount(Animation.INDEFINITE);
         menuPlayer.setAutoPlay(true);
         menuPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-
-        /*
-        MENUTITLE.setTranslateY(-150);
-        titleTransition.setNode(MENUTITLE);
-        MENUTITLE.setScaleX(0.5);
-        MENUTITLE.setScaleY(0.5);
-        //titleTransition.autoReverseProperty();
-        titleTransition.setAutoReverse(true);
-        titleTransition.setFromAngle(-30);
-        titleTransition.setByAngle(60);
-        titleTransition.setCycleCount(Animation.INDEFINITE);
-        titleTransition.setDuration(new Duration(2));
-        //TODO the rotation of STD title
-`       */
 
         startButton.setOnAction(value ->  {
             try {
@@ -199,19 +182,13 @@ public class App extends Application {
         menuPlayer.play();
         stage.setMaximized(true);
 
-        //initialize objects
         int fulkCost = 35; //make sure to modify the tooltips when modifying this
         int kwongCost = 45; // also put more stats in the tooltips maybe??
         int dunlapCost = 60;
         int taylorCost = 70;
         int albakerCost = 90;
         int palloneCost = 500;
-        int[] fulkUpgradeAmt = {0};
-        int[] kwongUpgradeAmt = {0};
-        int[] dunlapUpgradeAmt = {0};
-        int[] taylorUpgradeAmt = {0};
-        int[] albakerUpgradeAmt = {0};
-        int[] palloneUpgradeAmt = {0};
+
         int costOfUpgrade = 100;
 
         Text hpnum = new Text("69");
@@ -263,7 +240,7 @@ public class App extends Application {
         Tooltip taylorUpgradeTip = new Tooltip("Dunlap's Upgrade (100 Money)-- Damage increased for all Dunlaps on screen");
         Tooltip dunlapUpgradeTip = new Tooltip("Taylor's Upgrade (100 Money)-- Damage increased for all Taylors on screen");
         Tooltip albakerUpgradeTip = new Tooltip("Albaker's Upgrade (100 Money)-- Damage increased for all Albakers on screen");
-        Tooltip palloneUpgradeTip = new Tooltip("Pallone's Upgrade (100 Money)-- Damage increased for all Pallones on screen");
+        Tooltip palloneUpgradeTip = new Tooltip("Pallone's Upgrade (100 Money)-- Damage increased for all Pallonii on screen");
 
         Text towers = new Text("Hire Teachers:");
         Text health = new Text("Health:");
@@ -423,21 +400,21 @@ public class App extends Application {
         
         towers.setTranslateX(0 - stage.getWidth()/2 + 150);
         towers.setTranslateY(0 - stage.getHeight()/2 + 50);
-        health.setTranslateX(stage.getWidth()/2 - 275); //neil check if offsets look good on ur screen (origial 100)
-        health.setTranslateY(0 - stage.getHeight()/2 + 125); //neil check if offsets look good on ur screen (origial 75)
+        health.setTranslateX(stage.getWidth()/2 - 275);
+        health.setTranslateY(0 - stage.getHeight()/2 + 115); 
         hpnum.setTranslateX(stage.getWidth()/2 - 100);
-        hpnum.setTranslateY(0 - stage.getHeight()/2 + 125); 
-        money.setTranslateX(stage.getWidth()/2 - 275); //neil check if offsets look good on ur screen (origial 100)
-        money.setTranslateY(0 - stage.getHeight()/2 + 225); //neil check if offsets look good on ur screen (origial 175)
+        hpnum.setTranslateY(0 - stage.getHeight()/2 + 115); 
+        money.setTranslateX(stage.getWidth()/2 - 275);
+        money.setTranslateY(0 - stage.getHeight()/2 + 215);
         moneynum.setTranslateX(stage.getWidth()/2 - 100);
-        moneynum.setTranslateY(0 - stage.getHeight()/2 + 225);
+        moneynum.setTranslateY(0 - stage.getHeight()/2 + 215);
 
 
         mapping.setMaxWidth(1920);
         mapping.setBackground(new Background(mappingBackground));
         mapping.setMaxHeight(1080);
 
-        String[] teachers = new String[]{"", "Fulk", "Kwong", "Dunlap", "Taylor", "Albaker", "Pallone", "Fire a Teacher"}; //delete later
+        //String[] teachers = new String[]{"", "Fulk", "Kwong", "Dunlap", "Taylor", "Albaker", "Pallone", "Fire a Teacher"}; //delete later
         final int[] teacherIndex = {0};
         fulkButton.setOnAction(value ->  {
             scene.setCursor(new ImageCursor(fulkPlace));
@@ -476,7 +453,6 @@ public class App extends Application {
                     System.out.print(" upgrading all fulks");
                     g.upgradeTower(8);
                     moneynum.setText("$"+ (int)g.getMoney() + "");
-                    fulkUpgradeAmt[0]++;
                 }
                 else
                 {
@@ -510,8 +486,8 @@ public class App extends Application {
         mapping.setOnMouseClicked(value ->  {
             java.awt.Point p = MouseInfo.getPointerInfo().getLocation();
 
-            double x = p.getX()/stage.getWidth();
-            double y = p.getY()/stage.getHeight();
+            //double x = p.getX()/stage.getWidth();
+            //double y = p.getY()/stage.getHeight();
             
             Image towerImage;
             ImageView tower;
