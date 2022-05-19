@@ -21,6 +21,17 @@ public abstract class Enemy {
     private double distanceTraveled;
     private Stage stage;
 
+    /**
+     * Creates an enemy
+     * @param name The name of the enemy
+     * @param health The health of the enemy
+     * @param speed The speed of the enemy
+     * @param reward The reward of the enemy
+     * @param s The stackpane
+     * @param pathName The path name of the enemy
+     * @param stage The stage
+     * @param pathLocations The points on the path
+     */
     public Enemy(String name, int health, double speed, int reward, StackPane s, String[] pathName, Stage stage, ArrayList<Location> pathLocations) {
         this.name = name;
         this.health = health;
@@ -42,30 +53,58 @@ public abstract class Enemy {
         s.getChildren().add(sprite);
     }
 
+    /**
+     * Gets the name of the enemy
+     * @return The name of the enemy
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets the health of the enemy
+     * @return The health of the enemy
+     */
     public int getHealth() {
         return health;
     }
 
+    /**
+     * Gets the speed of the enemy
+     * @return The speed of the enemy
+     */
     public double getSpeed() {
         return speed;
     }
 
+    /**
+     * Gets the reward of the enemy
+     * @return The reward of the enemy
+     */
     public int getReward() {
         return reward;
     }
 
+    /**
+     * Sets the path number of the enemy
+     * @param pathNumber The path number of the enemy
+     */
     public void setPathNumber(int pathNumber) {
         this.pathNumber = pathNumber;
     }
 
+    /**
+     * Gets the path number of the enemy
+     * @return The path number of the enemy
+     */
     public int getPathNumber() {
         return pathNumber;
     }
 
+    /**
+     * Sets the traveled percent of the enemy
+     * @param  The traveled percent of the enemy
+     */
     public void setTraveledPercent(double traveledPercent) {
         this.traveledPercent = traveledPercent;
     }
@@ -96,7 +135,13 @@ public abstract class Enemy {
         {
             health = 0;
         }
+
         s.getChildren().remove(sprite);
+
+        if (health <= 0) {
+            return;
+        }
+
         sprite = new ImageView(new Image(getClass().getResource(pathName[health]).toExternalForm()));
         sprite.setFitWidth(75);
         sprite.setFitHeight(75);

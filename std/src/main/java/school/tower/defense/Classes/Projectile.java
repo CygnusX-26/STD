@@ -1,5 +1,7 @@
 package school.tower.defense.Classes;
 
+import java.util.concurrent.TimeUnit;
+
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,6 +15,15 @@ public class Projectile {
     Location location;
     int damage;
     StackPane s;
+
+    /**
+     * Creates a projectile and runs a loop to update the projectiles position
+     * @param pathName The path name of the projectile
+     * @param s The scene to add the projectile to
+     * @param target The enemy to attack
+     * @param location The location of the projectile
+     * @param damage The damage of the projectile
+     */
 
     public Projectile(String pathName, StackPane s, Enemy target, Location location, int damage) {
         this.pathName = pathName;
@@ -28,10 +39,69 @@ public class Projectile {
             sprite.setTranslateX(location.getX() - s.getWidth()/2);
             sprite.setTranslateY(location.getY() - s.getHeight()/2);
             s.getChildren().add(sprite);
+
+            this.sprite = sprite;
         });
+
+        new Thread(() -> {
+            long lastUpdate = System.currentTimeMillis();
+
+            while (sprite == null) {
+                try {
+                    TimeUnit.MILLISECONDS.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            while (true) {
+                try {
+                    long length = (long) (100);
+                    TimeUnit.MILLISECONDS.sleep(length);
+
+                    if (sprite == null) {
+                        break;
+                    }
+
+                    updateProjectile(System.currentTimeMillis() - lastUpdate);
+
+                    lastUpdate = System.currentTimeMillis();
+                    
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
-    public void updateProjectile(double delta) {
+    /**
+     * Updates the projectiles position and damaged the target
+     * @param time The time since the last projectile update
+     */
 
+    public void updateProjectile(double delta) {
+        double distance = Math.sqrt(Math.pow(target.getLocation().getX() - location.getX(), 2) + Math.pow(target.getLocation().getY() - location.getY(), 2));
+        double canMoveDistance = delta/1.5;
+        double distanceToMove = distance >= canMoveDistance ? canMoveDistance : distance;
+        double percentToMove = distanceToMove/distance;
+
+        double locationToMoveX = location.getX() + (target.getLocation().getX() - location.getX()) * percentToMove;
+        double locationToMoveY = location.getY() + (target.getLocation().getY() - location.getY()) * percentToMove;
+
+        sprite.setTranslateX(locationToMoveX - s.getWidth()/2);
+        sprite.setTranslateY(locationToMoveY - s.getHeight()/2);
+
+        location = new Location(locationToMoveX, locationToMoveY);
+
+        distance = Math.sqrt(Math.pow(target.getLocation().getX() - location.getX(), 2) + Math.pow(target.getLocation().getY() - location.getY(), 2));
+
+        if (distance < 5) {
+            Platform.runLater(() -> {
+                target.damage(damage);
+                s.getChildren().remove(sprite);
+
+                sprite = null;
+            });
+        }
     }
 }

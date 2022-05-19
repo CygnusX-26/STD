@@ -232,6 +232,7 @@ public class Game extends App {
                     e.printStackTrace();
                 }
             }
+
             Platform.runLater(() -> {
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("L");
@@ -279,7 +280,7 @@ public class Game extends App {
                         }
                         if (enemies.size() >= 5) //temp testing code for damamge values
                         {
-                            enemies.get(i).damage(1);
+                            //enemies.get(i).damage(1);
                         }
                     }
                     System.out.print(enemies.size()+" ");

@@ -1,7 +1,9 @@
 package school.tower.defense;
 
-import school.tower.defense.Classes.*;
-import school.tower.defense.TowerTypes.*;
+import school.tower.defense.Classes.Game;
+import school.tower.defense.Classes.Location;
+import school.tower.defense.Templates.Tower;
+import school.tower.defense.TowerTypes.Fulk;
 import java.awt.MouseInfo;
 import java.io.IOException;
 import java.net.URL;
@@ -446,31 +448,6 @@ public class App extends Application {
             if (true)//(fulkUpgradeAmt[0] < 5)
             {
                 if (g.getMoney() > costOfUpgrade)
-                /*{
-                    g.subtractMoney(costOfUpgrade);
-                    g.upgradeTower(8);
-                    
-                    if (fulkUpgradeAmt[0] == 0) {
-                        System.out.println("upgrade 2 tooltip");
-                        fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 2 -- Speed increased by 2")); 
-                    }
-                    if (fulkUpgradeAmt[0] == 1) {
-                        System.out.println("upgrade 3 tooltip");
-                        fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 3 -- Damage increased to 2 damage per shot")); 
-                    }
-                    if (fulkUpgradeAmt[0] == 2) {
-                        System.out.println("upgrade 4 tooltip");
-                        fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 4 -- Speed increased by 2")); 
-                    }
-                    if (fulkUpgradeAmt[0] == 3) {
-                        System.out.println("upgrade 5 tooltip");
-                        fulkUpgradeButton.setTooltip(new Tooltip("Fulk's Upgrade 5 -- Damage increased to 2 damage per shot")); 
-                    }
-                    if (fulkUpgradeAmt[0] == 4) {
-                        System.out.println("upgrade 6 tooltip");
-                        fulkUpgradeButton.setTooltip(new Tooltip("This upgrade path is maxed out. You cannot buy another upgrade here.")); 
-                    }
-                }*/
                 {
                     g.subtractMoney(costOfUpgrade);
                     System.out.print(" upgrading all fulks");
@@ -520,6 +497,7 @@ public class App extends Application {
                 case 1:
                 //change this, for testing purposes only
                     if (g.getMoney() > fulkCost){
+                        Tower f = new Fulk(g, game, "Teachers/Fulk.PNG", new Location(p.getX(), p.getY()));
                         towerImage = new Image(getClass().getResource("Classes/Teachers/Fulk.PNG").toExternalForm());
                         tower = new ImageView(towerImage);
                         tower.setScaleX(0.5);
@@ -529,6 +507,7 @@ public class App extends Application {
                                 g.addMoney(fulkCost/2);
                                 moneynum.setText("$"+ (int)g.getMoney() + "");
                                 game.getChildren().remove(tower);
+                                g.getTowers().remove(f);
                             }
                         });
                         tower.setTranslateX(p.getX() - stage.getWidth()/2 + 90); //added an offset here to match the head of teachers 
@@ -536,7 +515,8 @@ public class App extends Application {
                         g.subtractMoney(fulkCost);
                         moneynum.setText("$"+ (int)g.getMoney() + "");
                         game.getChildren().add(tower);
-                        g.getTowers().add(new Fulk(g, game, "Teachers/Fulk.PNG", new Location(p.getX(), p.getY()))); 
+                        
+                        g.getTowers().add(f); 
                         //TODO fix this tower initalizations. why isn't this constucting a tower beforehand? -Colin
                         // might be due to the testing purposes comment above. 
                         teacherIndex[0] = 0;
