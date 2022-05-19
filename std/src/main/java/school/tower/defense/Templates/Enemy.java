@@ -103,32 +103,56 @@ public abstract class Enemy {
 
     /**
      * Sets the traveled percent of the enemy
-     * @param  The traveled percent of the enemy
+     * @param traveledPercent The traveled percent to set
      */
     public void setTraveledPercent(double traveledPercent) {
         this.traveledPercent = traveledPercent;
     }
 
+    /**
+     * Gets the traveled percent of the enemy
+     * @return The traveled percent of the enemy
+     */
     public double getTraveledPercent() {
         return traveledPercent;
     }
 
+    /**
+     * Adds distance traveled to the enemy
+     * @param distance The distance to add
+     */
     public void addDistanceTraveled(double distance) {
         this.distanceTraveled += distance;
     }
 
+    /**
+     * Gets the distance traveled of the enemy
+     * @return The distance traveled of the enemy
+     */
     public double getDistanceTraveled() {
         return distanceTraveled;
     }
 
+    /**
+     * Sets the location of the enemy
+     * @param location the location to set the enemy to
+     */
     public void setLocation(Location location) {
         this.location = location;
     }
 
+    /**
+     * Gets the location of the enemy
+     * @return The location of the enemy
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * Damages the enemy
+     * @param amount The amount to damage the enemy
+     */
     public void damage(int amount) {
         health -= amount;
         if (health < 0)
@@ -150,6 +174,10 @@ public abstract class Enemy {
         s.getChildren().add(sprite);
     }
 
+    /**
+     * Gets the sprite of the enemy
+     * @return The sprite of the enemy
+     */
     public ImageView getSprite() {
         return sprite;
     }
