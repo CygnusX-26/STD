@@ -12,13 +12,9 @@ public class Fulk extends Tower {
     //Upgrade[] upgradeList = new Upgrade[6];
     Game game;
     Upgrade currentUpgrade;
-<<<<<<< HEAD
-
-=======
-    Tile tile;
+    //Tile tile;
     StackPane s;
     String pathName;
->>>>>>> bfb72d6be4aa05ee93406a0f04f7a552388dc48d
     /**
      * Constructor for the tower
      */
