@@ -399,21 +399,21 @@ public class App extends Application {
         
         towers.setTranslateX(0 - stage.getWidth()/2 + 150);
         towers.setTranslateY(0 - stage.getHeight()/2 + 50);
-        health.setTranslateX(stage.getWidth()/2 - 275); //neil check if offsets look good on ur screen (origial 100)
-        health.setTranslateY(0 - stage.getHeight()/2 + 125); //neil check if offsets look good on ur screen (origial 75)
+        health.setTranslateX(stage.getWidth()/2 - 275);
+        health.setTranslateY(0 - stage.getHeight()/2 + 115); 
         hpnum.setTranslateX(stage.getWidth()/2 - 100);
-        hpnum.setTranslateY(0 - stage.getHeight()/2 + 125); 
-        money.setTranslateX(stage.getWidth()/2 - 275); //neil check if offsets look good on ur screen (origial 100)
-        money.setTranslateY(0 - stage.getHeight()/2 + 225); //neil check if offsets look good on ur screen (origial 175)
+        hpnum.setTranslateY(0 - stage.getHeight()/2 + 115); 
+        money.setTranslateX(stage.getWidth()/2 - 275);
+        money.setTranslateY(0 - stage.getHeight()/2 + 215);
         moneynum.setTranslateX(stage.getWidth()/2 - 100);
-        moneynum.setTranslateY(0 - stage.getHeight()/2 + 225);
+        moneynum.setTranslateY(0 - stage.getHeight()/2 + 215);
 
 
         mapping.setMaxWidth(1920);
         mapping.setBackground(new Background(mappingBackground));
         mapping.setMaxHeight(1080);
 
-        String[] teachers = new String[]{"", "Fulk", "Kwong", "Dunlap", "Taylor", "Albaker", "Pallone", "Fire a Teacher"}; //delete later
+        //String[] teachers = new String[]{"", "Fulk", "Kwong", "Dunlap", "Taylor", "Albaker", "Pallone", "Fire a Teacher"}; //delete later
         final int[] teacherIndex = {0};
         fulkButton.setOnAction(value ->  {
             scene.setCursor(new ImageCursor(fulkPlace));
@@ -484,8 +484,8 @@ public class App extends Application {
         mapping.setOnMouseClicked(value ->  {
             java.awt.Point p = MouseInfo.getPointerInfo().getLocation();
 
-            double x = p.getX()/stage.getWidth();
-            double y = p.getY()/stage.getHeight();
+            //double x = p.getX()/stage.getWidth();
+            //double y = p.getY()/stage.getHeight();
             
             Image towerImage;
             ImageView tower;

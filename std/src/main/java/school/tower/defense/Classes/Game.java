@@ -168,14 +168,14 @@ public class Game extends App {
             double distanceToMove = enemy.getSpeed() * Delta;
             Location currentPathLocation = enemy.getLocation();
             Location nextPathLocation = pathLocations.get(enemy.getPathNumber() + 1);
-            double distanceTraveled = 0;
+            //double distanceTraveled = 0;
             
             while (true) {
                 if (currentPathLocation.distanceBetween(nextPathLocation) > distanceToMove) {
                     break;
                 }
 
-                distanceTraveled += currentPathLocation.distanceBetween(nextPathLocation);
+                //distanceTraveled += currentPathLocation.distanceBetween(nextPathLocation);
                 distanceToMove -= currentPathLocation.distanceBetween(nextPathLocation);
                 enemy.setTraveledPercent(0);
 
@@ -216,7 +216,6 @@ public class Game extends App {
      */
     public void run(StackPane s, Text hpnum, Text moneynum) {
         Queue<Enemy> enemyQueue = new LinkedList<>();
-        final long[] round = {1};
         new Thread(() -> {
             long lastUpdate = System.currentTimeMillis();
             while (health > 0) {

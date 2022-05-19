@@ -2,11 +2,7 @@ package school.tower.defense.Templates;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
-import javafx.application.Platform;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import school.tower.defense.Templates.Enemy;
 import school.tower.defense.Classes.*;
 
 public abstract class Tower {
