@@ -26,8 +26,7 @@ public class Fulk extends Tower {
     }
 
     public void upgrade() {
-        System.out.println("Fulk upgrading to lvl "+ (currentUpgrade.getDamage() + 1));
-        //alternativly we could do it so upgrades are made in game.java and pushed out to all towers -colin
+        //System.out.println("Fulk upgrading to lvl "+ (currentUpgrade.getDamage() + 1));
         currentUpgrade = new Upgrade("not base", 100, currentUpgrade.getDamage() + 1, currentUpgrade.getRange() + 50, currentUpgrade.getAttackspeed() + 1);
     }
 
@@ -39,7 +38,7 @@ public class Fulk extends Tower {
             sprite.setFitHeight(15);
             sprite.setTranslateX(super.getLocation().getX());
             sprite.setTranslateY(super.getLocation().getY());
-            s.getChildren().add(sprite); //TODO colin work
+            s.getChildren().add(sprite); //TODO fix when projectiles work
 
             enemy.damage(currentUpgrade.getDamage());
             if (enemy instanceof LetterOfRec)

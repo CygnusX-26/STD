@@ -70,9 +70,8 @@ public abstract class Tower {
     }
 
     private void attack(Enemy enemy) {
-        //System.out.println("Damaged");
-
         projectiles.add(new Projectile(pathName, s, enemy, location, currentUpgrade.getDamage()));
+        //move to individual teacher classes when projectiles completed to add double damage to specfic instanceof enemies. -colin
     }
 
     public int getCost() {

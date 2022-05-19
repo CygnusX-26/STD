@@ -32,7 +32,6 @@ public class Game extends App {
     private int health;
     private Stage stage;
     private int roundNum;
-    private int fulkUpgradeNum; //could be used for spawning new towers to the currect upgrade number
 
     public Game(Stage s, int width, int height) {
         towers = new ArrayList<Tower>();
@@ -43,7 +42,6 @@ public class Game extends App {
         pathLocations = new ArrayList<Location>();
         stage = s;
         roundNum = -1;
-        fulkUpgradeNum = 0;
 
         File file = new File("std/src/main/java/school/tower/defense/DataFiles/Maps/Map.txt");
         Scanner scanner = null;
@@ -163,14 +161,10 @@ public class Game extends App {
 
             enemy.getSprite().setTranslateX(enemy.getLocation().getX() - stage.getWidth()/2);
             enemy.getSprite().setTranslateY(enemy.getLocation().getY() - stage.getHeight()/2);
-
-            // System.out.println(enemy.getLocation().getX());
-            // System.out.println(enemy.getLocation().getY());
         }
     }
     
     public void run(StackPane s, Text hpnum, Text moneynum) {
-        //run the game
         Queue<Enemy> enemyQueue = new LinkedList<>();
         final long[] round = {1};
         new Thread(() -> {
@@ -180,7 +174,7 @@ public class Game extends App {
                     long length = (long) (100);
                     TimeUnit.MILLISECONDS.sleep(length);
 
-                    updateFrame(System.currentTimeMillis() - lastUpdate); //Create a new method otherwise it gets cluttered
+                    updateFrame(System.currentTimeMillis() - lastUpdate);
 
                     lastUpdate = System.currentTimeMillis();
                     
@@ -220,7 +214,6 @@ public class Game extends App {
                         {
                             addMoney(enemies.get(i).getReward());
                             moneynum.setText("$" + (int)getMoney() + "");
-                            //System.out.println("death due to damage");
                             s.getChildren().remove(enemies.get(i).getSprite());
                             enemies.remove(enemies.get(i));
                         }
