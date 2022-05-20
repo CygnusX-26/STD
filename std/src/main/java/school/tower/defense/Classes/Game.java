@@ -22,7 +22,7 @@ import school.tower.defense.Templates.*;
 import school.tower.defense.TowerTypes.*;
 
 /**
- * Game controls the logic of STD, runs all the behind the scenes magic
+ * Game controls the logic of STD, runs all the behind the scenes magic. Hi mr. fulk!
  */
 public class Game extends App {
     private ArrayList<Tower> towers;
