@@ -201,8 +201,11 @@ public class Game extends App {
             enemy.setTraveledPercent(traveledPercent);
             enemy.setLocation(new Location(currentPathLocation.getX() + xDifference, currentPathLocation.getY() + yDifference));
 
-            enemy.getSprite().setTranslateX(enemy.getLocation().getX() - stage.getWidth()/2);
-            enemy.getSprite().setTranslateY(enemy.getLocation().getY() - stage.getHeight()/2);
+            Platform.runLater(() -> {
+                enemy.getSprite().setTranslateX(enemy.getLocation().getX() - stage.getWidth()/2);
+                enemy.getSprite().setTranslateY(enemy.getLocation().getY() - stage.getHeight()/2);
+            });
+            
         }
     }
     
