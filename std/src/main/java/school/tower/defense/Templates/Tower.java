@@ -16,10 +16,6 @@ public abstract class Tower {
     Thread t;
     boolean exists;
 
-    /**
-     * Upgrades the tower
-     */
-    public abstract void upgrade(); //Will upgrade the tower and deduct the cost
 
     /**
      * Sets the values for the tower class and runs a loop to damage enemies
@@ -53,7 +49,15 @@ public abstract class Tower {
         });
         t.start();
     }
-    
+
+    /**
+     * Upgrades the tower for additional damage
+     */
+    public void upgrade(){
+        //System.out.println("Fulk upgrading to lvl "+ (currentUpgrade.getDamage() + 1));
+        currentUpgrade = new Upgrade("not base", 100, currentUpgrade.getDamage() + 1, currentUpgrade.getRange() + 50, currentUpgrade.getAttackspeed() + 0.2);
+    }
+
     /**
      * Scans for enemies and attacks them
      */
@@ -116,7 +120,9 @@ public abstract class Tower {
     public Location getLocation() {
         return location;
     }
-
+    /**
+     * Stops the thread of attacking enemies
+     */
     public void stopThread(){
         exists = false;
     }
