@@ -31,20 +31,20 @@ public class Fulk extends Tower {
     }
 
 
-    public void attack(Enemy enemy) {
-        Platform.runLater(() -> {
-            ImageView sprite = new ImageView(new Image(getClass().getResource(pathName).toExternalForm()));
-            sprite.setFitWidth(15);
-            sprite.setFitHeight(15);
-            sprite.setTranslateX(super.getLocation().getX());
-            sprite.setTranslateY(super.getLocation().getY());
-            s.getChildren().add(sprite); //TODO fix when projectiles work
+    // public void attack(Enemy enemy) {
+    //     Platform.runLater(() -> {
+    //         ImageView sprite = new ImageView(new Image(getClass().getResource(pathName).toExternalForm()));
+    //         sprite.setFitWidth(15);
+    //         sprite.setFitHeight(15);
+    //         sprite.setTranslateX(super.getLocation().getX());
+    //         sprite.setTranslateY(super.getLocation().getY());
+    //         s.getChildren().add(sprite); //TODO fix when projectiles work
 
-            enemy.damage(currentUpgrade.getDamage());
-            if (enemy instanceof LetterOfRec)
-            {
-                enemy.damage(currentUpgrade.getDamage());
-            }
-        });
-    }
+    //         enemy.damage(currentUpgrade.getDamage());
+    //         if (enemy instanceof LetterOfRec)
+    //         {
+    //             enemy.damage(currentUpgrade.getDamage());
+    //         }
+    //     });
+    // }
 }

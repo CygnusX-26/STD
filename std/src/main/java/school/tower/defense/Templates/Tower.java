@@ -2,11 +2,7 @@ package school.tower.defense.Templates;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
-import javafx.application.Platform;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import school.tower.defense.Templates.Enemy;
 import school.tower.defense.Classes.*;
 
 public abstract class Tower {
@@ -17,6 +13,8 @@ public abstract class Tower {
     String pathName;
     int cost;
     ArrayList<Projectile> projectiles;
+    Thread t;
+    boolean exists;
 
     /**
      * Upgrades the tower
@@ -39,9 +37,10 @@ public abstract class Tower {
         this.pathName = pathName;
         this.s = s;
         this.projectiles = new ArrayList<Projectile>();
+        exists = true;
 
-        new Thread(() -> {
-            while (true) {
+        t = new Thread(() -> {
+            while (exists) {
                 try {
                     long length = (long) (1000 / ((double) currentUpgrade.getAttackspeed()));
                     TimeUnit.MILLISECONDS.sleep(length);
@@ -51,7 +50,8 @@ public abstract class Tower {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        });
+        t.start();
     }
     
     /**
@@ -116,4 +116,9 @@ public abstract class Tower {
     public Location getLocation() {
         return location;
     }
+
+    public void stopThread(){
+        exists = false;
+    }
+
 }

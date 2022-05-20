@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import school.tower.defense.Classes.Location;
 
 public abstract class Enemy {
