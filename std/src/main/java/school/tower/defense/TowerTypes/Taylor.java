@@ -16,7 +16,7 @@ public class Taylor extends Tower {
      * Constructor for the tower
      */
     public Taylor(Game game, StackPane s, String pathName, Location location) {
-        super(game, s, location, 100, new Upgrade("0", 0, 2, 1000, 1), pathName);
+        super(game, s, location, 100, new Upgrade("0", 0, 2, 9999, 1), pathName);
         this.s = s;
         this.pathName = pathName;
     }

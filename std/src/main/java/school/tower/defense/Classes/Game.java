@@ -43,7 +43,7 @@ public class Game extends App {
         towers = new ArrayList<Tower>();
         enemies = new ArrayList<Enemy>();
         money = 1000;
-        health = 20; //change to 69 later
+        health = 20;
         pathLocations = new ArrayList<Location>();
         stage = s;
         roundNum = -1;
@@ -59,15 +59,14 @@ public class Game extends App {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            //Add a new location to pathLocations. The location is in the line variable and the x coordinate is on the left side of the space and the y coordinate is on the right side of the space. Add them as doubles
+
             double x = Double.parseDouble(line.substring(0, line.indexOf(" ")));
             double y = Double.parseDouble(line.substring(line.indexOf(" ") + 1));
-
             pathLocations.add(new Location(x * width, y * height));
         }
     }
 
-    
+
     /** 
      * returns an arraylist of all towers
      * @return ArrayList<Tower> of all towers on screen
@@ -141,19 +140,6 @@ public class Game extends App {
     }
 
     /**
-     * Adds a tower to the game
-     * @param t tower to add
-     * @param x x coordinate of the tower
-     * @param y y coordinate of the tower
-     * @return true if enough money or not occupied, false otherwise
-     */
-    public boolean placeTower(Tower t, int x, int y){
-        //place a tower onto grid
-        return false;
-    }
-
-
-    /**
      * Updates enemy positions
      * @param Delta the time since the last update
      */
@@ -168,14 +154,12 @@ public class Game extends App {
             double distanceToMove = enemy.getSpeed() * Delta;
             Location currentPathLocation = enemy.getLocation();
             Location nextPathLocation = pathLocations.get(enemy.getPathNumber() + 1);
-            //double distanceTraveled = 0;
             
             while (true) {
                 if (currentPathLocation.distanceBetween(nextPathLocation) > distanceToMove) {
                     break;
                 }
 
-                //distanceTraveled += currentPathLocation.distanceBetween(nextPathLocation);
                 distanceToMove -= currentPathLocation.distanceBetween(nextPathLocation);
                 enemy.setTraveledPercent(0);
 
@@ -248,36 +232,34 @@ public class Game extends App {
 
         new Thread(() -> {
             while (true) {
-                 try {
-                     TimeUnit.MILLISECONDS.sleep(10);
-                 } catch (InterruptedException e) {
-                     e.printStackTrace();
-                 }
+                try {
+                    TimeUnit.MILLISECONDS.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
  
-                 Platform.runLater(() -> {
-                     for (int i = 0; i < enemies.size(); i++)
-                     {
-                         if (enemies.get(i).getHealth() <= 0)
-                         {
-                             addMoney(enemies.get(i).getReward());
-                             moneynum.setText("$" + (int)getMoney() + "");
-                             s.getChildren().remove(enemies.get(i).getSprite());
-                             enemies.remove(enemies.get(i));
-                         }
-                         else if (enemies.get(i).getLocation().getX()>(stage.getWidth()*0.898697-25) && enemies.get(i).getLocation().getX()<(stage.getWidth()*0.898697+25))
-                         {
-                             if (enemies.get(i).getLocation().getY()>(stage.getHeight()*0.71102-25) && enemies.get(i).getLocation().getY()<(stage.getHeight()*0.71102+25))
-                             {
-                                 s.getChildren().remove(enemies.get(i).getSprite());
-                                 enemies.remove(enemies.get(i));
-                                 health--;
-                                 hpnum.setText(health + " \u2665");
-                             }
-                         }
-                     }
-                     
-                     //System.out.print(enemies.size()+" ");
-                 });
+                Platform.runLater(() -> {
+                    for (int i = 0; i < enemies.size(); i++)
+                    {
+                        if (enemies.get(i).getHealth() <= 0)
+                        {
+                            addMoney(enemies.get(i).getReward());
+                            moneynum.setText("$" + (int)getMoney() + "");
+                            s.getChildren().remove(enemies.get(i).getSprite());
+                            enemies.remove(enemies.get(i));
+                        }
+                        else if (enemies.get(i).getLocation().getX()>(stage.getWidth()*0.898697-25) && enemies.get(i).getLocation().getX()<(stage.getWidth()*0.898697+25))
+                        {
+                            if (enemies.get(i).getLocation().getY()>(stage.getHeight()*0.71102-25) && enemies.get(i).getLocation().getY()<(stage.getHeight()*0.71102+25))
+                            {
+                                s.getChildren().remove(enemies.get(i).getSprite());
+                                enemies.remove(enemies.get(i));
+                                health--;
+                                hpnum.setText(health + " \u2665");
+                            }
+                        }
+                    }
+                });
              } 
          }).start();
 
@@ -300,18 +282,6 @@ public class Game extends App {
 
             timeline1.setCycleCount(999999999);
             timeline1.play(); });
-
-        // backup code
-        //     Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
-        //         @Override
-        //         public void handle(ActionEvent event) {
-        //             Enemy enemy = new LetterOfRec(s, stage, pathLocations);
-        //             enemies.add(enemy);
-        //         }
-        //     }));
-        //     timeline2.setCycleCount(5);
-        //     timeline2.play();
-        // });
     }
 
     
@@ -325,8 +295,9 @@ public class Game extends App {
     public Queue<Enemy> loadEnemiesIntoQueue(int roundNum, Queue<Enemy> enemyQueue, StackPane s)
     {
         Random rando = new Random();
-        rando.setSeed(roundNum*223); //it's a prime number
-        for (int i = 0; i < roundNum; i++) //do roundnum times
+        //set to random seed
+        rando.setSeed(roundNum*223); 
+        for (int i = 0; i < roundNum; i++)
         {
             int cap = rando.nextInt(roundNum);
             double probability = rando.nextDouble();
@@ -355,7 +326,9 @@ public class Game extends App {
             {
                 enemyType = 4;
             }
-            for (int j = 0; j < cap; j++) // generate a type of enemy rando times
+
+            // generate a type of enemy rando times
+            for (int j = 0; j < cap; j++) 
             {
                 switch (enemyType)
                 {
@@ -389,7 +362,6 @@ public class Game extends App {
      */
     public void upgradeTower(int ID)
     {
-        System.out.print("game.upgradeTower ");
         for (Tower t : towers)
         {
             if (ID == 8)
@@ -401,35 +373,35 @@ public class Game extends App {
             }
             if (ID == 9)
             {
-                if (t instanceof Kwong) //replace with next teacher and copy paste
+                if (t instanceof Kwong)
                 {
                     t.upgrade();
                 }
             }
             if (ID == 10)
             {
-                if (t instanceof Dunlap) //replace with next teacher and copy paste
+                if (t instanceof Dunlap)
                 {
                     t.upgrade();
                 }
             }
             if (ID == 11)
             {
-                if (t instanceof Taylor) //replace with next teacher and copy paste
+                if (t instanceof Taylor)
                 {
                     t.upgrade();
                 }
             }
             if (ID == 12)
             {
-                if (t instanceof Albaker) //replace with next teacher and copy paste
+                if (t instanceof Albaker)
                 {
                     t.upgrade();
                 }
             }
             if (ID == 13)
             {
-                if (t instanceof Pallone) //replace with next teacher and copy paste
+                if (t instanceof Pallone)
                 {
                     t.upgrade();
                 }
