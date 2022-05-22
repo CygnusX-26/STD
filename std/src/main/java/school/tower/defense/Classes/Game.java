@@ -390,7 +390,35 @@ public class Game extends App {
             }
             if (ID == 9)
             {
-                if (t instanceof Fulk) //replace with next teacher and copy paste
+                if (t instanceof Kwong) //replace with next teacher and copy paste
+                {
+                    t.upgrade();
+                }
+            }
+            if (ID == 10)
+            {
+                if (t instanceof Dunlap) //replace with next teacher and copy paste
+                {
+                    t.upgrade();
+                }
+            }
+            if (ID == 11)
+            {
+                if (t instanceof Taylor) //replace with next teacher and copy paste
+                {
+                    t.upgrade();
+                }
+            }
+            if (ID == 12)
+            {
+                if (t instanceof Albaker) //replace with next teacher and copy paste
+                {
+                    t.upgrade();
+                }
+            }
+            if (ID == 13)
+            {
+                if (t instanceof Pallone) //replace with next teacher and copy paste
                 {
                     t.upgrade();
                 }
