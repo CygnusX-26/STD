@@ -18,7 +18,7 @@ public class Mail extends Enemy {
      * @param pathLocations an arraylist of all waypoints the enemy should follow
      * @param enemies the arraylist of current enemies on screen
      */
-    public Mail(StackPane s, Stage stage, ArrayList<Location> pathLocations, ArrayList<Enemy> enemies) {
-        super("Mail", 3, 0.25, 5, s, new String[] {"Enemies/Gmail/gmail1.png", "Enemies/Gmail/gmail1.png", "Enemies/Gmail/gmail2.png", "Enemies/Gmail/gmail3.png"}, pathLocations); 
+    public Mail(StackPane s, Stage stage, ArrayList<Location> pathLocations, ArrayList<Enemy> enemies, int roundNum) {
+        super("Mail", 3, 0.25 + (0.01) * roundNum, 5, s, new String[] {"Enemies/Gmail/gmail1.png", "Enemies/Gmail/gmail1.png", "Enemies/Gmail/gmail2.png", "Enemies/Gmail/gmail3.png"}, pathLocations); 
     }
 }
