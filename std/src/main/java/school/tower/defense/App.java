@@ -534,6 +534,7 @@ public class App extends Application {
                     break;
                 case 2:
                     if (g.getMoney() > kwongCost){
+                        Tower f = new Kwong(g, game, "Teachers/Kwong.PNG", new Location(p.getX(), p.getY()));
                         towerImage = new Image(getClass().getResource("Classes/Teachers/Kwong.PNG").toExternalForm());
                         tower = new ImageView(towerImage);
                         tower.setScaleX(0.5);
@@ -543,6 +544,8 @@ public class App extends Application {
                                 g.addMoney(kwongCost/2);
                                 moneynum.setText("$"+ (int)g.getMoney() + "");
                                 game.getChildren().remove(tower);
+                                g.getTowers().remove(h.get(tower));
+                                h.get(tower).stopThread();
                             }
                         });
                         tower.setTranslateX(p.getX() - stage.getWidth()/2);
@@ -550,6 +553,8 @@ public class App extends Application {
                         game.getChildren().add(tower);
                         g.subtractMoney(kwongCost);
                         moneynum.setText("$"+ (int)g.getMoney() + "");
+                        g.getTowers().add(f); 
+                        h.put(tower, f);
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
                     }
@@ -562,6 +567,7 @@ public class App extends Application {
                     break;
                 case 3:
                     if (g.getMoney() > dunlapCost){
+                        Tower f = new Dunlap(g, game, "Teachers/Dunlap.PNG", new Location(p.getX(), p.getY()));
                         towerImage = new Image(getClass().getResource("Classes/Teachers/Dunlap.PNG").toExternalForm());
                         tower = new ImageView(towerImage);
                         tower.setScaleX(0.5);
@@ -571,6 +577,8 @@ public class App extends Application {
                                 g.addMoney(kwongCost/2);
                                 moneynum.setText("$"+ (int)g.getMoney() + "");
                                 game.getChildren().remove(tower);
+                                g.getTowers().remove(h.get(tower));
+                                h.get(tower).stopThread();
                             }
                         });
                         tower.setTranslateX(p.getX() - stage.getWidth()/2);
@@ -578,6 +586,8 @@ public class App extends Application {
                         game.getChildren().add(tower);
                         g.subtractMoney(dunlapCost);
                         moneynum.setText("$"+ (int)g.getMoney() + "");
+                        g.getTowers().add(f); 
+                        h.put(tower, f);
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
                         break;
@@ -591,6 +601,7 @@ public class App extends Application {
                     break;
                 case 4:
                     if (g.getMoney() > taylorCost){
+                        Tower f = new Taylor(g, game, "Teachers/Taylor.PNG", new Location(p.getX(), p.getY()));
                         towerImage = new Image(getClass().getResource("Classes/Teachers/Taylor.PNG").toExternalForm());
                         tower = new ImageView(towerImage);
                         tower.setScaleX(0.5);
@@ -600,6 +611,8 @@ public class App extends Application {
                                 g.addMoney(taylorCost/2);
                                 moneynum.setText("$"+ (int)g.getMoney() + "");
                                 game.getChildren().remove(tower);
+                                g.getTowers().remove(h.get(tower));
+                                h.get(tower).stopThread();
                             }
                         });
                         tower.setTranslateX(p.getX() - stage.getWidth()/2);
@@ -607,6 +620,8 @@ public class App extends Application {
                         game.getChildren().add(tower);
                         g.subtractMoney(taylorCost);
                         moneynum.setText("$"+ (int)g.getMoney() + "");
+                        g.getTowers().add(f); 
+                        h.put(tower, f);
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
                         break;
@@ -620,6 +635,7 @@ public class App extends Application {
                     break;
                 case 5:
                     if (g.getMoney() > albakerCost){
+                        Tower f = new Albaker(g, game, "Teachers/Albaker.PNG", new Location(p.getX(), p.getY()));
                         towerImage = new Image(getClass().getResource("Classes/Teachers/Albaker.PNG").toExternalForm());
                         tower = new ImageView(towerImage);
                         tower.setScaleX(0.5);
@@ -629,6 +645,8 @@ public class App extends Application {
                                 g.addMoney(albakerCost/2);
                                 moneynum.setText("$"+ (int)g.getMoney() + "");
                                 game.getChildren().remove(tower);
+                                g.getTowers().remove(h.get(tower));
+                                h.get(tower).stopThread();
                             }
                         });
                         tower.setTranslateX(p.getX() - stage.getWidth()/2);
@@ -636,6 +654,8 @@ public class App extends Application {
                         game.getChildren().add(tower);
                         g.subtractMoney(albakerCost);
                         moneynum.setText("$"+ (int)g.getMoney() + "");
+                        g.getTowers().add(f); 
+                        h.put(tower, f);
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
                         break;
@@ -649,6 +669,7 @@ public class App extends Application {
                     break;
                 case 6:
                     if (g.getMoney() > palloneCost){
+                        Tower f = new Pallone(g, game, "Teachers/Pallone.PNG", new Location(p.getX(), p.getY()));
                         towerImage = new Image(getClass().getResource("Classes/Teachers/Pallone.PNG").toExternalForm());
                         tower = new ImageView(towerImage);
                         tower.setScaleX(0.5);
@@ -658,6 +679,8 @@ public class App extends Application {
                                 g.addMoney(palloneCost/2);
                                 moneynum.setText("$"+ (int)g.getMoney() + "");
                                 game.getChildren().remove(tower);
+                                g.getTowers().remove(h.get(tower));
+                                h.get(tower).stopThread();
                             }
                         });
                         tower.setTranslateX(p.getX() - stage.getWidth()/2);
@@ -665,6 +688,8 @@ public class App extends Application {
                         game.getChildren().add(tower);
                         g.subtractMoney(palloneCost);
                         moneynum.setText("$"+ (int)g.getMoney() + "");
+                        g.getTowers().add(f); 
+                        h.put(tower, f);
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
                         break;
