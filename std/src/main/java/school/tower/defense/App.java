@@ -444,13 +444,11 @@ public class App extends Application {
             teacherIndex[0] = 7;
         });
         fulkUpgradeButton.setOnAction(arg0 -> {
-            System.out.print("upgrade button pressed");
             if (true)//(fulkUpgradeAmt[0] < 5)
             {
                 if (g.getMoney() > costOfUpgrade)
                 {
                     g.subtractMoney(costOfUpgrade);
-                    System.out.print(" upgrading all fulks");
                     g.upgradeTower(8);
                     moneynum.setText("$"+ (int)g.getMoney() + "");
                 }
@@ -512,16 +510,14 @@ public class App extends Application {
                                 h.get(tower).stopThread();
                             }
                         });
-                        tower.setTranslateX(p.getX() - stage.getWidth()/2 + 90); //added an offset here to match the head of teachers 
-                        tower.setTranslateY(p.getY() - stage.getHeight()/2 + 20); //neil plz test on ur machine to see if offsets look good on ur machine
+                        tower.setTranslateX(p.getX() - stage.getWidth()/2);
+                        tower.setTranslateY(p.getY() - stage.getHeight()/2);
                         g.subtractMoney(fulkCost);
                         moneynum.setText("$"+ (int)g.getMoney() + "");
                         game.getChildren().add(tower);
                         
                         g.getTowers().add(f); 
                         h.put(tower, f);
-                        //TODO fix this tower initalizations. why isn't this constucting a tower beforehand? -Colin
-                        // might be due to the testing purposes comment above. 
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
                     }

@@ -257,7 +257,6 @@ public class Game extends App {
                     if (enemies.size() == 0)
                     {
                         roundNum++;
-                        System.out.println(roundNum + "<-- round number");
                         loadEnemiesIntoQueue(roundNum, enemyQueue, s);
                     } 
 
@@ -285,7 +284,6 @@ public class Game extends App {
                             //enemies.get(i).damage(1);
                         }
                     }
-                    System.out.print(enemies.size()+" ");
                 }
             }
             ));
