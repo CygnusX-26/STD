@@ -207,7 +207,7 @@ public class Game extends App {
             long lastUpdate = System.currentTimeMillis();
             while (health > 0) {
                 try {
-                    long length = (long) (100);
+                    long length = (long) (10);
                     TimeUnit.MILLISECONDS.sleep(length);
 
                     updateFrame(System.currentTimeMillis() - lastUpdate);
@@ -230,20 +230,15 @@ public class Game extends App {
             
         }).start();
 
-        Platform.runLater(() -> {
-            Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    if (enemyQueue.size() > 0)
-                    {
-                        enemies.add(enemyQueue.remove());
-                    }
-                    if (enemies.size() == 0)
-                    {
-                        roundNum++;
-                        loadEnemiesIntoQueue(roundNum, enemyQueue, s);
-                    } 
-
+        new Thread(() -> {
+            while (true) {
+                try {
+                    TimeUnit.MILLISECONDS.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+ 
+                Platform.runLater(() -> {
                     for (int i = 0; i < enemies.size(); i++)
                     {
                         if (enemies.get(i).getHealth() <= 0)
@@ -264,9 +259,27 @@ public class Game extends App {
                             }
                         }
                     }
+                });
+             } 
+         }).start();
+
+        Platform.runLater(() -> {
+            Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    if (enemyQueue.size() > 0)
+                    {
+                        enemies.add(enemyQueue.remove());
+                    }
+                    if (enemies.size() == 0)
+                    {
+                        roundNum++;
+                        loadEnemiesIntoQueue(roundNum, enemyQueue, s);
+                    } 
                 }
             }
             ));
+
             timeline1.setCycleCount(999999999);
             timeline1.play(); });
     }
