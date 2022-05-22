@@ -614,8 +614,6 @@ public class App extends Application {
                         
                         g.getTowers().add(f); 
                         h.put(tower, f);
-                        //TODO fix this tower initalizations. why isn't this constucting a tower beforehand? -Colin
-                        // might be due to the testing purposes comment above. 
                         teacherIndex[0] = 0;
                         scene.setCursor(Cursor.DEFAULT);
                     }
