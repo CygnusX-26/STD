@@ -17,8 +17,9 @@ public class LetterOfRec extends Enemy {
      * @param stage the stage where the game is played
      * @param pathLocations an arraylist of all waypoints the enemy should follow
      * @param enemies the arraylist of current enemies on screen
+     * @param roundNum the current round number
      */
-    public LetterOfRec(StackPane s, Stage stage, ArrayList<Location> pathLocations, ArrayList<Enemy> enemies) {
-        super("Letter Of Rec", 5, 0.15, 7, s, new String[] {"Enemies/Essay/essay1.png", "Enemies/Essay/essay1.png", "Enemies/Essay/essay2.png", "Enemies/Essay/essay3.png", "Enemies/Essay/essay4.png", "Enemies/Essay/essay5.png"}, pathLocations); 
+    public LetterOfRec(StackPane s, Stage stage, ArrayList<Location> pathLocations, ArrayList<Enemy> enemies, int roundNum) {
+        super("Letter Of Rec", 5, 0.15 + (0.01) * roundNum, 7, s, new String[] {"Enemies/Essay/essay1.png", "Enemies/Essay/essay1.png", "Enemies/Essay/essay2.png", "Enemies/Essay/essay3.png", "Enemies/Essay/essay4.png", "Enemies/Essay/essay5.png"}, pathLocations); 
     }
 }

@@ -351,19 +351,19 @@ public class Game extends App {
                 switch (enemyType)
                 {
                     case 0:
-                        enemyQueue.add(new LetterOfRec(s, stage, pathLocations, enemies));
+                        enemyQueue.add(new LetterOfRec(s, stage, pathLocations, enemies, roundNum));
                         break;
                     case 1:
-                        enemyQueue.add(new Collegeboard(s, stage, pathLocations, enemies));
+                        enemyQueue.add(new Collegeboard(s, stage, pathLocations, enemies, roundNum));
                         break;
                     case 2:
-                        enemyQueue.add(new Mail(s, stage, pathLocations, enemies));
+                        enemyQueue.add(new Mail(s, stage, pathLocations, enemies, roundNum));
                         break;
                     case 3:
-                        enemyQueue.add(new Schoology(s, stage, pathLocations, enemies));
+                        enemyQueue.add(new Schoology(s, stage, pathLocations, enemies, roundNum));
                         break;
                     case 4:
-                        enemyQueue.add(new Wifi(s, stage, pathLocations, enemies));
+                        enemyQueue.add(new Wifi(s, stage, pathLocations, enemies, roundNum));
                         break;
                     default:
                         break;
