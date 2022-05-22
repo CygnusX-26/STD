@@ -58,12 +58,24 @@ public class Projectile {
 
             while (true) {
                 try {
-                    long length = (long) (100);
+                    long length = (long) (10);
                     TimeUnit.MILLISECONDS.sleep(length);
+
+                    if (target.getHealth() <= 0) {
+                        Platform.runLater(() -> {
+                            if (target.getHealth() <= 0) {
+                                target.damage(damage);
+                                s.getChildren().remove(sprite);
+                
+                                sprite = null;
+                            }
+                        });
+                    }
 
                     if (sprite == null) {
                         break;
                     }
+
                     updateProjectile(System.currentTimeMillis() - lastUpdate[0]);
                     
                     lastUpdate[0] = System.currentTimeMillis();
@@ -81,7 +93,7 @@ public class Projectile {
      */
     public void updateProjectile(double delta) {
         final double[] distance = new double[]{Math.sqrt(Math.pow(target.getLocation().getX() - location.getX(), 2) + Math.pow(target.getLocation().getY() - location.getY(), 2))};
-        double canMoveDistance = delta/1.5;
+        double canMoveDistance = delta;
         double distanceToMove = distance[0] >= canMoveDistance ? canMoveDistance : distance[0];
         double percentToMove = distanceToMove/distance[0];
 
@@ -94,14 +106,18 @@ public class Projectile {
         distance[0] = Math.sqrt(Math.pow(target.getLocation().getX() - location.getX(), 2) + Math.pow(target.getLocation().getY() - location.getY(), 2));
 
         Platform.runLater(() -> {
+            if (sprite == null) {
+                return;
+            }
+
             sprite.setTranslateX(locationToMoveX - s.getWidth()/2);
             sprite.setTranslateY(locationToMoveY - s.getHeight()/2);
     
             if (distance[0] < 5) {
-                    target.damage(damage);
-                    s.getChildren().remove(sprite);
-    
-                    sprite = null;
+                target.damage(damage);
+                s.getChildren().remove(sprite);
+
+                sprite = null;
             }
         });
         

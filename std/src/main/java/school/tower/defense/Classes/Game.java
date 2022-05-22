@@ -223,7 +223,7 @@ public class Game extends App {
             long lastUpdate = System.currentTimeMillis();
             while (health > 0) {
                 try {
-                    long length = (long) (100);
+                    long length = (long) (10);
                     TimeUnit.MILLISECONDS.sleep(length);
 
                     updateFrame(System.currentTimeMillis() - lastUpdate);
@@ -246,6 +246,41 @@ public class Game extends App {
             
         }).start();
 
+        new Thread(() -> {
+            while (true) {
+                 try {
+                     TimeUnit.MILLISECONDS.sleep(10);
+                 } catch (InterruptedException e) {
+                     e.printStackTrace();
+                 }
+ 
+                 Platform.runLater(() -> {
+                     for (int i = 0; i < enemies.size(); i++)
+                     {
+                         if (enemies.get(i).getHealth() <= 0)
+                         {
+                             addMoney(enemies.get(i).getReward());
+                             moneynum.setText("$" + (int)getMoney() + "");
+                             s.getChildren().remove(enemies.get(i).getSprite());
+                             enemies.remove(enemies.get(i));
+                         }
+                         else if (enemies.get(i).getLocation().getX()>(stage.getWidth()*0.898697-25) && enemies.get(i).getLocation().getX()<(stage.getWidth()*0.898697+25))
+                         {
+                             if (enemies.get(i).getLocation().getY()>(stage.getHeight()*0.71102-25) && enemies.get(i).getLocation().getY()<(stage.getHeight()*0.71102+25))
+                             {
+                                 s.getChildren().remove(enemies.get(i).getSprite());
+                                 enemies.remove(enemies.get(i));
+                                 health--;
+                                 hpnum.setText(health + " \u2665");
+                             }
+                         }
+                     }
+                     
+                     //System.out.print(enemies.size()+" ");
+                 });
+             } 
+         }).start();
+
         Platform.runLater(() -> {
             Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
                 @Override
@@ -260,35 +295,10 @@ public class Game extends App {
                         System.out.println(roundNum + "<-- round number");
                         loadEnemiesIntoQueue(roundNum, enemyQueue, s);
                     } 
-
-                    for (int i = 0; i < enemies.size(); i++)
-                    {
-                        if (enemies.get(i).getHealth() <= 0)
-                        {
-                            addMoney(enemies.get(i).getReward());
-                            moneynum.setText("$" + (int)getMoney() + "");
-                            s.getChildren().remove(enemies.get(i).getSprite());
-                            enemies.remove(enemies.get(i));
-                        }
-                        else if (enemies.get(i).getLocation().getX()>(stage.getWidth()*0.898697-25) && enemies.get(i).getLocation().getX()<(stage.getWidth()*0.898697+25))
-                        {
-                            if (enemies.get(i).getLocation().getY()>(stage.getHeight()*0.71102-25) && enemies.get(i).getLocation().getY()<(stage.getHeight()*0.71102+25))
-                            {
-                                s.getChildren().remove(enemies.get(i).getSprite());
-                                enemies.remove(enemies.get(i));
-                                health--;
-                                hpnum.setText(health + " \u2665");
-                            }
-                        }
-                        if (enemies.size() >= 5) //temp testing code for damamge values
-                        {
-                            //enemies.get(i).damage(1);
-                        }
-                    }
-                    System.out.print(enemies.size()+" ");
                 }
             }
             ));
+
             timeline1.setCycleCount(999999999);
             timeline1.play(); });
 
