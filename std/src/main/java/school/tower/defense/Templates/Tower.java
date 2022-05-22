@@ -5,6 +5,9 @@ import java.util.concurrent.TimeUnit;
 import javafx.scene.layout.StackPane;
 import school.tower.defense.Classes.*;
 
+/**
+ * Template for all tower types
+ */
 public abstract class Tower {
     Game game;
     Upgrade currentUpgrade;
