@@ -54,7 +54,6 @@ public abstract class Tower {
      * Upgrades the tower for additional damage
      */
     public void upgrade(){
-        //System.out.println("Fulk upgrading to lvl "+ (currentUpgrade.getDamage() + 1));
         currentUpgrade = new Upgrade("not base", 100, currentUpgrade.getDamage() + 1, currentUpgrade.getRange() + 50, currentUpgrade.getAttackspeed() + 0.2);
     }
 
@@ -75,8 +74,6 @@ public abstract class Tower {
         }
 
         if (furthestEnemy != null) {
-            //System.out.println("Furthest enemy is " + furthestEnemy.getDistanceTraveled());
-
             attack(furthestEnemy);
         }
     }
@@ -94,7 +91,6 @@ public abstract class Tower {
      */
     private void attack(Enemy enemy) {
         projectiles.add(new Projectile(pathName, s, enemy, location, currentUpgrade.getDamage()));
-        //move to individual teacher classes when projectiles completed to add double damage to specfic instanceof enemies. -colin
     }
 
     /**

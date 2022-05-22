@@ -31,6 +31,7 @@ public class App extends Application {
     private StackPane root;
     private StackPane game;
 
+
     /**
      * starts the JavaFX application graphics
      * @param stage the stage to be displayed
@@ -48,6 +49,7 @@ public class App extends Application {
         this.stage.show();
     }
 
+
     /**
      * Runs the JavaFX application
      * @param args the command line arguments
@@ -55,6 +57,7 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
+
 
     /**
      * Loads the menu opening scene
@@ -65,35 +68,26 @@ public class App extends Application {
 
         TranslateTransition fulkTransition = new TranslateTransition();
         TranslateTransition kwongTransition = new TranslateTransition();
-        //RotateTransition titleTransition = new RotateTransition();
         Button startButton = new Button();
         Button instructions = new Button();
         BackgroundImage startImage = new BackgroundImage( new Image( getClass().getResource("Map/startButton.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, false, false, true, false));
         BackgroundImage instructionsImage = new BackgroundImage( new Image( getClass().getResource("Map/instructionButton.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(150, 75, true, true, true, false));
-        //Image menuTitle = new Image(getClass().getResource("Map/menuTitle1.PNG").toExternalForm());
-        //ImageView MENUTITLE = new ImageView(menuTitle);
         Text text = new Text("School Tower Defense");
         Image fulk = new Image(getClass().getResource("Classes/Teachers/Fulk.PNG").toExternalForm());
         ImageView FULK = new ImageView(fulk);
         Image kwong = new Image(getClass().getResource("Classes/Teachers/Kwong.PNG").toExternalForm());
         ImageView KWONG = new ImageView(kwong);
         Media menuMusic = new Media(getClass().getResource("Music/awesomeness.wav").toExternalForm());
-        //Tooltip startTooltip = new Tooltip("Start Game");
-        // Image fulkGif = new Image(getClass().getResource("Map/OptionalLoginAnimation.gif").toExternalForm());
-        // ImageView fulkGifView = new ImageView(fulkGif);
         menuPlayer = new MediaPlayer(menuMusic);
 
         root.setId("pane");
         text.setId("menutext");
 
-        //startTooltip.setMaxWidth(100);
-        //startTooltip.setWrapText(true);
         text.setTranslateY(-150);
         startButton.setBackground( new Background( startImage ));
         startButton.setTranslateY(-25);
         startButton.setMaxWidth(150);
         startButton.setMaxHeight(75);
-        //startButton.setTooltip(startTooltip);
         instructions.setBackground(new Background( instructionsImage ));
         instructions.setMaxWidth(150);
         instructions.setMaxHeight(75);
@@ -130,14 +124,11 @@ public class App extends Application {
             
         });
 
-
         root.getChildren().add(startButton);
         root.getChildren().add(text);
         root.getChildren().add(FULK);
         root.getChildren().add(KWONG);
         root.getChildren().add(instructions);
-        //root.getChildren().add(MENUTITLE);
-        //root.getChildren().add(fulkGifView);
 
         fulkTransition.play();
         kwongTransition.play();
@@ -145,6 +136,7 @@ public class App extends Application {
 
         scene = new Scene(root, 640, 480, Color.BLACK);
     }
+
 
     /**
      * loads the instructions scene
@@ -169,6 +161,7 @@ public class App extends Application {
         scene.setRoot(inst);
     }
 
+    
     /**
      * loads the game scene
      * @throws IOException if fails to load the scene
@@ -182,13 +175,12 @@ public class App extends Application {
         menuPlayer.play();
         stage.setMaximized(true);
 
-        int fulkCost = 35; //make sure to modify the tooltips when modifying this
-        int kwongCost = 45; // also put more stats in the tooltips maybe??
+        int fulkCost = 35; 
+        int kwongCost = 45; 
         int dunlapCost = 60;
         int taylorCost = 70;
         int albakerCost = 90;
         int palloneCost = 500;
-
         int costOfUpgrade = 100;
 
         Text hpnum = new Text("69");
@@ -204,6 +196,7 @@ public class App extends Application {
         Button albakerButton = new Button();
         Button palloneButton = new Button();
         Button deleteButton = new Button();
+       
         Button fulkUpgradeButton = new Button();
         Button kwongUpgradeButton = new Button();
         Button dunlapUpgradeButton = new Button();
@@ -229,12 +222,13 @@ public class App extends Application {
         Image upgradePlace = new Image(getClass().getResource("Map/Upgrade.PNG").toExternalForm()); 
 
 
-        Tooltip fulkTip = new Tooltip("Fulk \n(35 Money) \n\nHis mission is to propogate webcat to all educational institutions");
-        Tooltip kwongTip = new Tooltip("Kwong \n(45 Money) \n\nThe better CS teacher (although it's up for debate)");
-        Tooltip dunlapTip = new Tooltip("Dunlap \n(60 Money) \n\nThe reading quizes she gives will knock anyone off their feet");
-        Tooltip taylorTip = new Tooltip("Taylor \n(70 Money) \n\nHe will prove freefall objects will gain speed over time");
-        Tooltip albakerTip = new Tooltip("Albaker \n(90 Money) \n\nHer essay grading has all the foes in terror (just like her students)");
-        Tooltip palloneTip = new Tooltip("Pallone \n(500 Money) \n\nA Biology teacher who's awesome at everything :)");
+        Tooltip fulkTip = new Tooltip("Fulk \n(35 Money) \n\nHis mission is to propogate webcat to all educational institutions \nThe basic tower");
+        Tooltip kwongTip = new Tooltip("Kwong \n(45 Money) \n\nThe better CS teacher (although it's up for debate) \nThe Sniper");
+        Tooltip dunlapTip = new Tooltip("Dunlap \n(60 Money) \n\nThe reading quizes she gives will knock anyone off their feet \nThe Shotgun");
+        Tooltip taylorTip = new Tooltip("Taylor \n(70 Money) \n\nHe will prove freefall objects will gain speed over time \n The better Kwong");
+        Tooltip albakerTip = new Tooltip("Albaker \n(90 Money) \n\nHer essay grading has all the foes in terror (just like her students) \nThe better Fulk");
+        Tooltip palloneTip = new Tooltip("Pallone \n(500 Money) \n\nA Biology teacher who's awesome at everything :) \n The Gatling Gun");
+        
         Tooltip fulkUpgradeTip = new Tooltip("Fulk's Upgrade (100 Money)-- Damage increased for all Fulks on screen");
         Tooltip kwongUpgradeTip = new Tooltip("Kwong's Upgrade (100 Money)-- Damage increased for all Kwongs on screen");
         Tooltip taylorUpgradeTip = new Tooltip("Dunlap's Upgrade (100 Money)-- Damage increased for all Dunlaps on screen");
@@ -268,6 +262,7 @@ public class App extends Application {
         buttons.add(taylorUpgradeButton);
         buttons.add(dunlapUpgradeButton);
         buttons.add(palloneUpgradeButton);
+       
         tips.add(fulkTip);
         tips.add(kwongTip);
         tips.add(dunlapTip);
@@ -280,6 +275,7 @@ public class App extends Application {
         tips.add(taylorUpgradeTip);
         tips.add(albakerUpgradeTip);
         tips.add(palloneUpgradeTip);
+       
         placeImages.add(fulkPlace);
         placeImages.add(kwongPlace);
         placeImages.add(dunlapPlace);   
@@ -288,11 +284,9 @@ public class App extends Application {
         placeImages.add(pallonePlace);
         placeImages.add(upgradePlace);
 
-
         //set values for objects
         for (Tooltip t : tips){
             t.setMaxWidth(250);
-            //t.setFont(new Font(t.getFont().toString(), t.getFont().getSize()*1.25));
             t.setWrapText(true);
             t.setShowDelay(Duration.ZERO);
         }
@@ -308,6 +302,7 @@ public class App extends Application {
         taylorButton.setTooltip(taylorTip);
         albakerButton.setTooltip(albakerTip);
         palloneButton.setTooltip(palloneTip);
+        
         fulkUpgradeButton.setTooltip(fulkUpgradeTip);
         taylorUpgradeButton.setTooltip(taylorUpgradeTip);
         kwongUpgradeButton.setTooltip(kwongUpgradeTip);
@@ -324,14 +319,13 @@ public class App extends Application {
         taylorButton.setBackground(new Background(taylorImage));
         albakerButton.setBackground(new Background(albakerImage));
         palloneButton.setBackground(new Background(palloneImage));
+       
         fulkUpgradeButton.setBackground(new Background(upgradeButtonImage));
         kwongUpgradeButton.setBackground(new Background(upgradeButtonImage));
         albakerUpgradeButton.setBackground(new Background(upgradeButtonImage));
         taylorUpgradeButton.setBackground(new Background(upgradeButtonImage));
         dunlapUpgradeButton.setBackground(new Background(upgradeButtonImage));
         palloneUpgradeButton.setBackground(new Background(upgradeButtonImage));
-
-
 
         fulkButton.setTranslateX(0 - stage.getWidth()/2 + 50);
         fulkButton.setTranslateY(0 - stage.getHeight()/2 + 125);
@@ -409,12 +403,12 @@ public class App extends Application {
         moneynum.setTranslateX(stage.getWidth()/2 - 100);
         moneynum.setTranslateY(0 - stage.getHeight()/2 + 215);
 
-
         mapping.setMaxWidth(1920);
         mapping.setBackground(new Background(mappingBackground));
         mapping.setMaxHeight(1080);
 
-        //String[] teachers = new String[]{"", "Fulk", "Kwong", "Dunlap", "Taylor", "Albaker", "Pallone", "Fire a Teacher"}; //delete later
+        //Reference list of teacherIndex
+        //{"", "Fulk", "Kwong", "Dunlap", "Taylor", "Albaker", "Pallone", "Fire a Teacher"};
         final int[] teacherIndex = {0};
         fulkButton.setOnAction(value ->  {
             scene.setCursor(new ImageCursor(fulkPlace));
@@ -444,152 +438,125 @@ public class App extends Application {
             teacherIndex[0] = 7;
         });
         fulkUpgradeButton.setOnAction(arg0 -> {
-            if (true)//(fulkUpgradeAmt[0] < 5)
+            if (g.getMoney() > costOfUpgrade)
             {
-                if (g.getMoney() > costOfUpgrade)
-                {
-                    g.subtractMoney(costOfUpgrade);
-                    g.upgradeTower(8);
-                    moneynum.setText("$"+ (int)g.getMoney() + "");
-                }
-                else
-                {
-                    Alert alert2 = new Alert(AlertType.INFORMATION);
-                    alert2.setTitle("Not Enough Money");
-                    alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
-                    alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Fulk.");
-                    alert2.showAndWait();
-                    teacherIndex[0] = 0;
-                    scene.setCursor(Cursor.DEFAULT);
-                }
+                g.subtractMoney(costOfUpgrade);
+                g.upgradeTower(8);
+                moneynum.setText("$"+ (int)g.getMoney() + "");
+            }
+            else
+            {
+                Alert alert2 = new Alert(AlertType.INFORMATION);
+                alert2.setTitle("Not Enough Money");
+                alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
+                alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Fulk.");
+                alert2.showAndWait();
+                teacherIndex[0] = 0;
+                scene.setCursor(Cursor.DEFAULT);
             }
         });
         kwongUpgradeButton.setOnAction(arg0 -> {
-            if (true)//(fulkUpgradeAmt[0] < 5)
+            if (g.getMoney() > costOfUpgrade)
             {
-                if (g.getMoney() > costOfUpgrade)
-                {
-                    g.subtractMoney(costOfUpgrade);
-                    System.out.print(" upgrading all fulks");
-                    g.upgradeTower(9);
-                    moneynum.setText("$"+ (int)g.getMoney() + "");
-                }
-                else
-                {
-                    Alert alert2 = new Alert(AlertType.INFORMATION);
-                    alert2.setTitle("Not Enough Money");
-                    alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
-                    alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Fulk.");
-                    alert2.showAndWait();
-                    teacherIndex[0] = 0;
-                    scene.setCursor(Cursor.DEFAULT);
-                }
+                g.subtractMoney(costOfUpgrade);
+                g.upgradeTower(9);
+                moneynum.setText("$"+ (int)g.getMoney() + "");
+            }
+            else
+            {
+                Alert alert2 = new Alert(AlertType.INFORMATION);
+                alert2.setTitle("Not Enough Money");
+                alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
+                alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Kwong.");
+                alert2.showAndWait();
+                teacherIndex[0] = 0;
+                scene.setCursor(Cursor.DEFAULT);
             }
         });
         dunlapUpgradeButton.setOnAction(arg0 -> {
-            if (true)//(fulkUpgradeAmt[0] < 5)
+            if (g.getMoney() > costOfUpgrade)
             {
-                if (g.getMoney() > costOfUpgrade)
-                {
-                    g.subtractMoney(costOfUpgrade);
-                    System.out.print(" upgrading all fulks");
-                    g.upgradeTower(10);
-                    moneynum.setText("$"+ (int)g.getMoney() + "");
-                }
-                else
-                {
-                    Alert alert2 = new Alert(AlertType.INFORMATION);
-                    alert2.setTitle("Not Enough Money");
-                    alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
-                    alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Fulk.");
-                    alert2.showAndWait();
-                    teacherIndex[0] = 0;
-                    scene.setCursor(Cursor.DEFAULT);
-                }
+                g.subtractMoney(costOfUpgrade);
+                g.upgradeTower(10);
+                moneynum.setText("$"+ (int)g.getMoney() + "");
+            }
+            else
+            {
+                Alert alert2 = new Alert(AlertType.INFORMATION);
+                alert2.setTitle("Not Enough Money");
+                alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
+                alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mrs. Dunlap.");
+                alert2.showAndWait();
+                teacherIndex[0] = 0;
+                scene.setCursor(Cursor.DEFAULT);
             }
         });
         taylorUpgradeButton.setOnAction(arg0 -> {
-            if (true)//(fulkUpgradeAmt[0] < 5)
+            if (g.getMoney() > costOfUpgrade)
             {
-                if (g.getMoney() > costOfUpgrade)
-                {
-                    g.subtractMoney(costOfUpgrade);
-                    System.out.print(" upgrading all fulks");
-                    g.upgradeTower(11);
-                    moneynum.setText("$"+ (int)g.getMoney() + "");
-                }
-                else
-                {
-                    Alert alert2 = new Alert(AlertType.INFORMATION);
-                    alert2.setTitle("Not Enough Money");
-                    alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
-                    alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Fulk.");
-                    alert2.showAndWait();
-                    teacherIndex[0] = 0;
-                    scene.setCursor(Cursor.DEFAULT);
-                }
+                g.subtractMoney(costOfUpgrade);
+                g.upgradeTower(11);
+                moneynum.setText("$"+ (int)g.getMoney() + "");
+            }
+            else
+            {
+                Alert alert2 = new Alert(AlertType.INFORMATION);
+                alert2.setTitle("Not Enough Money");
+                alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
+                alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Taylor.");
+                alert2.showAndWait();
+                teacherIndex[0] = 0;
+                scene.setCursor(Cursor.DEFAULT);
             }
         });
         albakerUpgradeButton.setOnAction(arg0 -> {
-            if (true)//(fulkUpgradeAmt[0] < 5)
+            if (g.getMoney() > costOfUpgrade)
             {
-                if (g.getMoney() > costOfUpgrade)
-                {
-                    g.subtractMoney(costOfUpgrade);
-                    System.out.print(" upgrading all fulks");
-                    g.upgradeTower(12);
-                    moneynum.setText("$"+ (int)g.getMoney() + "");
-                }
-                else
-                {
-                    Alert alert2 = new Alert(AlertType.INFORMATION);
-                    alert2.setTitle("Not Enough Money");
-                    alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
-                    alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Fulk.");
-                    alert2.showAndWait();
-                    teacherIndex[0] = 0;
-                    scene.setCursor(Cursor.DEFAULT);
-                }
+                g.subtractMoney(costOfUpgrade);
+                g.upgradeTower(12);
+                moneynum.setText("$"+ (int)g.getMoney() + "");
+            }
+            else
+            {
+                Alert alert2 = new Alert(AlertType.INFORMATION);
+                alert2.setTitle("Not Enough Money");
+                alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
+                alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mrs. Albaker.");
+                alert2.showAndWait();
+                teacherIndex[0] = 0;
+                scene.setCursor(Cursor.DEFAULT);
             }
         });
         palloneUpgradeButton.setOnAction(arg0 -> {
-            if (true)//(fulkUpgradeAmt[0] < 5)
+            if (g.getMoney() > costOfUpgrade)
             {
-                if (g.getMoney() > costOfUpgrade)
-                {
-                    g.subtractMoney(costOfUpgrade);
-                    System.out.print(" upgrading all fulks");
-                    g.upgradeTower(13);
-                    moneynum.setText("$"+ (int)g.getMoney() + "");
-                }
-                else
-                {
-                    Alert alert2 = new Alert(AlertType.INFORMATION);
-                    alert2.setTitle("Not Enough Money");
-                    alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
-                    alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Fulk.");
-                    alert2.showAndWait();
-                    teacherIndex[0] = 0;
-                    scene.setCursor(Cursor.DEFAULT);
-                }
+                g.subtractMoney(costOfUpgrade);
+                g.upgradeTower(13);
+                moneynum.setText("$"+ (int)g.getMoney() + "");
+            }
+            else
+            {
+                Alert alert2 = new Alert(AlertType.INFORMATION);
+                alert2.setTitle("Not Enough Money");
+                alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
+                alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Pallone.");
+                alert2.showAndWait();
+                teacherIndex[0] = 0;
+                scene.setCursor(Cursor.DEFAULT);
             }
         });
 
         HashMap<ImageView, Tower> h = new HashMap<ImageView, Tower>();
         mapping.setOnMouseClicked(value ->  {
             java.awt.Point p = MouseInfo.getPointerInfo().getLocation();
-
-            //double x = p.getX()/stage.getWidth();
-            //double y = p.getY()/stage.getHeight();
-            
             Image towerImage;
             ImageView tower;
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Not Enough Money");
             alert.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
             switch (teacherIndex[0]) {
+
                 case 1:
-                //change this, for testing purposes only
                     if (g.getMoney() > fulkCost){
                         Tower f = new Fulk(g, game, "Teachers/Fulk.PNG", new Location(p.getX(), p.getY()));
                         towerImage = new Image(getClass().getResource("Classes/Teachers/Fulk.PNG").toExternalForm());
@@ -623,6 +590,7 @@ public class App extends Application {
                         scene.setCursor(Cursor.DEFAULT);
                     }
                     break;
+
                 case 2:
                     if (g.getMoney() > kwongCost){
                         Tower f = new Kwong(g, game, "Teachers/Kwong.PNG", new Location(p.getX(), p.getY()));
@@ -656,6 +624,7 @@ public class App extends Application {
                         scene.setCursor(Cursor.DEFAULT);
                     }
                     break;
+
                 case 3:
                     if (g.getMoney() > dunlapCost){
                         Tower f = new Dunlap(g, game, "Teachers/Dunlap.PNG", new Location(p.getX(), p.getY()));
@@ -690,6 +659,7 @@ public class App extends Application {
                         scene.setCursor(Cursor.DEFAULT);
                     }
                     break;
+
                 case 4:
                     if (g.getMoney() > taylorCost){
                         Tower f = new Taylor(g, game, "Teachers/Taylor.PNG", new Location(p.getX(), p.getY()));
@@ -724,6 +694,7 @@ public class App extends Application {
                         scene.setCursor(Cursor.DEFAULT);
                     }
                     break;
+
                 case 5:
                     if (g.getMoney() > albakerCost){
                         Tower f = new Albaker(g, game, "Teachers/Albaker.PNG", new Location(p.getX(), p.getY()));
@@ -758,6 +729,7 @@ public class App extends Application {
                         scene.setCursor(Cursor.DEFAULT);
                     }
                     break;
+
                 case 6:
                     if (g.getMoney() > palloneCost){
                         Tower f = new Pallone(g, game, "Teachers/Pallone.PNG", new Location(p.getX(), p.getY()));
@@ -801,9 +773,6 @@ public class App extends Application {
         fullscreen.setOnAction(value ->  {
             stage.setFullScreen(true);
         });
-
-
-
 
         game.setId("game"); 
         towers.setId("towers");

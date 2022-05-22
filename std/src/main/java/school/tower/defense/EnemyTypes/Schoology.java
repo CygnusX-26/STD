@@ -19,6 +19,6 @@ public class Schoology extends Enemy {
      * @param enemies the arraylist of current enemies on screen
      */
     public Schoology(StackPane s, Stage stage, ArrayList<Location> pathLocations, ArrayList<Enemy> enemies, int roundNum) {
-        super("Schoology", 6, 0.1 + (0.01) * roundNum, 11, s, new String[] {"Enemies/Schoology/schoology1.png", "Enemies/Schoology/schoology1.png", "Enemies/Schoology/schoology2.png", "Enemies/Schoology/schoology3.png", "Enemies/Schoology/schoology4.png", "Enemies/Schoology/schoology5.png", "Enemies/Schoology/schoology6.png"}, pathLocations); 
+        super("Schoology", 6, 0.1 + (0.03) * roundNum, 11, s, new String[] {"Enemies/Schoology/schoology1.png", "Enemies/Schoology/schoology1.png", "Enemies/Schoology/schoology2.png", "Enemies/Schoology/schoology3.png", "Enemies/Schoology/schoology4.png", "Enemies/Schoology/schoology5.png", "Enemies/Schoology/schoology6.png"}, pathLocations); 
     }
 }
