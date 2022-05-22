@@ -444,7 +444,6 @@ public class App extends Application {
             teacherIndex[0] = 7;
         });
         fulkUpgradeButton.setOnAction(arg0 -> {
-            System.out.print("upgrade button pressed");
             if (true)//(fulkUpgradeAmt[0] < 5)
             {
                 if (g.getMoney() > costOfUpgrade)
@@ -467,19 +466,114 @@ public class App extends Application {
             }
         });
         kwongUpgradeButton.setOnAction(arg0 -> {
-            //do nothing for now
+            if (true)//(fulkUpgradeAmt[0] < 5)
+            {
+                if (g.getMoney() > costOfUpgrade)
+                {
+                    g.subtractMoney(costOfUpgrade);
+                    System.out.print(" upgrading all fulks");
+                    g.upgradeTower(9);
+                    moneynum.setText("$"+ (int)g.getMoney() + "");
+                }
+                else
+                {
+                    Alert alert2 = new Alert(AlertType.INFORMATION);
+                    alert2.setTitle("Not Enough Money");
+                    alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
+                    alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Fulk.");
+                    alert2.showAndWait();
+                    teacherIndex[0] = 0;
+                    scene.setCursor(Cursor.DEFAULT);
+                }
+            }
         });
         dunlapUpgradeButton.setOnAction(arg0 -> {
-            //do nothing for now
+            if (true)//(fulkUpgradeAmt[0] < 5)
+            {
+                if (g.getMoney() > costOfUpgrade)
+                {
+                    g.subtractMoney(costOfUpgrade);
+                    System.out.print(" upgrading all fulks");
+                    g.upgradeTower(10);
+                    moneynum.setText("$"+ (int)g.getMoney() + "");
+                }
+                else
+                {
+                    Alert alert2 = new Alert(AlertType.INFORMATION);
+                    alert2.setTitle("Not Enough Money");
+                    alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
+                    alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Fulk.");
+                    alert2.showAndWait();
+                    teacherIndex[0] = 0;
+                    scene.setCursor(Cursor.DEFAULT);
+                }
+            }
         });
         taylorUpgradeButton.setOnAction(arg0 -> {
-            //do nothing for now
+            if (true)//(fulkUpgradeAmt[0] < 5)
+            {
+                if (g.getMoney() > costOfUpgrade)
+                {
+                    g.subtractMoney(costOfUpgrade);
+                    System.out.print(" upgrading all fulks");
+                    g.upgradeTower(11);
+                    moneynum.setText("$"+ (int)g.getMoney() + "");
+                }
+                else
+                {
+                    Alert alert2 = new Alert(AlertType.INFORMATION);
+                    alert2.setTitle("Not Enough Money");
+                    alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
+                    alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Fulk.");
+                    alert2.showAndWait();
+                    teacherIndex[0] = 0;
+                    scene.setCursor(Cursor.DEFAULT);
+                }
+            }
         });
         albakerUpgradeButton.setOnAction(arg0 -> {
-            //do nothing for now
+            if (true)//(fulkUpgradeAmt[0] < 5)
+            {
+                if (g.getMoney() > costOfUpgrade)
+                {
+                    g.subtractMoney(costOfUpgrade);
+                    System.out.print(" upgrading all fulks");
+                    g.upgradeTower(12);
+                    moneynum.setText("$"+ (int)g.getMoney() + "");
+                }
+                else
+                {
+                    Alert alert2 = new Alert(AlertType.INFORMATION);
+                    alert2.setTitle("Not Enough Money");
+                    alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
+                    alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Fulk.");
+                    alert2.showAndWait();
+                    teacherIndex[0] = 0;
+                    scene.setCursor(Cursor.DEFAULT);
+                }
+            }
         });
         palloneUpgradeButton.setOnAction(arg0 -> {
-            //do nothing for now
+            if (true)//(fulkUpgradeAmt[0] < 5)
+            {
+                if (g.getMoney() > costOfUpgrade)
+                {
+                    g.subtractMoney(costOfUpgrade);
+                    System.out.print(" upgrading all fulks");
+                    g.upgradeTower(13);
+                    moneynum.setText("$"+ (int)g.getMoney() + "");
+                }
+                else
+                {
+                    Alert alert2 = new Alert(AlertType.INFORMATION);
+                    alert2.setTitle("Not Enough Money");
+                    alert2.setContentText("Not Enough money! You only have " + g.getMoney() + " Money.");
+                    alert2.setHeaderText("You need " + costOfUpgrade + " Money to upgrade Mr. Fulk.");
+                    alert2.showAndWait();
+                    teacherIndex[0] = 0;
+                    scene.setCursor(Cursor.DEFAULT);
+                }
+            }
         });
 
         HashMap<ImageView, Tower> h = new HashMap<ImageView, Tower>();
