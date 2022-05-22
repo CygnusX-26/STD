@@ -7,6 +7,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import school.tower.defense.Classes.Location;
 
+/**
+ * Template for all enemy types
+ */
 public abstract class Enemy {
     private String name;
     private int health, reward;

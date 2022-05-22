@@ -4,6 +4,9 @@ import javafx.scene.layout.StackPane;
 import school.tower.defense.Classes.*;
 import school.tower.defense.Templates.*;
 
+/**
+ * Constructs a Fulk Teacher
+ */
 public class Fulk extends Tower {
     Game game;
     StackPane s;
