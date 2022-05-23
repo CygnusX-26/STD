@@ -22,7 +22,7 @@ import school.tower.defense.Templates.*;
 import school.tower.defense.TowerTypes.*;
 
 /**
- * Game controls the logic of STD, runs all the behind the scenes magic. Hi mr. fulk!
+ * Game controls the logic of STD, runs all the behind the scenes magic.
  */
 public class Game extends App {
     private ArrayList<Tower> towers;
@@ -54,7 +54,7 @@ public class Game extends App {
         try {
             scanner = new Scanner(file);
         } catch(FileNotFoundException e) {
-            System.out.println("I hate java map stuff broke AGAIN");
+            System.out.println("uh oh what happened now");
         }
 
         while (scanner.hasNextLine()) {
@@ -95,7 +95,7 @@ public class Game extends App {
 
     
     /** 
-     * fixes money to player's account
+     * sets player's money to desired amount
      * @param money set the amount of money to account
      */
     public void setMoney(double money) {
@@ -131,7 +131,7 @@ public class Game extends App {
 
     
     /** 
-     * Updates the health of the player
+     * updates the health of the player
      * @return int of the new health value
      */
     public int takeDamage(){
@@ -140,7 +140,7 @@ public class Game extends App {
     }
 
     /**
-     * Updates enemy positions
+     * updates enemy positions
      * @param Delta the time since the last update
      */
     public void updateFrame(long Delta) {
@@ -195,8 +195,8 @@ public class Game extends App {
     
     
     /** 
-     * run() starts multiple threads that control the timinigs of the game. 
-     * It updates enemy position, checks for damages, updates health and spawns enemies when appropriate
+     * run() starts multiple threads that control the timings of the game... 
+     * It updates enemy position, checks for damages, updates health and spawns enemies when appropriate.
      * @param s the layers of images on the screen
      * @param hpnum the textbox of the current health
      * @param moneynum the textbox of current amount of money
@@ -286,7 +286,7 @@ public class Game extends App {
 
     
     /** 
-     * Creates and adds enemies into the queue each and every round
+     * creates and adds enemies into the queue each and every round
      * @param roundNum the current round number
      * @param enemyQueue the queue of enemeies to add enemies into
      * @param s the StackPane to add enemies on top of
@@ -357,7 +357,7 @@ public class Game extends App {
 
     
     /** 
-     * upgrades all towers with the ID that matches
+     * upgrades all towers of the same class
      * @param ID the tower ID type it should upgrade
      */
     public void upgradeTower(int ID)

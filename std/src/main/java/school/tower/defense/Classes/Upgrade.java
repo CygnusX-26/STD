@@ -1,4 +1,5 @@
 package school.tower.defense.Classes;
+
 /**
  * This class contains data to upgrade towers to be more powerful. 
  * This class is currently not bring used, but can be easily implemented in a future update

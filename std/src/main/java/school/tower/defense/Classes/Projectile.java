@@ -9,7 +9,7 @@ import javafx.scene.layout.StackPane;
 import school.tower.defense.Templates.Enemy;
 
 /**
- * creates a projectile from the tower to hit the enemy and deals damage
+ * Creates a projectile from the tower to hit the enemy and deals damage
  */
 public class Projectile {
     ImageView sprite;
@@ -88,7 +88,7 @@ public class Projectile {
     }
 
     /**
-     * Updates the projectiles position and damaged the target
+     * Updates the projectiles position and damages the target when distance is close
      * @param time The time since the last projectile update
      */
     public void updateProjectile(double delta) {

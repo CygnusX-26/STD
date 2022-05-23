@@ -7,7 +7,7 @@ import school.tower.defense.Classes.Location;
 import school.tower.defense.Templates.Enemy;
 
 /**
- * Spawns in a collegeboard enemy
+ * spawns in a collegeboard enemy
  */
 public class Schoology extends Enemy {
     

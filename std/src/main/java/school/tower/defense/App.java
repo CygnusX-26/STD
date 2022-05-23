@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
- * The front end graphics of STD
+ * The front end graphics of STD, uses JavaFX for GUI support
  */
 public class App extends Application {
     private static Scene scene;
@@ -60,7 +60,9 @@ public class App extends Application {
 
 
     /**
-     * Loads the menu opening scene
+     * loads the menu opening scene...
+     * opens the required images, and places them in animation...
+     * then awaits for a button to be pressed.
      * @throws IOException if fails to load the scene
      */
     public void loadMenu() throws IOException {
@@ -163,7 +165,10 @@ public class App extends Application {
 
     
     /**
-     * loads the game scene
+     * loads the game scene...
+     * first creates clickable buttons for all classes, then creates tooltips and text...
+     * it then loads in the images neeed and places them on the screen...
+     * and waits for the buttons to be pressed to run code related to that intended button's action.
      * @throws IOException if fails to load the scene
      */
     public void loadGame() throws IOException {

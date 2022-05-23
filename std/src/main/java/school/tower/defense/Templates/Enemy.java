@@ -164,7 +164,7 @@ public class Enemy {
     }
 
     /**
-     * Gets the sprite of the enemy
+     * Returns the sprite of the enemy
      * @return The sprite of the enemy
      */
     public ImageView getSprite() {
