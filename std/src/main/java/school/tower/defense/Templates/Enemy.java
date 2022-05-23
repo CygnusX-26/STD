@@ -10,8 +10,7 @@ import school.tower.defense.Classes.Location;
 /**
  * Template for all enemy types
  */
-public abstract class Enemy {
-    private String name;
+public class Enemy {
     private int health, reward;
     private double speed;
     private int pathNumber;
@@ -25,7 +24,6 @@ public abstract class Enemy {
     
     /**
      * Creates an enemy
-     * @param name The name of the enemy
      * @param health The health of the enemy
      * @param speed The speed of the enemy
      * @param reward The reward of the enemy
@@ -33,8 +31,7 @@ public abstract class Enemy {
      * @param pathName The path name of the enemy
      * @param pathLocations The points on the path
      */
-    public Enemy(String name, int health, double speed, int reward, StackPane s, String[] pathName, ArrayList<Location> pathLocations) {
-        this.name = name;
+    public Enemy(int health, double speed, int reward, StackPane s, String[] pathName, ArrayList<Location> pathLocations) {
         this.health = health;
         this.speed = speed;
         this.reward = reward;
@@ -51,14 +48,6 @@ public abstract class Enemy {
         sprite.setTranslateY(this.getLocation().getY());
 
         s.getChildren().add(sprite);
-    }
-
-    /**
-     * Gets the name of the enemy
-     * @return The name of the enemy
-     */
-    public String getName() {
-        return name;
     }
 
     /**

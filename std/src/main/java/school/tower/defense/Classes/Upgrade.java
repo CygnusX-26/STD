@@ -4,44 +4,20 @@ package school.tower.defense.Classes;
  * This class is currently not bring used, but can be easily implemented in a future update
  */
 public class Upgrade {
-    String name;
-    int cost;
     int damage;
     int range;
     double attackspeed;
 
     /**
      * Constructing a upgrade and initalizing all variables
-     * @param name name of the upgrade
-     * @param cost the cost in Money of the upgrade
      * @param damage the damage increased of the upgrade
      * @param range the range increase of the upgrade
      * @param attackspeed the reload speed increase of the update
      */
-    public Upgrade(String name, int cost, int damage, int range, double attackspeed) {
-        this.name = name;
-        this.cost = cost;
+    public Upgrade(int damage, int range, double attackspeed) {
         this.damage = damage;
         this.range = range;
         this.attackspeed = attackspeed;
-    }
-
-    
-    /** 
-     * Returns the name of the upgrade
-     * @return String
-     */
-    public String getName() {
-        return name;
-    }
-
-    
-    /**
-     * Returns the cost of the upgrade
-     * @return int
-     */
-    public int getCost() {
-        return cost;
     }
 
     

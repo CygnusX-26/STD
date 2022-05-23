@@ -8,13 +8,12 @@ import school.tower.defense.Classes.*;
 /**
  * Template for all tower types
  */
-public abstract class Tower {
+public class Tower {
     Game game;
     Upgrade currentUpgrade;
     Location location;
     StackPane s;
     String pathName;
-    int cost;
     ArrayList<Projectile> projectiles;
     Thread t;
     boolean exists;
@@ -28,10 +27,9 @@ public abstract class Tower {
      * @param pathName The path name of the tower
      * @param cost The cost of the tower
      */
-    public Tower(Game game, StackPane s, Location location, int cost, Upgrade upgrade, String pathName) {
+    public Tower(Game game, StackPane s, Location location, Upgrade upgrade, String pathName) {
         this.currentUpgrade = upgrade;
         this.game = game;
-        this.cost = cost;
         this.location = location;
         this.pathName = pathName;
         this.s = s;
@@ -57,7 +55,7 @@ public abstract class Tower {
      * Upgrades the tower for additional damage
      */
     public void upgrade(){
-        currentUpgrade = new Upgrade("not base", 100, currentUpgrade.getDamage() + 1, currentUpgrade.getRange() + 50, currentUpgrade.getAttackspeed() + 0.2);
+        currentUpgrade = new Upgrade(currentUpgrade.getDamage() + 1, currentUpgrade.getRange() + 50, currentUpgrade.getAttackspeed() + 0.2);
     }
 
     /**
@@ -81,27 +79,12 @@ public abstract class Tower {
         }
     }
 
-    /** 
-     * Sells the tower
-    */
-    public void sell() {
-        game.addMoney(cost * 0.7);
-    }
-
     /**
      * Attacks an enemy
      * @param enemy The enemy to attack
      */
     private void attack(Enemy enemy) {
         projectiles.add(new Projectile(pathName, s, enemy, location, currentUpgrade.getDamage()));
-    }
-
-    /**
-     * Returns the cost of the tower
-     * @return the cost
-     */
-    public int getCost() {
-        return cost;
     }
 
     /**
@@ -112,13 +95,6 @@ public abstract class Tower {
         return currentUpgrade;
     }
 
-    /**
-     * Returns the location of the tower
-     * @return location
-     */
-    public Location getLocation() {
-        return location;
-    }
     /**
      * Stops the thread of attacking enemies
      */

@@ -8,16 +8,15 @@ import school.tower.defense.Templates.*;
  * Constructs a Albaker Teacher
  */
 public class Albaker extends Tower {
-    Game game;
-    StackPane s;
-    String pathName;
-    
+        
     /**
-     * Constructor for the tower
-     */
+    * Constructor for the tower
+    * @param game current game
+    * @param s the stackpane
+    * @param pathName the image file path
+    * @param location where to place the tower
+    */
     public Albaker (Game game, StackPane s, String pathName, Location location) {
-        super(game, s, location, 100, new Upgrade("0", 0, 1, 400, 2), pathName);
-        this.s = s;
-        this.pathName = pathName;
+        super(game, s, location, new Upgrade(1, 400, 2), pathName);
     }
 }

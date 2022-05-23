@@ -19,6 +19,6 @@ public class Collegeboard extends Enemy {
      * @param enemies the arraylist of current enemies on screen
      */
     public Collegeboard(StackPane s, Stage stage, ArrayList<Location> pathLocations, ArrayList<Enemy> enemies, int roundNum) {
-        super("Collegeboard", 3, 0.2 + (0.03) * roundNum, 3, s, new String[] {"Enemies/Collegeboard/collegeboard1.png", "Enemies/Collegeboard/collegeboard1.png", "Enemies/Collegeboard/collegeboard2.png", "Enemies/Collegeboard/collegeboard3.png"}, pathLocations); 
+        super(3, 0.2 + (0.03) * roundNum, 3, s, new String[] {"Enemies/Collegeboard/collegeboard1.png", "Enemies/Collegeboard/collegeboard1.png", "Enemies/Collegeboard/collegeboard2.png", "Enemies/Collegeboard/collegeboard3.png"}, pathLocations); 
     }
 }

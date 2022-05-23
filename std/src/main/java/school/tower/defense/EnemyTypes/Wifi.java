@@ -19,6 +19,6 @@ public class Wifi extends Enemy {
      * @param enemies the arraylist of current enemies on screen
      */
     public Wifi(StackPane s, Stage stage, ArrayList<Location> pathLocations, ArrayList<Enemy> enemies, int roundNum) {
-        super("Wifi", 4, 0.4 + (0.03) * roundNum, 9, s, new String[] {"Enemies/Wifi/wifi1.png", "Enemies/Wifi/wifi1.png", "Enemies/Wifi/wifi2.png", "Enemies/Wifi/wifi3.png", "Enemies/Wifi/wifi4.png"}, pathLocations); 
+        super(4, 0.4 + (0.03) * roundNum, 9, s, new String[] {"Enemies/Wifi/wifi1.png", "Enemies/Wifi/wifi1.png", "Enemies/Wifi/wifi2.png", "Enemies/Wifi/wifi3.png", "Enemies/Wifi/wifi4.png"}, pathLocations); 
     }
 }
