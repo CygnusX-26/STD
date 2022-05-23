@@ -93,7 +93,7 @@ public class Projectile {
      */
     public void updateProjectile(double delta) {
         final double[] distance = new double[]{Math.sqrt(Math.pow(target.getLocation().getX() - location.getX(), 2) + Math.pow(target.getLocation().getY() - location.getY(), 2))};
-        double canMoveDistance = delta;
+        double canMoveDistance = delta * 1.5;
         double distanceToMove = distance[0] >= canMoveDistance ? canMoveDistance : distance[0];
         double percentToMove = distanceToMove/distance[0];
 
