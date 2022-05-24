@@ -17,6 +17,6 @@ public class Dunlap extends Tower {
      * @param location where to place the tower
     */
     public Dunlap(Game game, StackPane s, String pathName, Location location) {
-        super(game, s, location, new Upgrade(1, 200, 6), pathName);
+        super(game, s, location, new Upgrade(1, 250, 6), pathName);
     }
 }
