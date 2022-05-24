@@ -17,6 +17,6 @@ public class Fulk extends Tower {
      * @param location where to place the tower
     */
     public Fulk(Game game, StackPane s, String pathName, Location location) {
-        super(game, s, location, new Upgrade(1, 200, 1), pathName);
+        super(game, s, location, new Upgrade(1, 400, 1), pathName);
     }
 }
