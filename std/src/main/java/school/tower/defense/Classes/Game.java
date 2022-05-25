@@ -48,7 +48,7 @@ public class Game extends App {
         stage = s;
         roundNum = -1;
 
-        File file = new File("src/main/java/school/tower/defense/DataFiles/Maps/Map.txt");
+        File file = new File("std/src/main/java/school/tower/defense/DataFiles/Maps/Map.txt");
         Scanner scanner = null;
 
         try {
@@ -224,7 +224,7 @@ public class Game extends App {
                     System.out.println("");
                 }
                 Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("L");
+                alert.setTitle("L Bozo + Ratio");
                 alert.setContentText("You survived " + (roundNum - 2) + " rounds!");
                 alert.setHeaderText("You Lose!");
                 alert.showAndWait();
