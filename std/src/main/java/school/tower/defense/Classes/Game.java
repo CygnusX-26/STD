@@ -220,6 +220,9 @@ public class Game extends App {
             }
 
             Platform.runLater(() -> {
+                for (int i = 0; i < 30; i ++){
+                    System.out.println("");
+                }
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("L");
                 alert.setContentText("You survived " + (roundNum - 2) + " rounds!");
